@@ -8,6 +8,36 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+/*
+ * Authentication with facebook
+ * TODO: Serialize and deserialize user
+ */
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var facebookConfig = require('./config/facebook_config');
+
+// Use the FacebookStrategy within Passport.
+//   Strategies in Passport require a `verify` function, which accept
+//   credentials (in this case, an accessToken, refreshToken, and Facebook
+//   profile), and invoke a callback with a user object.
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's Facebook profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Facebook account with a user record in your database,
+      // and return that user instead.
+      return done(null, profile);
+    });
+  }
+));
+
 var app = express();
 
 // view engine setup
