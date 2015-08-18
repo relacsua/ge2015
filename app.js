@@ -4,26 +4,43 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var session = require('express-session');
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 /*
  * Authentication with facebook
- * TODO: Serialize and deserialize user
+ * TODO: Serialize and deserialize user (database)
  */
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var facebookConfig = require('./config/facebook_config');
+
+// Passport session setup.
+//   To support persistent login sessions, Passport needs to be able to
+//   serialize users into and deserialize users out of the session.  Typically,
+//   this will be as simple as storing the user ID when serializing, and finding
+//   the user by ID when deserializing.  However, since this example does not
+//   have a database of user records, the complete Facebook profile is serialized
+//   and deserialized.
+passport.serializeUser(function(user, done) {
+  console.log('serialise user: ',user);
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  console.log('obj: ',obj);
+  done(null, obj);
+});
 
 // Use the FacebookStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Facebook
 //   profile), and invoke a callback with a user object.
 passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    clientID: facebookConfig.facebook_api_key,
+    clientSecret: facebookConfig.facebook_api_secret,
+    callbackURL: facebookConfig.callback_url,
+    profileFields: ['id', 'displayName', 'photos', 'age_range']
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -52,8 +69,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// For passport sessions to work, the following is required
+app.use(session({secret: 'kennethAKAksami'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

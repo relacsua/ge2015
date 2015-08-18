@@ -1,3 +1,5 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<a href="/auth/facebook">Login with Facebook</a>
+<% if (!user) { %>
+	<h2>Welcome! Please log in.</h2>
+<% } else { %>
+	<h2>Hello, <%= JSON.stringify(user._json) %>.</h2>
+<% } %>
