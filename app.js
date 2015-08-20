@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var db = require('./model/db');
+var User = require('./model/users.js');
 var routes = require('./routes/index');
 
 /*
@@ -45,12 +47,28 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
-      // To keep the example simple, the user's Facebook profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Facebook account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
+      User.findOne({facebookId: profile.id}, function(err, user) {
+        console.log('user: ', user);
+        if(err)
+          done(err);
+        if(!user) {
+          console.log('user not found in database. creating new');
+          var newUser = User({
+            name: profile.displayName,
+            facebookId: profile.id,
+            minAge: profile._json['age_range'].min,
+            image: profile.photos[0].value,
+          });
+          newUser.save(function(err) {
+            if(err)
+              done(err);
+            console.log('user done creating, returning it now');
+            return done(null, newUser);
+          });
+        } else {
+          return done(null, user);
+        }
+      });
     });
   }
 ));

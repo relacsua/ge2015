@@ -4,11 +4,12 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	console.log('req.user: ', req.user);
+  console.log('rendering "/"')
   res.render('index', { user: req.user });
 });
 
 router.get('/login', function(req, res){
+  console.log('/login');
   res.render('login', { user: req.user });
 });
 
@@ -32,6 +33,7 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_fr
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
+    console.log('from fb callback');
     res.redirect('/');
 });
 
