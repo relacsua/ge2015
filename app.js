@@ -5,8 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+
+// MongoDB Models
 var db = require('./model/db');
 var User = require('./model/users.js');
+var Division = require('./model/divisions.js');
+
+// Routes
 var routes = require('./routes/index');
 
 /*
@@ -88,7 +93,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // For passport sessions to work, the following is required
-app.use(session({secret: 'kennethAKAksami'}));
+app.use(session({secret: 'ge2015'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
