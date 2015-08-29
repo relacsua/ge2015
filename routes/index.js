@@ -2,19 +2,17 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log('rendering "/"')
-  res.render('index', { user: req.user });
+/* GET welcome page. */
+router.get('/welcome', function(req, res){
+  if(req.user)
+    res.redirect('/');
+  else
+    res.render('welcome');
 });
 
-router.get('/login', function(req, res){
-  console.log('/login');
-  res.render('login', { user: req.user });
-});
-
-router.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
+router.get('/', ensureAuthenticated, function(req, res, next) { //add ensureAuthenticated
+    // console.log(req.user);
+    res.render('main', {user: req.user}); // add { user: req.user }
 });
 
 // GET /auth/facebook
@@ -33,7 +31,6 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_fr
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-    console.log('from fb callback');
     res.redirect('/');
 });
 
@@ -49,7 +46,7 @@ router.get('/logout', function(req, res){
 //   login page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/welcome')
 }
 
 module.exports = router;

@@ -1,0 +1,90 @@
+/*
+	color theme:
+		green: #468966;
+		peach: #fff0a5;
+		yellow: #ffb03b;
+		orange: #b64926;
+		red: #f43d58
+*/
+
+.main-panel {
+	background: url('../images/sgparliamenthouse1.jpg') center bottom no-repeat fixed;
+	background-size: cover;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  top: 75%;
+  transform: translateY(-75%);
+  -webkit-transform: translateY(-75%);
+	-ms-transform: translateY(-75%);
+  float: left;
+  margin-left: 50px;
+}
+
+.main-panel:after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  margin-left: -40px;
+  border-style: solid;
+  border-width: 0 40px 40px 40px;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+.hashtag {
+	font-size: 10rem;
+  font-weight: 900;
+  color: #f43d58;
+}
+
+.enter-btn {
+	color: #ffffff;
+	border-color: #f43d58;
+  background-color: #f43d58;
+}
+
+.arrow-down {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -45px;
+  z-index: 1;
+  border: 0;
+  margin-bottom: 0;
+}
+
+.features-panel {
+	min-height: 250px;
+	padding-top: 50px;
+}
+
+
+/*Animation*/
+
+.floating{
+    -webkit-animation-name: FloatingWebkit;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-name: FloatingMoz;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes FloatingWebkit{
+    from {-webkit-transform:translate(0, 0px);}
+    65% {-webkit-transform:translate(0, 10px);}
+    to {-webkit-transform: translate(0, -0px);    }    
+}
+    
+@-moz-keyframes FloatingMoz{
+    from {-moz-transform:translate(0, 0px);}
+    65% {-moz-transform:translate(0, 10px);}
+    to {-moz-transform: translate(0, -0px);}    
+}

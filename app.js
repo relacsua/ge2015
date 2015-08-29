@@ -13,36 +13,30 @@ var Division = require('./model/divisions.js');
 
 // Routes
 var routes = require('./routes/index');
+var api = require('./routes/api');
 
 /*
  * Authentication with facebook
- * TODO: Serialize and deserialize user (database)
  */
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var facebookConfig = require('./config/facebook_config');
 
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete Facebook profile is serialized
-//   and deserialized.
+
 passport.serializeUser(function(user, done) {
-  console.log('serialise user: ',user);
-  done(null, user);
+  done(null, user._id);
 });
 
-passport.deserializeUser(function(obj, done) {
-  console.log('obj: ',obj);
-  done(null, obj);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    if(err)
+      done(err, null)
+    else
+      done(null, user);
+  });
 });
 
 // Use the FacebookStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and Facebook
-//   profile), and invoke a callback with a user object.
 passport.use(new FacebookStrategy({
     clientID: facebookConfig.facebook_api_key,
     clientSecret: facebookConfig.facebook_api_secret,
@@ -53,11 +47,9 @@ passport.use(new FacebookStrategy({
     // asynchronous verification, for effect...
     process.nextTick(function () {
       User.findOne({facebookId: profile.id}, function(err, user) {
-        console.log('user: ', user);
         if(err)
           done(err);
         if(!user) {
-          console.log('user not found in database. creating new');
           var newUser = User({
             name: profile.displayName,
             facebookId: profile.id,
@@ -67,8 +59,8 @@ passport.use(new FacebookStrategy({
           newUser.save(function(err) {
             if(err)
               done(err);
-            console.log('user done creating, returning it now');
-            return done(null, newUser);
+            else
+              done(null, newUser);
           });
         } else {
           return done(null, user);
@@ -98,6 +90,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
