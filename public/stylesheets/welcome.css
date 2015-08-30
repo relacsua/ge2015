@@ -8,7 +8,7 @@
 */
 
 .main-panel {
-	background: url('../images/sgparliamenthouse1.jpg') center bottom no-repeat fixed;
+	background: url('../images/sgparliamenthouse.jpg') center bottom no-repeat fixed;
 	background-size: cover;
   width: 100%;
 }
@@ -40,12 +40,32 @@
 	font-size: 10rem;
   font-weight: 900;
   color: #f43d58;
+  text-shadow:
+  -2px -2px 0 #FFF,
+  2px -2px 0 #Fff,
+  -2px 2px 0 #fff,
+  2px 2px 0 #fff;
+}
+
+.year {
+  text-shadow:
+  -2px -2px 0 #f43d58,
+  2px -2px 0 #F43D58,
+  -2px 2px 0 #f43d58,
+  2px 2px 0 #f43d58;
+  color: #ffffff;
 }
 
 .enter-btn {
 	color: #ffffff;
 	border-color: #f43d58;
   background-color: #f43d58;
+}
+
+.enter-btn:hover {
+  border-color: #f43d58;
+  color: #f43d58;
+  background-color: #ffffff;
 }
 
 .arrow-down {

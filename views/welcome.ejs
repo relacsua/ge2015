@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset='utf-8'>
-	<title>Unofficial General Election 2015</title>
+	<title>#sg15 | Unofficial General Election 2015</title>
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
 	<link type="text/css" rel="stylesheet" href="stylesheets/vendor/normalize.css" />
 	<link type="text/css" rel="stylesheet" href="stylesheets/vendor/skeleton.css" />
@@ -11,8 +11,8 @@
 <body>
 	<div class="main-panel">
 		<div class="content">
-			<h1 class="hashtag">#GE<span style="color: #ffffff">2015</span></h1>
-			<a class="button enter-btn">Enter unoffical general election site</a>
+			<h1 class="hashtag">#GE<span class="year">2015</span></h1>
+			<a class="button enter-btn" href="/">Enter unoffical general election site</a>
 		</div>
 		<a class="button arrow-down" href="#">
 			<img width="30" height="30" src="images/arrowdown.svg" />
@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="one-third column">
 					<h3>Election information</h3>
-					<p>Know parties and candidates contesting in your division.</p>
+					<p>Know parties and candidates contesting in your constituency.</p>
 				</div>
 				<div class="one-third column">
 					<h3>Largest online poll</h3>
@@ -42,11 +42,10 @@
 		$(window).on('resize', function () {
 			$('.main-panel').height($(window).height());
 		});
-		$('.arrow-down').on('click', function () {
+		$('.arrow-down').on('click', function (e) {
+			e.preventDefault();
 			var top = $(window).scrollTop();
-			if(top > 0) {
-				$('html, body').animate({scrollTop: '0px'}, 1000);	
-			} else {
+			if(top < 300) {
 				$('html, body').animate({scrollTop: '300px'}, 1000);
 			}
 		});

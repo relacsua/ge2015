@@ -10,6 +10,7 @@
   },
 
   transitionTo(to, params, query) {
+    console.log('transitionTo called with to: ', to, ' params: ', params);
     router.transitionTo(to, params, query);
   },
 
@@ -29,10 +30,9 @@
 // By the time route config is require()-d,
 // require('./router') already returns a valid object
 
-var routes = require('./routes.js'),
-    Router = require('react-router');
+var Router = require('react-router');
+var routes = require('./routes.js');
 
 router = Router.create({
   routes: routes,
-  location: Router.HashLocation
 });

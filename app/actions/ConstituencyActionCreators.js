@@ -5,11 +5,14 @@ var ElectionAPI = require('../utils/geAPI.js');
 var ActionTypes = ConstituencyConstants.ActionTypes;
 
 module.exports = {
-	fetchDivisionData: function(divisionName) {
+	getDivisionData: function(divisionName, postalCode) {
 		console.log('fetchDivisionData in ConstituencyActionCreators called');
 		AppDispatcher.dispatch({
-			type: ActionTypes.GET_CONSTITUENCY,
+			type: ActionTypes.GET_CONSTITUENCY
 		});
-		ElectionAPI.getDivisionData(divisionName);
+		if(divisionName)
+			ElectionAPI.getDivisionWithName(divisionName);
+		else
+			ElectionAPI.getDivisionWithPostalCode(postalCode);
 	}
 }

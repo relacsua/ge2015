@@ -4,15 +4,13 @@ var passport = require('passport');
 
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
-  if(req.user)
-    res.redirect('/');
-  else
-    res.render('welcome');
+  res.render('welcome');
 });
 
-router.get('/', ensureAuthenticated, function(req, res, next) { //add ensureAuthenticated
-    // console.log(req.user);
-    res.render('main', {user: req.user}); // add { user: req.user }
+router.get('/', function(req, res, next) {
+    // res.cookie('first-time', '1', {maxAge: 3000, minAge: 3000});
+    // console.log('cookies', req.cookies);
+    res.render('main');
 });
 
 // GET /auth/facebook

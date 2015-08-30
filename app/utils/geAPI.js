@@ -24,7 +24,8 @@ var getJSON = function(url) {
   return promise;
 };
 
-function getDivisionData(divisionName) {
+function getDivisionWithName(divisionName) {
+  console.log('get division api called with ', divisionName);
   var url = "/api/division/" + divisionName;
   getJSON(url).then(function(divisionData) {
     ConstituencyServerActionCreators.getDivisionDataSuccess(divisionData);
@@ -33,6 +34,16 @@ function getDivisionData(divisionName) {
   });
 }
 
+function getDivisionWithPostalCode(postalCode) {
+  var url = "/api/code/" + postalCode;
+  getJSON(url).then(function(divisionData) {
+    ConstituencyServerActionCreators.getDivisionNameSuccess(divisionData);
+  }, function(error) {
+    ConstituencyServerActionCreators.getDivisionNameFailure(error.status);
+  });
+}
+
 module.exports = {
-  getDivisionData
+  getDivisionWithName,
+  getDivisionWithPostalCode
 }

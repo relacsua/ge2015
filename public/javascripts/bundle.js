@@ -20442,6 +20442,7 @@
 	  },
 	
 	  transitionTo:function(to, params, query) {
+	    console.log('transitionTo called with to: ', to, ' params: ', params);
 	    router.transitionTo(to, params, query);
 	  },
 	
@@ -20461,12 +20462,11 @@
 	// By the time route config is require()-d,
 	// require('./router') already returns a valid object
 	
-	var routes = __webpack_require__(158),
-	    Router = __webpack_require__(159);
+	var Router = __webpack_require__(159);
+	var routes = __webpack_require__(158);
 	
 	router = Router.create({
 	  routes: routes,
-	  location: Router.HashLocation
 	});
 
 /***/ },
@@ -20480,7 +20480,7 @@
 	var routes = (
 		React.createElement(Route, {handler: __webpack_require__(198)}, 
 			React.createElement(Route, {name: "form", path: "/", handler: __webpack_require__(199)}, 
-				React.createElement(Route, {name: "info", path: "/division/:divisionName", handler: __webpack_require__(217)})
+				React.createElement(Route, {name: "info", path: "/division/:name", handler: __webpack_require__(200)})
 			), 
 			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(220)}), 
 			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(221)})
@@ -23607,13 +23607,12 @@
 	var React = __webpack_require__(1);
 	var $__0=    __webpack_require__(159),RouteHandler=$__0.RouteHandler;
 	
+	// TODO: Add a notification component and add it to thi, Layout component
 	var Layout = React.createClass({displayName: "Layout",
 		render: function() {
 			return (
 				React.createElement("div", null, 
-					React.createElement("p", null, "Header"), 
-					React.createElement(RouteHandler, null), 
-					React.createElement("p", null, "footer")
+					React.createElement(RouteHandler, null)
 				)
 			);
 		}
@@ -23626,20 +23625,115 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var $__0=     __webpack_require__(159),RouteHandler=$__0.RouteHandler,Link=$__0.Link;
-	var ConstituencyStore = __webpack_require__(200);
-	var ConstituencyActionCreators = __webpack_require__(209);
+	var $__0=     __webpack_require__(159),RouteHandler=$__0.RouteHandler,Navigation=$__0.Navigation;
+	var ConstituencyActionCreators = __webpack_require__(210);
+	__webpack_require__(230);
+	__webpack_require__(222);
+	
+	var ConstituencyForm = React.createClass({displayName: "ConstituencyForm",
+	
+		mixins: [Navigation],
+	
+		componentDidMount: function() {
+			var nlform = new NLForm(document.getElementById('nl-form'));
+		},
+	
+		handleSubmit: function (e) {
+			e.preventDefault();
+			var inputs = document.getElementsByClassName('nl-field-toggle');
+			var constituencyInput = inputs[0].innerText;
+			var postalCodeinput = inputs[1].innerText;
+			
+			if(constituencyInput === 'constituency' && postalCodeinput === 'postal code') {
+				// none of the inputs were selected
+				console.log('Please select either of the inputs');
+			} else if (constituencyInput !== 'constituency' && postalCodeinput !== 'postal code') {
+				// both inputs were selected
+				console.log('Only choose 1 of the option');
+			} else {
+				if(constituencyInput !== 'constituency') {
+					// Constituency was selected
+					this.transitionTo('info', {name: constituencyInput});
+				} else {
+					// Postal code was selected
+					if(postalCodeinput.toString().length === 6) {
+						// valid
+						ConstituencyActionCreators.getDivisionData(null, postalCodeinput);
+					} else {
+						console.log('Invalid postal code');
+					}
+					
+				}
+			}
+		},
+	
+	  render: function() {
+	   return(
+	   	React.createElement("div", null, 
+	   		React.createElement("div", {className: "content"}, 
+	   			React.createElement("div", {className: "container"}, 
+						React.createElement("form", {onSubmit: this.handleSubmit, id: "nl-form", className: "nl-form row"}, 
+							React.createElement("span", {className: "block-text"}, "I am from"), 
+							React.createElement("select", null, 
+								React.createElement("option", {value: ""}, "constituency"), 
+								React.createElement("option", {value: "Ang Mo Kio GRC"}, "Ang Mo Kio GRC"), 
+								React.createElement("option", {value: "Marsiling-Yew Tee GRC"}, "Marsiling-Yew Tee GRC")
+							), 
+							React.createElement("span", {className: "block-text"}, "or"), 
+							React.createElement("input", {type: "text", value: "", placeholder: "postal code", "data-subline": "For example: <em>Singapore 271030</em> or <em>131 Jalan Bukit Merah</em>"}), 
+							React.createElement("div", {className: "nl-submit-wrap"}, 
+								React.createElement("button", {className: "nl-submit", type: "submit"}, "Find my constituency")
+							), 
+							React.createElement("div", {className: "nl-overlay"})
+						)
+					)
+				), 
+				React.createElement(RouteHandler, null)
+			)
+		)}
+	});
+	
+	module.exports = ConstituencyForm;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var $__0=    __webpack_require__(159),State=$__0.State;
+	var ConstituencyStore = __webpack_require__(201);
+	var ConstituencyActionCreators = __webpack_require__(210);
+	var Party = __webpack_require__(218);
 	
 	function getFromConstituencyStore() {
 		return {
-			anyPendingRequest: ConstituencyStore.anyPendingRequest()
+			currentDivisionData: ConstituencyStore.getCurrentDivisionData()
 		}
 	}
 	
-	var ConstituencyForm = React.createClass({displayName: "ConstituencyForm",
-		
+	var ConstituencyInfo = React.createClass({displayName: "ConstituencyInfo",
+	
+		mixins: [State],
+	
 		getInitialState: function() {
 			return getFromConstituencyStore();
+		},
+	
+		_getDivisionName: function() {
+			return this.getParams().name;
+		},
+	
+		_init: function () {
+			var divisionName = this._getDivisionName();
+			ConstituencyActionCreators.getDivisionData(divisionName);
+		},
+	
+		componentWillMount: function() {
+			this._init();
+		},
+	
+		componentWillReceiveProps: function(nextProps) {
+			this._init();
 		},
 	
 		componentDidMount: function() {
@@ -23651,53 +23745,61 @@
 		},
 	
 		_onChange: function() {
-			console.log('change in store state');
 			this.setState(getFromConstituencyStore());
 		},
 	
-		handleClick: function(e) {
-			if(!this.state.anyPendingRequest) {
-				var button = e.target;
-				ConstituencyActionCreators.fetchDivisionData(button.dataset.division);
-			}
-		},
-	
-	  render: function() {
-	   return(
-	   	React.createElement("div", null, 
-				React.createElement(Link, {to: "info", params: {divisionName: "Marsiling-Yew Tee GRC"}}, "Marsiling-Yew Tee GRC"), 
-				React.createElement(RouteHandler, null)
+		renderDivisionData: function() {
+			var data = this.state.currentDivisionData;
+			console.log(data);
+			return (
+				React.createElement("div", null, 
+					React.createElement("h1", null, data.divisionName), 
+					React.createElement("p", null, "Number of seats contested: ", data.seats), 
+					React.createElement("p", null, "Number of electors: ", data.electors), 
+					React.createElement("div", null, 
+						
+							data.parties.map(function(party) {
+								return React.createElement(Party, {key: party._id, name: party.name, image: party.image, abbr: party.abbr, candidates: party.candidates})
+							})
+						
+					)
 				)
 			)
-	  }
+		},
+	
+		render: function() {
+			var Loading = React.createElement("p", null, "Loading...")
+			return (
+				React.createElement("div", {className: "content"}, 
+	   			React.createElement("div", {className: "container"}, 
+	   				this.state.currentDivisionData === null ? {Loading:Loading} : this.renderDivisionData()
+	   			)
+	   		)
+			);
+		}
 	});
 	
-	module.exports = ConstituencyForm;
+	module.exports = ConstituencyInfo;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(201);
-	var ConstituencyConstants = __webpack_require__(205);
-	var EventEmitter = __webpack_require__(207).EventEmitter;
-	var assign = __webpack_require__(208);
+	var AppDispatcher = __webpack_require__(202);
+	var ConstituencyConstants = __webpack_require__(206);
+	var EventEmitter = __webpack_require__(208).EventEmitter;
+	var assign = __webpack_require__(209);
 	
 	var ActionTypes = ConstituencyConstants.ActionTypes;
 	var CHANGE_EVENT = 'change';
 	
-	var _constituent = [];
+	// var _constituent = [];
 	var _currentData = null;
-	var _requestPending = false;
 	
 	var ConstituencyStore = assign({}, EventEmitter.prototype, {
 	
 	  emitChange: function() {
 	    this.emit(CHANGE_EVENT);
-	  },
-	
-	  anyPendingRequest: function() {
-	  	return _requestPending;
 	  },
 	
 	  addChangeListener: function(callback) {
@@ -23712,17 +23814,17 @@
 	    return _currentData;
 	  },
 	
-	  containsDivisionData: function (divisionName) {
-	    var data = null;
+	  // containsDivisionData: function (divisionName) {
+	  //   var data = null;
 	
-	    for(var i=0; i<_constituent.length;i++) {
-	      if(_constituent[i].divisionName === divisionName) {
-	        _currentData = data = _constituent[i];
-	        break;
-	      }
-	    }
-	    return data;
-	  }
+	  //   for(var i=0; i<_constituent.length;i++) {
+	  //     if(_constituent[i].divisionName === divisionName) {
+	  //       _currentData = data = _constituent[i];
+	  //       break;
+	  //     }
+	  //   }
+	  //   return data;
+	  // }
 	
 	});
 	
@@ -23730,17 +23832,14 @@
 	
 	  switch(action.type) {
 	    case ActionTypes.GET_CONSTITUENCY:
-	    	_requestPending = true;
+	    	_currentData = null;
 	      ConstituencyStore.emitChange();
 	      break;
 	    case ActionTypes.GET_CONSTITUENCY_SUCCESS:
 	      _currentData = action.data;
-	      _constituent.push(action.data);
-	      _requestPending = false;
 	      ConstituencyStore.emitChange();
 	      break;
 	    case ActionTypes.GET_CONSTITUENCY_FAILURE:
-	      _requestPending = false;
 	      ConstituencyStore.emitChange();
 	      break;
 	    default:
@@ -23752,15 +23851,15 @@
 	module.exports = ConstituencyStore;
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Dispatcher = __webpack_require__(202).Dispatcher;
+	var Dispatcher = __webpack_require__(203).Dispatcher;
 	
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23772,11 +23871,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(203);
+	module.exports.Dispatcher = __webpack_require__(204);
 
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -23798,7 +23897,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(204);
+	var invariant = __webpack_require__(205);
 	
 	var _prefix = 'ID_';
 	
@@ -24013,7 +24112,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24068,16 +24167,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var keyMirror = __webpack_require__(206);
+	var keyMirror = __webpack_require__(207);
 	
 	module.exports = {
 		ActionTypes: keyMirror({
 			GET_CONSTITUENCY: null,
 			GET_CONSTITUENCY_SUCCESS: null,
 			GET_CONSTITUENCY_FAILURE: null,
+	
+			GET_CONSTITUENCY_NAME_SUCCESS: null,
+			GET_CONSTITUENCY_NAME_FAILURE: null,
 			
 			VOTE_CONSTITUENCY: null,
 			VOTE_CONSTITUENCY_SUCCESS: null,
@@ -24091,7 +24193,7 @@
 	};
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports) {
 
 	/**
@@ -24150,7 +24252,7 @@
 
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -24457,7 +24559,7 @@
 
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -24502,31 +24604,34 @@
 
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(201);
-	var ConstituencyConstants = __webpack_require__(205);
-	var ElectionAPI = __webpack_require__(210);
+	var AppDispatcher = __webpack_require__(202);
+	var ConstituencyConstants = __webpack_require__(206);
+	var ElectionAPI = __webpack_require__(211);
 	
 	var ActionTypes = ConstituencyConstants.ActionTypes;
 	
 	module.exports = {
-		fetchDivisionData: function(divisionName) {
+		getDivisionData: function(divisionName, postalCode) {
 			console.log('fetchDivisionData in ConstituencyActionCreators called');
 			AppDispatcher.dispatch({
-				type: ActionTypes.GET_CONSTITUENCY,
+				type: ActionTypes.GET_CONSTITUENCY
 			});
-			ElectionAPI.getDivisionData(divisionName);
+			if(divisionName)
+				ElectionAPI.getDivisionWithName(divisionName);
+			else
+				ElectionAPI.getDivisionWithPostalCode(postalCode);
 		}
 	}
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var RSVP = __webpack_require__(211);
-	var ConstituencyServerActionCreators = __webpack_require__(216);
+	var RSVP = __webpack_require__(212);
+	var ConstituencyServerActionCreators = __webpack_require__(217);
 	
 	var getJSON = function(url) {
 	  var promise = new RSVP.Promise(function(resolve, reject){
@@ -24551,7 +24656,8 @@
 	  return promise;
 	};
 	
-	function getDivisionData(divisionName) {
+	function getDivisionWithName(divisionName) {
+	  console.log('get division api called with ', divisionName);
 	  var url = "/api/division/" + divisionName;
 	  getJSON(url).then(function(divisionData) {
 	    ConstituencyServerActionCreators.getDivisionDataSuccess(divisionData);
@@ -24560,13 +24666,23 @@
 	  });
 	}
 	
+	function getDivisionWithPostalCode(postalCode) {
+	  var url = "/api/code/" + postalCode;
+	  getJSON(url).then(function(divisionData) {
+	    ConstituencyServerActionCreators.getDivisionNameSuccess(divisionData);
+	  }, function(error) {
+	    ConstituencyServerActionCreators.getDivisionNameFailure(error.status);
+	  });
+	}
+	
 	module.exports = {
-	  getDivisionData:getDivisionData
+	  getDivisionWithName:getDivisionWithName,
+	  getDivisionWithPostalCode:getDivisionWithPostalCode
 	}
 
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, setImmediate, global, module) {/*!
@@ -25778,7 +25894,7 @@
 	    function lib$rsvp$asap$$attemptVertex() {
 	      try {
 	        var r = require;
-	        var vertx = __webpack_require__(214);
+	        var vertx = __webpack_require__(215);
 	        lib$rsvp$asap$$vertxNext = vertx.runOnLoop || vertx.runOnContext;
 	        return lib$rsvp$asap$$useVertxTimer();
 	      } catch(e) {
@@ -26157,7 +26273,7 @@
 	    };
 	
 	    /* global define:true module:true window: true */
-	    if ("function" === 'function' && __webpack_require__(215)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(216)['amd']) {
 	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return lib$rsvp$umd$$RSVP; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module !== 'undefined' && module['exports']) {
 	      module['exports'] = lib$rsvp$umd$$RSVP;
@@ -26167,10 +26283,10 @@
 	}).call(this);
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(212).setImmediate, (function() { return this; }()), __webpack_require__(213)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(213).setImmediate, (function() { return this; }()), __webpack_require__(214)(module)))
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(3).nextTick;
@@ -26249,10 +26365,10 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(212).setImmediate, __webpack_require__(212).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(213).setImmediate, __webpack_require__(213).clearImmediate))
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -26268,24 +26384,25 @@
 
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(201);
-	var ConstituencyConstants = __webpack_require__(205);
+	var AppDispatcher = __webpack_require__(202);
+	var ConstituencyConstants = __webpack_require__(206);
+	var router = __webpack_require__(157);
 	
 	var ActionTypes = ConstituencyConstants.ActionTypes;
 	
@@ -26308,114 +26425,56 @@
 		});
 	}
 	
+	function getDivisionNameSuccess(divisionData) {
+		console.log('getDivisionNameSuccess called in ConstituencyServerActionCreators');
+		// AppDispatcher.dispatch({
+		// 	type: ActionTypes.GET_CONSTITUENCY_NAME_SUCCESS,
+		// 	name: toTitleCase(divisionData.name)
+		// });
+		router.transitionTo('info', {name: "Marsiling-Yew Tee GRC"});
+	}
+	
+	function getDivisionNameFailure(errorCode) {
+		console.log('getDivisionNameFailure called in ConstituencyServerActionCreators');
+		
+		var errorMessage = (errorCode === 400) ? "You have typed an invalid postal code" : "Something went wrong. Try again."
+	
+		AppDispatcher.dispatch({
+			type: ActionTypes.GET_CONSTITUENCY_NAME_FAILURE,
+			errorMessage: errorMessage
+		});
+	}
+	
+	function toTitleCase (str) {
+		var arrayOfString = str.split(',| ');
+		var grc = arrayOfString.pop();
+		var newString = arrayOfString.join(' ');
+		newString = newString.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});	
+		return newString + ' ' + grc;
+	}
+	
 	module.exports = {
 		getDivisionDataSuccess:getDivisionDataSuccess,
-		getDivisionDataFailure:getDivisionDataFailure
+		getDivisionDataFailure:getDivisionDataFailure,
+		getDivisionNameSuccess:getDivisionNameSuccess,
+		getDivisionNameFailure:getDivisionNameFailure
 	}
-
-/***/ },
-/* 217 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var $__0=    __webpack_require__(159),State=$__0.State;
-	var ConstituencyStore = __webpack_require__(200);
-	var ConstituencyActionCreators = __webpack_require__(209);
-	var Party = __webpack_require__(218);
-	
-	function getFromConstituencyStore() {
-		return {
-			anyPendingRequest: ConstituencyStore.anyPendingRequest(),
-			currentDivisionData: ConstituencyStore.getCurrentDivisionData()
-		}
-	}
-	
-	var ConstituencyInfo = React.createClass({displayName: "ConstituencyInfo",
-	
-		mixins: [State],
-	
-		getInitialState: function() {
-			return {
-				currentDivisionData: null
-			}
-		},
-	
-		componentWillMount: function() {
-			var divisionName = this.getDivisionName();
-			var divisionData = ConstituencyStore.containsDivisionData(divisionName); //check if the division date is already cache-ed
-			if(divisionData) {
-				console.log('info taken from cache'); // Need to test this.
-				this.setState({currentDivisionData: divisionData});
-			} else {
-				this.setState({anyPendingRequest: true});
-				ConstituencyActionCreators.fetchDivisionData(divisionName);
-			}
-		},
-	
-		componentDidMount: function() {
-			ConstituencyStore.addChangeListener(this._onChange);
-		},
-	
-		componentWillUnmount: function() {
-			ConstituencyStore.removeChangeListener(this._onChange);
-		},
-	
-		_onChange: function() {
-			console.log('onChange: ', getFromConstituencyStore());
-			this.setState(getFromConstituencyStore());
-		},
-	
-		getDivisionName: function() {
-			return this.getParams().divisionName;
-		},
-	
-		renderDivisionData: function() {
-			var data = this.state.currentDivisionData;
-			return (
-				React.createElement("div", null, 
-					React.createElement("h1", null, data.divisionName), 
-					React.createElement("p", null, "Number of seats contested: ", data.seats), 
-					React.createElement("div", null, 
-						
-							data.parties.map(function(party) {
-								return React.createElement(Party, {key: party._id, name: party.name, image: party.image, abbr: party.abbr, politicians: party.politicians})
-							})
-						
-					)
-				)
-			)
-		},
-	
-		render: function() {
-			return (
-				React.createElement("div", null, 
-					
-						this.state.anyPendingRequest ? 
-						React.createElement("p", null, "loading") : 
-						React.createElement("div", null, this.renderDivisionData())
-					
-				)
-			);
-		}
-	});
-	
-	module.exports = ConstituencyInfo;
 
 /***/ },
 /* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Politician = __webpack_require__(219)
+	var Candidate = __webpack_require__(232)
 	
 	var Party = React.createClass({displayName: "Party",
 	
-		renderPoliticans: function() {
-			var Politicians = this.props.politicians.map(function(politician) {
-				return React.createElement(Politician, {key: politician._id, name: politician.name, desc: politician.desc, image: politician.image})
+		renderCandidates: function() {
+			var Candidates = this.props.candidates.map(function(candidate) {
+				return React.createElement(Candidate, {key: candidate._id, name: candidate.name, desc: candidate.desc, image: candidate.image})
 			});
 	
-			return Politicians;
+			return Candidates;
 		},
 	
 		render: function() {
@@ -26423,7 +26482,8 @@
 				React.createElement("div", null, 
 					React.createElement("img", {src: this.props.image, height: "100", width: "auto"}), 
 					React.createElement("h2", null, this.props.name, " (", this.props.abbr, ")"), 
-					React.createElement("div", null, this.renderPoliticans())
+					React.createElement("p", null, this.props.current), 
+					React.createElement("div", null, this.renderCandidates())
 				)
 			);
 		}
@@ -26433,26 +26493,7 @@
 	module.exports = Party;
 
 /***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var Politician = React.createClass({displayName: "Politician",
-		render: function() {
-			return (
-				React.createElement("div", null, 
-					React.createElement("img", {src: this.props.image, height: "80", width: "auto"}), 
-					React.createElement("p", null, "Name: ", this.props.name), 
-					React.createElement("p", null, this.props.desc)
-				)
-			);
-		}
-	});
-	
-	module.exports = Politician;
-
-/***/ },
+/* 219 */,
 /* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26483,6 +26524,390 @@
 	});
 	
 	module.exports = ElectionResults;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(223);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(225)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ConstituencyForm.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./ConstituencyForm.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(224)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "body {\n\tfont-family: \"Raleway\", \"HelveticaNeue\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.block-text {\n\tdisplay: block;\n\ttext-align: center; \n}\n\n.nl-form {\n\tmargin-top: 0;\n\tdisplay: table-cell;\n  text-align: center;\n  vertical-align: middle;\n}\n\n.nl-field {\n\tdisplay: block;\n\ttext-align: center\n}\n\n.nl-field ul {\n\tbackground: #C77966;\n\tleft: 50%;\n\t-webkit-transform: translate(-50%,-40%) scale(0.8);\n\t-moz-transform: translate(-50%,-40%) scale(0.8);\n\ttransform: translate(-50%,-40%) scale(0.8);\n}\n\n.nl-field.nl-field-open ul {\n\n\t-webkit-transform: translate(-50%,-50%) scale(1);\n\t-moz-transform: translate(-50%,-50%) scale(1);\n\ttransform: translate(-50%,-50%) scale(1);\n}\n\n.nl-dd ul li.nl-dd-checked {\n    color: #703030;\n}\n\n.nl-submit-wrap {\n\ttext-align: center;\n}\n\n.content:nth-child(1) {\n\tbackground-color: #7E827A;\n  color: #2F343B;\n}\n\n.content:nth-child(1) .container {\n\theight: 100%;\n\tmin-height: 100%;\n\tdisplay: table;\n}\n\n.nl-field-toggle, .nl-form input, .nl-form select {\n\tcolor: #E3CDA4;\n  border-bottom-color: #E3CDA4;\n}\n\n.nl-form .nl-submit {\n\tbackground: #C77966;\n}\n\n.nl-submit:before {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover,\n.no-touch .nl-form .nl-submit:active {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover:before {\n\tbackground: #C77966;\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 224 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0;
+	
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+	
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+	
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+	
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+	
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+	
+	function createStyleElement() {
+		var styleElement = document.createElement("style");
+		var head = getHeadElement();
+		styleElement.type = "text/css";
+		head.appendChild(styleElement);
+		return styleElement;
+	}
+	
+	function createLinkElement() {
+		var linkElement = document.createElement("link");
+		var head = getHeadElement();
+		linkElement.rel = "stylesheet";
+		head.appendChild(linkElement);
+		return linkElement;
+	}
+	
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+	
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement());
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement();
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				styleElement.parentNode.removeChild(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement();
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				styleElement.parentNode.removeChild(styleElement);
+			};
+		}
+	
+		update(obj);
+	
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+	
+	var replaceText = (function () {
+		var textStore = [];
+	
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+	
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+	
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+	
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+	
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+	
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+	
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		var blob = new Blob([css], { type: "text/css" });
+	
+		var oldSrc = linkElement.href;
+	
+		linkElement.href = URL.createObjectURL(blob);
+	
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(231);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(225)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./main.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./main.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(224)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, " html,body, #app {\n  height:100%;\n  margin:0;\n}\n\n.content {\n  height:100%;\n  min-height:100%; /*for mozzz*/\n}\n\nhtml>body>#app .content {\n  height:auto;\n}\n\n/* Grid\n–––––––––––––––––––––––––––––––––––––––––––––––––– */\n.container {\n  position: relative;\n  width: 100%;\n  max-width: 960px;\n  margin: 0 auto;\n  padding: 0 20px;\n  box-sizing: border-box; }\n.column,\n.columns {\n  width: 100%;\n  float: left;\n  box-sizing: border-box; }\n\n/* For devices larger than 400px */\n@media (min-width: 400px) {\n  .container {\n    width: 85%;\n    padding: 0; }\n}\n\n/* For devices larger than 550px */\n@media (min-width: 550px) {\n  .container {\n    width: 80%; }\n  .column,\n  .columns {\n    margin-left: 4%; }\n  .column:first-child,\n  .columns:first-child {\n    margin-left: 0; }\n\n  .one.column,\n  .one.columns                    { width: 4.66666666667%; }\n  .two.columns                    { width: 13.3333333333%; }\n  .three.columns                  { width: 22%;            }\n  .four.columns                   { width: 30.6666666667%; }\n  .five.columns                   { width: 39.3333333333%; }\n  .six.columns                    { width: 48%;            }\n  .seven.columns                  { width: 56.6666666667%; }\n  .eight.columns                  { width: 65.3333333333%; }\n  .nine.columns                   { width: 74.0%;          }\n  .ten.columns                    { width: 82.6666666667%; }\n  .eleven.columns                 { width: 91.3333333333%; }\n  .twelve.columns                 { width: 100%; margin-left: 0; }\n\n  .one-third.column               { width: 30.6666666667%; }\n  .two-thirds.column              { width: 65.3333333333%; }\n\n  .one-half.column                { width: 48%; }\n\n  /* Offsets */\n  .offset-by-one.column,\n  .offset-by-one.columns          { margin-left: 8.66666666667%; }\n  .offset-by-two.column,\n  .offset-by-two.columns          { margin-left: 17.3333333333%; }\n  .offset-by-three.column,\n  .offset-by-three.columns        { margin-left: 26%;            }\n  .offset-by-four.column,\n  .offset-by-four.columns         { margin-left: 34.6666666667%; }\n  .offset-by-five.column,\n  .offset-by-five.columns         { margin-left: 43.3333333333%; }\n  .offset-by-six.column,\n  .offset-by-six.columns          { margin-left: 52%;            }\n  .offset-by-seven.column,\n  .offset-by-seven.columns        { margin-left: 60.6666666667%; }\n  .offset-by-eight.column,\n  .offset-by-eight.columns        { margin-left: 69.3333333333%; }\n  .offset-by-nine.column,\n  .offset-by-nine.columns         { margin-left: 78.0%;          }\n  .offset-by-ten.column,\n  .offset-by-ten.columns          { margin-left: 86.6666666667%; }\n  .offset-by-eleven.column,\n  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }\n\n  .offset-by-one-third.column,\n  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }\n  .offset-by-two-thirds.column,\n  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }\n\n  .offset-by-one-half.column,\n  .offset-by-one-half.columns     { margin-left: 52%; }\n\n}", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var Candidate = React.createClass({displayName: "Candidate",
+		render: function() {
+			return (
+				React.createElement("div", null, 
+					React.createElement("img", {src: this.props.image, height: "80", width: "auto"}), 
+					React.createElement("p", null, "Name: ", this.props.name)
+				)
+			);
+		}
+	});
+	
+	module.exports = Candidate;
 
 /***/ }
 /******/ ]);

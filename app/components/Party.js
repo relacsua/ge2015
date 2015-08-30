@@ -1,14 +1,14 @@
 var React = require('react');
-var Politician = require('./Politician.js')
+var Candidate = require('./Candidate.js')
 
 var Party = React.createClass({
 
-	renderPoliticans: function() {
-		var Politicians = this.props.politicians.map(function(politician) {
-			return <Politician key={politician._id} name={politician.name} desc={politician.desc} image={politician.image} />
+	renderCandidates: function() {
+		var Candidates = this.props.candidates.map(function(candidate) {
+			return <Candidate key={candidate._id} name={candidate.name} desc={candidate.desc} image={candidate.image} />
 		});
 
-		return Politicians;
+		return Candidates;
 	},
 
 	render: function() {
@@ -16,7 +16,8 @@ var Party = React.createClass({
 			<div>
 				<img src={this.props.image} height="100" width="auto" />
 				<h2>{this.props.name} ({this.props.abbr})</h2>
-				<div>{this.renderPoliticans()}</div>
+				<p>{this.props.current}</p>
+				<div>{this.renderCandidates()}</div>
 			</div>
 		);
 	}

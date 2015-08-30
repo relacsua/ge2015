@@ -6,7 +6,6 @@ var Party = require('./Party.js');
 
 function getFromConstituencyStore() {
 	return {
-		anyPendingRequest: ConstituencyStore.anyPendingRequest(),
 		currentDivisionData: ConstituencyStore.getCurrentDivisionData()
 	}
 }
@@ -16,21 +15,24 @@ var ConstituencyInfo = React.createClass({
 	mixins: [State],
 
 	getInitialState: function() {
-		return {
-			currentDivisionData: null
-		}
+		return getFromConstituencyStore();
+	},
+
+	_getDivisionName: function() {
+		return this.getParams().name;
+	},
+
+	_init: function () {
+		var divisionName = this._getDivisionName();
+		ConstituencyActionCreators.getDivisionData(divisionName);
 	},
 
 	componentWillMount: function() {
-		var divisionName = this.getDivisionName();
-		var divisionData = ConstituencyStore.containsDivisionData(divisionName); //check if the division date is already cache-ed
-		if(divisionData) {
-			console.log('info taken from cache'); // Need to test this.
-			this.setState({currentDivisionData: divisionData});
-		} else {
-			this.setState({anyPendingRequest: true});
-			ConstituencyActionCreators.fetchDivisionData(divisionName);
-		}
+		this._init();
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		this._init();
 	},
 
 	componentDidMount: function() {
@@ -42,24 +44,21 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	_onChange: function() {
-		console.log('onChange: ', getFromConstituencyStore());
 		this.setState(getFromConstituencyStore());
-	},
-
-	getDivisionName: function() {
-		return this.getParams().divisionName;
 	},
 
 	renderDivisionData: function() {
 		var data = this.state.currentDivisionData;
+		console.log(data);
 		return (
 			<div>
 				<h1>{data.divisionName}</h1>
 				<p>Number of seats contested: {data.seats}</p>
+				<p>Number of electors: {data.electors}</p>
 				<div>
 					{
 						data.parties.map(function(party) {
-							return <Party key={party._id} name={party.name} image={party.image} abbr={party.abbr} politicians={party.politicians} />
+							return <Party key={party._id} name={party.name} image={party.image} abbr={party.abbr} candidates={party.candidates} />
 						})
 					}
 				</div>
@@ -68,14 +67,13 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	render: function() {
+		var Loading = <p>Loading...</p>
 		return (
-			<div>
-				{
-					this.state.anyPendingRequest ? 
-					<p>loading</p> : 
-					<div>{this.renderDivisionData()}</div>
-				}
-			</div>
+			<div className="content">
+   			<div className="container">
+   				{this.state.currentDivisionData === null ? {Loading} : this.renderDivisionData()}
+   			</div>
+   		</div>
 		);
 	}
 });

@@ -22,10 +22,12 @@
     "passport-facebook": "^2.0.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
+    "request": "^2.61.0",
     "rsvp": "^3.0.21",
     "serve-favicon": "~2.2.1"
   },
   "devDependencies": {
+    "css-loader": "^0.16.0",
     "jsx-loader": "^0.13.2",
     "style-loader": "^0.12.3",
     "webpack": "^1.11.0"
