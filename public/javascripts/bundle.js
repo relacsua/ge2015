@@ -26394,9 +26394,9 @@
 							)
 						)
 					), 
-					React.createElement("div", {className: "row vote-bar"}, 
-						React.createElement("div", {className: "twelve columns"}, 
-							React.createElement("a", {className: "vote-btn", href: this.makeHref("ballot", {name: this._getDivisionName()})}, "Vote")
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "twelve columns vote-bar"}, 
+							React.createElement("a", {className: "vote-btn", href: this.makeHref("ballot", {name: this._getDivisionName()})}, "Vote for your party")
 						)
 					)
 				)
@@ -27093,7 +27093,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".vote-bar {\n\theight: 30px;\n}\n\n.vote-btn {\n\tdisplay: block;\n\tmargin: auto;\n}\n\n.division-info {\n\ttext-align: center;\n}\n\n.constituency-name {\n\tfont-size: 6vw;\n\tmargin-bottom: 0;\n  margin-top: 10px;\n}\n\n.constituency-details {\n\tfont-size: 2vw;\n}\n\n.constituency-map {\n\twidth: 70%;\n  margin-top: -5%;\n}\n\n.constituency-map .st0 {\n\tfill:#cccccc;\n\tstroke:#ffffff;\n\topacity: 0.8;\n\tstroke-width:1.2191;\n}\n\n.constituency-map .st0.highlight-map {\n\tfill: tomato;\n\topacity: 1.0;\n}\n\n", ""]);
+	exports.push([module.id, ".vote-bar {\n  text-align: center;\n\tmargin: 20px 0;\n}\n\n.vote-btn {\n  display: inline-block;\n  text-decoration: none;\n  font-size: 30px;\n  font-weight: 900;\n  color: #ECF0F1;\n  background-color: #3498DB;\n  padding: 15px 100px;\n  -webkit-box-shadow: 0 5px 0 0 #2980B9;\n  box-shadow: 0 5px 0 0 #2980b9;\n  text-shadow: 0 1px 1px #4C4C4C;\n}\n\n.division-info {\n\ttext-align: center;\n}\n\n.constituency-name {\n\tfont-size: 6vw;\n\tmargin-bottom: 0;\n  margin-top: 10px;\n}\n\n.constituency-details {\n\tfont-size: 2vw;\n}\n\n.constituency-map {\n\twidth: 70%;\n  margin-top: -5%;\n}\n\n.constituency-map .st0 {\n\tfill:#cccccc;\n\tstroke:#ffffff;\n\topacity: 0.8;\n\tstroke-width:1.2191;\n}\n\n.constituency-map .st0.highlight-map {\n\tfill: tomato;\n\topacity: 1.0;\n}\n\n", ""]);
 	
 	// exports
 
