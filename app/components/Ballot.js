@@ -15,6 +15,8 @@ var Ballot = React.createClass({
 		return (
       <div className="container">
 			 <BallotPaper name={this._getDivisionName()} />
+
+       <a className="facebook-btn" />
       </div>
 		);
 	}

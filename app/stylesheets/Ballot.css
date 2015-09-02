@@ -8,7 +8,17 @@ html,body {
   margin-top: 80px;
   padding: 20px;
   border: 2px solid #E1E1E1;
-  border-radius: 4px
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fafafa;
+  color: #424242;
+}
+
+.ballot-hr {
+  opacity: 0.5;
+  width: 90%;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .text-center {

@@ -27118,7 +27118,9 @@
 		render: function() {
 			return (
 	      React.createElement("div", {className: "container"}, 
-				 React.createElement(BallotPaper, {name: this._getDivisionName()})
+				 React.createElement(BallotPaper, {name: this._getDivisionName()}), 
+	
+	       React.createElement("a", {className: "facebook-btn"})
 	      )
 			);
 		}
@@ -27138,7 +27140,10 @@
 	    return(
 	      React.createElement("div", {className: "ballot-paper"}, 
 	        React.createElement("h1", {className: "text-center"}, "Unofficial General Elections"), 
-	        React.createElement("h3", {className: "text-center text-italic"}, this.props.name)
+	        React.createElement("h3", {className: "text-center text-italic"}, this.props.name), 
+	
+	        React.createElement("hr", {className: "ballot-hr"})
+	
 	      )
 	    );
 	  }
@@ -27181,7 +27186,7 @@
 	
 	
 	// module
-	exports.push([module.id, "html,body {\n  height:100%;\n  margin:0;\n}\n\n.ballot-paper {\n  width: 100%;\n  margin-top: 80px;\n  padding: 20px;\n  border: 2px solid #E1E1E1;\n  border-radius: 4px\n}\n\n.text-center {\n  text-align: center;\n}\n\n.text-italic {\n  font-style: italic;\n}", ""]);
+	exports.push([module.id, "html,body {\n  height:100%;\n  margin:0;\n}\n\n.ballot-paper {\n  width: 100%;\n  margin-top: 80px;\n  padding: 20px;\n  border: 2px solid #E1E1E1;\n  border-radius: 4px;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);\n  background-color: #fafafa;\n  color: #424242;\n}\n\n.ballot-hr {\n  opacity: 0.5;\n  width: 90%;\n  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.text-italic {\n  font-style: italic;\n}", ""]);
 	
 	// exports
 
