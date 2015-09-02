@@ -29,7 +29,7 @@ function getDivisionNameSuccess(divisionData) {
 	// 	type: ActionTypes.GET_CONSTITUENCY_NAME_SUCCESS,
 	// 	name: toTitleCase(divisionData.name)
 	// });
-	router.transitionTo('info', {name: "Marsiling-Yew Tee GRC"});
+	router.transitionTo('info', {name: toTitleCase(divisionData.name)});
 }
 
 function getDivisionNameFailure(errorCode) {
@@ -44,10 +44,10 @@ function getDivisionNameFailure(errorCode) {
 }
 
 function toTitleCase (str) {
-	var arrayOfString = str.split(',| ');
+	var arrayOfString = str.split(' ');
 	var grc = arrayOfString.pop();
 	var newString = arrayOfString.join(' ');
-	newString = newString.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});	
+	newString = newString.replace(/\b\w+/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});	
 	return newString + ' ' + grc;
 }
 

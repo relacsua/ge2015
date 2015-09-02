@@ -3,6 +3,8 @@ var { State } = require('react-router');
 var ConstituencyStore = require('../stores/ConstituencyStore.js');
 var ConstituencyActionCreators = require('../actions/ConstituencyActionCreators.js');
 var Party = require('./Party.js');
+var SingaporeMap = require('./SingaporeMap.js');
+require('../stylesheets/ConstituencyInfo.css');
 
 function getFromConstituencyStore() {
 	return {
@@ -47,20 +49,34 @@ var ConstituencyInfo = React.createClass({
 		this.setState(getFromConstituencyStore());
 	},
 
+	_underscore: function(title) {
+		return title.toLowerCase().split(' ').join('-');
+	},
+
 	renderDivisionData: function() {
 		var data = this.state.currentDivisionData;
-		console.log(data);
 		return (
-			<div>
-				<h1>{data.divisionName}</h1>
-				<p>Number of seats contested: {data.seats}</p>
-				<p>Number of electors: {data.electors}</p>
-				<div>
-					{
-						data.parties.map(function(party) {
-							return <Party key={party._id} name={party.name} image={party.image} abbr={party.abbr} candidates={party.candidates} />
-						})
-					}
+			<div className="container">
+				<div className="row constituency-info">
+					<div className="twelve columns division-info">
+						<h1 className="constituency-name">{data.divisionName}</h1>
+						<p className="constituency-details">{data.seats} seats | {data.electors} electors</p>
+						<SingaporeMap grc={this._underscore(data.divisionName)}/>
+					</div>
+					<div className="twelve columns party-info">
+						<div className="row">
+							{
+								data.parties.map(function(party) {
+									return <Party key={party._id} name={party.name} image={party.image} candidates={party.candidates} />
+								})
+							}
+						</div>
+					</div>
+				</div>
+				<div className="row vote-bar">
+					<div className="twelve columns">
+						<button className="vote-btn">Vote</button>
+					</div>
 				</div>
 			</div>
 		)
@@ -69,10 +85,8 @@ var ConstituencyInfo = React.createClass({
 	render: function() {
 		var Loading = <p>Loading...</p>
 		return (
-			<div className="content">
-   			<div className="container">
-   				{this.state.currentDivisionData === null ? {Loading} : this.renderDivisionData()}
-   			</div>
+			<div>
+   			{this.state.currentDivisionData === null ? {Loading} : this.renderDivisionData()}
    		</div>
 		);
 	}

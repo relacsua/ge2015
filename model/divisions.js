@@ -9,7 +9,7 @@ var divisionSchema = mongoose.Schema({
 		image: String,			// Url containing image of logo
 		name: String,				// eg People's Action Party
 		abbr: String,				// eg PAP
-		current: String,
+		status: String,
 		candidates: [{
 			image: String,		//Url containing image of politician
 			name: String,			// Name of politician
@@ -42,7 +42,7 @@ var Ang_Mo_Kio_GRC = Division({
 		image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/PAP.svg',
 		name: 'People\'s Action Party',
 		abbr: 'PAP',
-		current: 'Incumbent',
+		status: 'Incumbent',
 		votes: {
 			13: 0,
 			18: 0,
@@ -77,7 +77,7 @@ var Ang_Mo_Kio_GRC = Division({
 		image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/RP.svg',
 		name: 'Reform Party',
 		abbr: 'RP',
-		current: 'Contender',
+		status: 'Contender',
 		votes: {
 			13: 0,
 			18: 0,
@@ -120,7 +120,7 @@ var Marsiling_YewTee_GRC = Division({
 		image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/PAP.svg',
 		name: 'People\'s Action Party',
 		abbr: 'PAP',
-		current: 'Incumbent',
+		status: 'Incumbent',
 		candidates: [{
 			image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/HalimahYacob.jpg',
 			name: 'Mdm Halimah Yacob',
@@ -147,7 +147,7 @@ var Marsiling_YewTee_GRC = Division({
 		image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/SDP.svg',
 		name: 'Singapore Democratic Party',
 		abbr: 'SDP',
-		current: 'Contender',
+		status: 'Contender',
 		candidates: [],
 		votes: {
 			13: 0,

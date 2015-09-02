@@ -13,6 +13,17 @@
   width: 100%;
 }
 
+.icon-header{
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 30px;
+}
+
+.icon-header img {
+  width: 200px;
+}
+
 .content {
   position: relative;
   top: 75%;

@@ -14,6 +14,7 @@ var ConstituencyForm = React.createClass({
 
 	handleSubmit: function (e) {
 		e.preventDefault();
+		
 		var inputs = document.getElementsByClassName('nl-field-toggle');
 		var constituencyInput = inputs[0].innerText;
 		var postalCodeinput = inputs[1].innerText;

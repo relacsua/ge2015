@@ -20462,8 +20462,8 @@
 	// By the time route config is require()-d,
 	// require('./router') already returns a valid object
 	
-	var Router = __webpack_require__(159);
-	var routes = __webpack_require__(158);
+	var Router = __webpack_require__(158);
+	var routes = __webpack_require__(197);
 	
 	router = Router.create({
 	  routes: routes,
@@ -20473,60 +20473,40 @@
 /* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
-	var Router = __webpack_require__(159);
-	var $__0=     Router,DefaultRoute=$__0.DefaultRoute,Route=$__0.Route;
+	'use strict';
 	
-	var routes = (
-		React.createElement(Route, {handler: __webpack_require__(198)}, 
-			React.createElement(Route, {name: "form", path: "/", handler: __webpack_require__(199)}, 
-				React.createElement(Route, {name: "info", path: "/division/:name", handler: __webpack_require__(200)})
-			), 
-			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(220)}), 
-			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(221)})
-		)
-	);
+	exports.DefaultRoute = __webpack_require__(159);
+	exports.Link = __webpack_require__(172);
+	exports.NotFoundRoute = __webpack_require__(173);
+	exports.Redirect = __webpack_require__(174);
+	exports.Route = __webpack_require__(171);
+	exports.ActiveHandler = __webpack_require__(169);
+	exports.RouteHandler = exports.ActiveHandler;
 	
-	module.exports = routes;
+	exports.HashLocation = __webpack_require__(175);
+	exports.HistoryLocation = __webpack_require__(178);
+	exports.RefreshLocation = __webpack_require__(179);
+	exports.StaticLocation = __webpack_require__(180);
+	exports.TestLocation = __webpack_require__(181);
+	
+	exports.ImitateBrowserBehavior = __webpack_require__(182);
+	exports.ScrollToTopBehavior = __webpack_require__(183);
+	
+	exports.History = __webpack_require__(177);
+	exports.Navigation = __webpack_require__(184);
+	exports.State = __webpack_require__(185);
+	
+	exports.createRoute = __webpack_require__(161).createRoute;
+	exports.createDefaultRoute = __webpack_require__(161).createDefaultRoute;
+	exports.createNotFoundRoute = __webpack_require__(161).createNotFoundRoute;
+	exports.createRedirect = __webpack_require__(161).createRedirect;
+	exports.createRoutesFromReactChildren = __webpack_require__(186);
+	
+	exports.create = __webpack_require__(187);
+	exports.run = __webpack_require__(196);
 
 /***/ },
 /* 159 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.DefaultRoute = __webpack_require__(160);
-	exports.Link = __webpack_require__(173);
-	exports.NotFoundRoute = __webpack_require__(174);
-	exports.Redirect = __webpack_require__(175);
-	exports.Route = __webpack_require__(172);
-	exports.ActiveHandler = __webpack_require__(170);
-	exports.RouteHandler = exports.ActiveHandler;
-	
-	exports.HashLocation = __webpack_require__(176);
-	exports.HistoryLocation = __webpack_require__(179);
-	exports.RefreshLocation = __webpack_require__(180);
-	exports.StaticLocation = __webpack_require__(181);
-	exports.TestLocation = __webpack_require__(182);
-	
-	exports.ImitateBrowserBehavior = __webpack_require__(183);
-	exports.ScrollToTopBehavior = __webpack_require__(184);
-	
-	exports.History = __webpack_require__(178);
-	exports.Navigation = __webpack_require__(185);
-	exports.State = __webpack_require__(186);
-	
-	exports.createRoute = __webpack_require__(162).createRoute;
-	exports.createDefaultRoute = __webpack_require__(162).createDefaultRoute;
-	exports.createNotFoundRoute = __webpack_require__(162).createNotFoundRoute;
-	exports.createRedirect = __webpack_require__(162).createRedirect;
-	exports.createRoutesFromReactChildren = __webpack_require__(187);
-	
-	exports.create = __webpack_require__(188);
-	exports.run = __webpack_require__(197);
-
-/***/ },
-/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20535,9 +20515,9 @@
 	
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 	
-	var PropTypes = __webpack_require__(161);
-	var RouteHandler = __webpack_require__(170);
-	var Route = __webpack_require__(172);
+	var PropTypes = __webpack_require__(160);
+	var RouteHandler = __webpack_require__(169);
+	var Route = __webpack_require__(171);
 	
 	/**
 	 * A <DefaultRoute> component is a special kind of <Route> that
@@ -20578,14 +20558,14 @@
 	module.exports = DefaultRoute;
 
 /***/ },
-/* 161 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var assign = __webpack_require__(13);
 	var ReactPropTypes = __webpack_require__(1).PropTypes;
-	var Route = __webpack_require__(162);
+	var Route = __webpack_require__(161);
 	
 	var PropTypes = assign({}, ReactPropTypes, {
 	
@@ -20614,7 +20594,7 @@
 	module.exports = PropTypes;
 
 /***/ },
-/* 162 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20626,7 +20606,7 @@
 	var assign = __webpack_require__(13);
 	var invariant = __webpack_require__(7);
 	var warning = __webpack_require__(15);
-	var PathUtils = __webpack_require__(163);
+	var PathUtils = __webpack_require__(162);
 	
 	var _currentRoute;
 	
@@ -20819,14 +20799,14 @@
 	module.exports = Route;
 
 /***/ },
-/* 163 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var invariant = __webpack_require__(7);
-	var assign = __webpack_require__(164);
-	var qs = __webpack_require__(165);
+	var assign = __webpack_require__(163);
+	var qs = __webpack_require__(164);
 	
 	var paramCompileMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|[*.()\[\]\\+|{}^$]/g;
 	var paramInjectMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$?]*[?]?)|[*]/g;
@@ -20977,7 +20957,7 @@
 	module.exports = PathUtils;
 
 /***/ },
-/* 164 */
+/* 163 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21009,20 +20989,20 @@
 
 
 /***/ },
-/* 165 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(166);
+	module.exports = __webpack_require__(165);
 
 
 /***/ },
-/* 166 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Load modules
 	
-	var Stringify = __webpack_require__(167);
-	var Parse = __webpack_require__(169);
+	var Stringify = __webpack_require__(166);
+	var Parse = __webpack_require__(168);
 	
 	
 	// Declare internals
@@ -21037,12 +21017,12 @@
 
 
 /***/ },
-/* 167 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Load modules
 	
-	var Utils = __webpack_require__(168);
+	var Utils = __webpack_require__(167);
 	
 	
 	// Declare internals
@@ -21140,7 +21120,7 @@
 
 
 /***/ },
-/* 168 */
+/* 167 */
 /***/ function(module, exports) {
 
 	// Load modules
@@ -21278,12 +21258,12 @@
 
 
 /***/ },
-/* 169 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Load modules
 	
-	var Utils = __webpack_require__(168);
+	var Utils = __webpack_require__(167);
 	
 	
 	// Declare internals
@@ -21445,7 +21425,7 @@
 
 
 /***/ },
-/* 170 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21457,9 +21437,9 @@
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 	
 	var React = __webpack_require__(1);
-	var ContextWrapper = __webpack_require__(171);
+	var ContextWrapper = __webpack_require__(170);
 	var assign = __webpack_require__(13);
-	var PropTypes = __webpack_require__(161);
+	var PropTypes = __webpack_require__(160);
 	
 	var REF_NAME = '__routeHandler__';
 	
@@ -21558,7 +21538,7 @@
 	module.exports = RouteHandler;
 
 /***/ },
-/* 171 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21601,7 +21581,7 @@
 	module.exports = ContextWrapper;
 
 /***/ },
-/* 172 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21614,8 +21594,8 @@
 	
 	var React = __webpack_require__(1);
 	var invariant = __webpack_require__(7);
-	var PropTypes = __webpack_require__(161);
-	var RouteHandler = __webpack_require__(170);
+	var PropTypes = __webpack_require__(160);
+	var RouteHandler = __webpack_require__(169);
 	
 	/**
 	 * <Route> components specify components that are rendered to the page when the
@@ -21697,7 +21677,7 @@
 	module.exports = Route;
 
 /***/ },
-/* 173 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21710,7 +21690,7 @@
 	
 	var React = __webpack_require__(1);
 	var assign = __webpack_require__(13);
-	var PropTypes = __webpack_require__(161);
+	var PropTypes = __webpack_require__(160);
 	
 	function isLeftClickEvent(event) {
 	  return event.button === 0;
@@ -21837,7 +21817,7 @@
 	module.exports = Link;
 
 /***/ },
-/* 174 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21846,9 +21826,9 @@
 	
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 	
-	var PropTypes = __webpack_require__(161);
-	var RouteHandler = __webpack_require__(170);
-	var Route = __webpack_require__(172);
+	var PropTypes = __webpack_require__(160);
+	var RouteHandler = __webpack_require__(169);
+	var Route = __webpack_require__(171);
 	
 	/**
 	 * A <NotFoundRoute> is a special kind of <Route> that
@@ -21890,7 +21870,7 @@
 	module.exports = NotFoundRoute;
 
 /***/ },
-/* 175 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21899,8 +21879,8 @@
 	
 	var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
 	
-	var PropTypes = __webpack_require__(161);
-	var Route = __webpack_require__(172);
+	var PropTypes = __webpack_require__(160);
+	var Route = __webpack_require__(171);
 	
 	/**
 	 * A <Redirect> component is a special kind of <Route> that always
@@ -21938,13 +21918,13 @@
 	module.exports = Redirect;
 
 /***/ },
-/* 176 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var LocationActions = __webpack_require__(177);
-	var History = __webpack_require__(178);
+	var LocationActions = __webpack_require__(176);
+	var History = __webpack_require__(177);
 	
 	var _listeners = [];
 	var _isListening = false;
@@ -22054,7 +22034,7 @@
 	module.exports = HashLocation;
 
 /***/ },
-/* 177 */
+/* 176 */
 /***/ function(module, exports) {
 
 	/**
@@ -22084,7 +22064,7 @@
 	module.exports = LocationActions;
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22119,13 +22099,13 @@
 	module.exports = History;
 
 /***/ },
-/* 179 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var LocationActions = __webpack_require__(177);
-	var History = __webpack_require__(178);
+	var LocationActions = __webpack_require__(176);
+	var History = __webpack_require__(177);
 	
 	var _listeners = [];
 	var _isListening = false;
@@ -22210,13 +22190,13 @@
 	module.exports = HistoryLocation;
 
 /***/ },
-/* 180 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var HistoryLocation = __webpack_require__(179);
-	var History = __webpack_require__(178);
+	var HistoryLocation = __webpack_require__(178);
+	var History = __webpack_require__(177);
 	
 	/**
 	 * A Location that uses full page refreshes. This is used as
@@ -22246,7 +22226,7 @@
 	module.exports = RefreshLocation;
 
 /***/ },
-/* 181 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22300,7 +22280,7 @@
 	module.exports = StaticLocation;
 
 /***/ },
-/* 182 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22310,8 +22290,8 @@
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	var invariant = __webpack_require__(7);
-	var LocationActions = __webpack_require__(177);
-	var History = __webpack_require__(178);
+	var LocationActions = __webpack_require__(176);
+	var History = __webpack_require__(177);
 	
 	/**
 	 * A location that is convenient for testing and does not require a DOM.
@@ -22399,12 +22379,12 @@
 	module.exports = TestLocation;
 
 /***/ },
-/* 183 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var LocationActions = __webpack_require__(177);
+	var LocationActions = __webpack_require__(176);
 	
 	/**
 	 * A scroll behavior that attempts to imitate the default behavior
@@ -22433,7 +22413,7 @@
 	module.exports = ImitateBrowserBehavior;
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports) {
 
 	/**
@@ -22453,12 +22433,12 @@
 	module.exports = ScrollToTopBehavior;
 
 /***/ },
-/* 185 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var PropTypes = __webpack_require__(161);
+	var PropTypes = __webpack_require__(160);
 	
 	/**
 	 * A mixin for components that modify the URL.
@@ -22528,12 +22508,12 @@
 	module.exports = Navigation;
 
 /***/ },
-/* 186 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var PropTypes = __webpack_require__(161);
+	var PropTypes = __webpack_require__(160);
 	
 	/**
 	 * A mixin for components that need to know the path, routes, URL
@@ -22607,7 +22587,7 @@
 	module.exports = State;
 
 /***/ },
-/* 187 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* jshint -W084 */
@@ -22616,10 +22596,10 @@
 	var React = __webpack_require__(1);
 	var assign = __webpack_require__(13);
 	var warning = __webpack_require__(15);
-	var DefaultRoute = __webpack_require__(160);
-	var NotFoundRoute = __webpack_require__(174);
-	var Redirect = __webpack_require__(175);
-	var Route = __webpack_require__(162);
+	var DefaultRoute = __webpack_require__(159);
+	var NotFoundRoute = __webpack_require__(173);
+	var Redirect = __webpack_require__(174);
+	var Route = __webpack_require__(161);
 	
 	function checkPropTypes(componentName, propTypes, props) {
 	  componentName = componentName || 'UnknownComponent';
@@ -22693,7 +22673,7 @@
 	module.exports = createRoutesFromReactChildren;
 
 /***/ },
-/* 188 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/* jshint -W058 */
@@ -22703,24 +22683,24 @@
 	var warning = __webpack_require__(15);
 	var invariant = __webpack_require__(7);
 	var canUseDOM = __webpack_require__(51).canUseDOM;
-	var LocationActions = __webpack_require__(177);
-	var ImitateBrowserBehavior = __webpack_require__(183);
-	var HashLocation = __webpack_require__(176);
-	var HistoryLocation = __webpack_require__(179);
-	var RefreshLocation = __webpack_require__(180);
-	var StaticLocation = __webpack_require__(181);
-	var ScrollHistory = __webpack_require__(189);
-	var createRoutesFromReactChildren = __webpack_require__(187);
-	var isReactChildren = __webpack_require__(191);
-	var Transition = __webpack_require__(192);
-	var PropTypes = __webpack_require__(161);
-	var Redirect = __webpack_require__(194);
-	var History = __webpack_require__(178);
-	var Cancellation = __webpack_require__(193);
-	var Match = __webpack_require__(195);
-	var Route = __webpack_require__(162);
-	var supportsHistory = __webpack_require__(196);
-	var PathUtils = __webpack_require__(163);
+	var LocationActions = __webpack_require__(176);
+	var ImitateBrowserBehavior = __webpack_require__(182);
+	var HashLocation = __webpack_require__(175);
+	var HistoryLocation = __webpack_require__(178);
+	var RefreshLocation = __webpack_require__(179);
+	var StaticLocation = __webpack_require__(180);
+	var ScrollHistory = __webpack_require__(188);
+	var createRoutesFromReactChildren = __webpack_require__(186);
+	var isReactChildren = __webpack_require__(190);
+	var Transition = __webpack_require__(191);
+	var PropTypes = __webpack_require__(160);
+	var Redirect = __webpack_require__(193);
+	var History = __webpack_require__(177);
+	var Cancellation = __webpack_require__(192);
+	var Match = __webpack_require__(194);
+	var Route = __webpack_require__(161);
+	var supportsHistory = __webpack_require__(195);
+	var PathUtils = __webpack_require__(162);
 	
 	/**
 	 * The default location for new routers.
@@ -23213,14 +23193,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 189 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var invariant = __webpack_require__(7);
 	var canUseDOM = __webpack_require__(51).canUseDOM;
-	var getWindowScrollPosition = __webpack_require__(190);
+	var getWindowScrollPosition = __webpack_require__(189);
 	
 	function shouldUpdateScroll(state, prevState) {
 	  if (!prevState) {
@@ -23293,7 +23273,7 @@
 	module.exports = ScrollHistory;
 
 /***/ },
-/* 190 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23316,7 +23296,7 @@
 	module.exports = getWindowScrollPosition;
 
 /***/ },
-/* 191 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23334,15 +23314,15 @@
 	module.exports = isReactChildren;
 
 /***/ },
-/* 192 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* jshint -W058 */
 	
 	'use strict';
 	
-	var Cancellation = __webpack_require__(193);
-	var Redirect = __webpack_require__(194);
+	var Cancellation = __webpack_require__(192);
+	var Redirect = __webpack_require__(193);
 	
 	/**
 	 * Encapsulates a transition to a given path.
@@ -23414,7 +23394,7 @@
 	module.exports = Transition;
 
 /***/ },
-/* 193 */
+/* 192 */
 /***/ function(module, exports) {
 
 	/**
@@ -23428,7 +23408,7 @@
 	module.exports = Cancellation;
 
 /***/ },
-/* 194 */
+/* 193 */
 /***/ function(module, exports) {
 
 	/**
@@ -23445,7 +23425,7 @@
 	module.exports = Redirect;
 
 /***/ },
-/* 195 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23455,7 +23435,7 @@
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	/* jshint -W084 */
-	var PathUtils = __webpack_require__(163);
+	var PathUtils = __webpack_require__(162);
 	
 	function deepSearch(route, pathname, query) {
 	  // Check the subtree first to find the most deeply-nested match.
@@ -23525,7 +23505,7 @@
 	module.exports = Match;
 
 /***/ },
-/* 196 */
+/* 195 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23546,12 +23526,12 @@
 	module.exports = supportsHistory;
 
 /***/ },
-/* 197 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var createRouter = __webpack_require__(188);
+	var createRouter = __webpack_require__(187);
 	
 	/**
 	 * A high-level convenience method that creates, configures, and
@@ -23601,11 +23581,31 @@
 	module.exports = runRouter;
 
 /***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(158);
+	var $__0=     Router,DefaultRoute=$__0.DefaultRoute,Route=$__0.Route;
+	
+	var routes = (
+		React.createElement(Route, {handler: __webpack_require__(198)}, 
+			React.createElement(Route, {name: "form", path: "/", handler: __webpack_require__(199)}, 
+				React.createElement(Route, {name: "info", path: "/division/:name", handler: __webpack_require__(220)})
+			), 
+			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(229)}), 
+			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(230)})
+		)
+	);
+	
+	module.exports = routes;
+
+/***/ },
 /* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var $__0=    __webpack_require__(159),RouteHandler=$__0.RouteHandler;
+	var $__0=    __webpack_require__(158),RouteHandler=$__0.RouteHandler;
 	
 	// TODO: Add a notification component and add it to thi, Layout component
 	var Layout = React.createClass({displayName: "Layout",
@@ -23625,10 +23625,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var $__0=     __webpack_require__(159),RouteHandler=$__0.RouteHandler,Navigation=$__0.Navigation;
-	var ConstituencyActionCreators = __webpack_require__(210);
-	__webpack_require__(230);
-	__webpack_require__(222);
+	var $__0=     __webpack_require__(158),RouteHandler=$__0.RouteHandler,Navigation=$__0.Navigation;
+	var ConstituencyActionCreators = __webpack_require__(200);
+	__webpack_require__(214);
+	__webpack_require__(218);
 	
 	var ConstituencyForm = React.createClass({displayName: "ConstituencyForm",
 	
@@ -23640,6 +23640,7 @@
 	
 		handleSubmit: function (e) {
 			e.preventDefault();
+			
 			var inputs = document.getElementsByClassName('nl-field-toggle');
 			var constituencyInput = inputs[0].innerText;
 			var postalCodeinput = inputs[1].innerText;
@@ -23699,167 +23700,35 @@
 /* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
-	var $__0=    __webpack_require__(159),State=$__0.State;
-	var ConstituencyStore = __webpack_require__(201);
-	var ConstituencyActionCreators = __webpack_require__(210);
-	var Party = __webpack_require__(218);
+	var AppDispatcher = __webpack_require__(201);
+	var ConstituencyConstants = __webpack_require__(205);
+	var ElectionAPI = __webpack_require__(207);
 	
-	function getFromConstituencyStore() {
-		return {
-			currentDivisionData: ConstituencyStore.getCurrentDivisionData()
+	var ActionTypes = ConstituencyConstants.ActionTypes;
+	
+	module.exports = {
+		getDivisionData: function(divisionName, postalCode) {
+			console.log('fetchDivisionData in ConstituencyActionCreators called');
+			AppDispatcher.dispatch({
+				type: ActionTypes.GET_CONSTITUENCY
+			});
+			if(divisionName)
+				ElectionAPI.getDivisionWithName(divisionName);
+			else
+				ElectionAPI.getDivisionWithPostalCode(postalCode);
 		}
 	}
-	
-	var ConstituencyInfo = React.createClass({displayName: "ConstituencyInfo",
-	
-		mixins: [State],
-	
-		getInitialState: function() {
-			return getFromConstituencyStore();
-		},
-	
-		_getDivisionName: function() {
-			return this.getParams().name;
-		},
-	
-		_init: function () {
-			var divisionName = this._getDivisionName();
-			ConstituencyActionCreators.getDivisionData(divisionName);
-		},
-	
-		componentWillMount: function() {
-			this._init();
-		},
-	
-		componentWillReceiveProps: function(nextProps) {
-			this._init();
-		},
-	
-		componentDidMount: function() {
-			ConstituencyStore.addChangeListener(this._onChange);
-		},
-	
-		componentWillUnmount: function() {
-			ConstituencyStore.removeChangeListener(this._onChange);
-		},
-	
-		_onChange: function() {
-			this.setState(getFromConstituencyStore());
-		},
-	
-		renderDivisionData: function() {
-			var data = this.state.currentDivisionData;
-			console.log(data);
-			return (
-				React.createElement("div", null, 
-					React.createElement("h1", null, data.divisionName), 
-					React.createElement("p", null, "Number of seats contested: ", data.seats), 
-					React.createElement("p", null, "Number of electors: ", data.electors), 
-					React.createElement("div", null, 
-						
-							data.parties.map(function(party) {
-								return React.createElement(Party, {key: party._id, name: party.name, image: party.image, abbr: party.abbr, candidates: party.candidates})
-							})
-						
-					)
-				)
-			)
-		},
-	
-		render: function() {
-			var Loading = React.createElement("p", null, "Loading...")
-			return (
-				React.createElement("div", {className: "content"}, 
-	   			React.createElement("div", {className: "container"}, 
-	   				this.state.currentDivisionData === null ? {Loading:Loading} : this.renderDivisionData()
-	   			)
-	   		)
-			);
-		}
-	});
-	
-	module.exports = ConstituencyInfo;
 
 /***/ },
 /* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(202);
-	var ConstituencyConstants = __webpack_require__(206);
-	var EventEmitter = __webpack_require__(208).EventEmitter;
-	var assign = __webpack_require__(209);
-	
-	var ActionTypes = ConstituencyConstants.ActionTypes;
-	var CHANGE_EVENT = 'change';
-	
-	// var _constituent = [];
-	var _currentData = null;
-	
-	var ConstituencyStore = assign({}, EventEmitter.prototype, {
-	
-	  emitChange: function() {
-	    this.emit(CHANGE_EVENT);
-	  },
-	
-	  addChangeListener: function(callback) {
-	    this.on(CHANGE_EVENT, callback);
-	  },
-	
-	  removeChangeListener: function(callback) {
-	    this.removeListener(CHANGE_EVENT, callback);
-	  },
-	
-	  getCurrentDivisionData: function () {
-	    return _currentData;
-	  },
-	
-	  // containsDivisionData: function (divisionName) {
-	  //   var data = null;
-	
-	  //   for(var i=0; i<_constituent.length;i++) {
-	  //     if(_constituent[i].divisionName === divisionName) {
-	  //       _currentData = data = _constituent[i];
-	  //       break;
-	  //     }
-	  //   }
-	  //   return data;
-	  // }
-	
-	});
-	
-	ConstituencyStore.dispatchToken = AppDispatcher.register(function(action) {
-	
-	  switch(action.type) {
-	    case ActionTypes.GET_CONSTITUENCY:
-	    	_currentData = null;
-	      ConstituencyStore.emitChange();
-	      break;
-	    case ActionTypes.GET_CONSTITUENCY_SUCCESS:
-	      _currentData = action.data;
-	      ConstituencyStore.emitChange();
-	      break;
-	    case ActionTypes.GET_CONSTITUENCY_FAILURE:
-	      ConstituencyStore.emitChange();
-	      break;
-	    default:
-	      // do nothing
-	  }
-	
-	});
-	
-	module.exports = ConstituencyStore;
-
-/***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Dispatcher = __webpack_require__(203).Dispatcher;
+	var Dispatcher = __webpack_require__(202).Dispatcher;
 	
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 203 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23871,11 +23740,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(204);
+	module.exports.Dispatcher = __webpack_require__(203);
 
 
 /***/ },
-/* 204 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -23897,7 +23766,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(205);
+	var invariant = __webpack_require__(204);
 	
 	var _prefix = 'ID_';
 	
@@ -24112,7 +23981,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 205 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24167,10 +24036,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 206 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var keyMirror = __webpack_require__(207);
+	var keyMirror = __webpack_require__(206);
 	
 	module.exports = {
 		ActionTypes: keyMirror({
@@ -24193,7 +24062,7 @@
 	};
 
 /***/ },
-/* 207 */
+/* 206 */
 /***/ function(module, exports) {
 
 	/**
@@ -24252,386 +24121,11 @@
 
 
 /***/ },
-/* 208 */
-/***/ function(module, exports) {
-
-	// Copyright Joyent, Inc. and other Node contributors.
-	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
-	// copy of this software and associated documentation files (the
-	// "Software"), to deal in the Software without restriction, including
-	// without limitation the rights to use, copy, modify, merge, publish,
-	// distribute, sublicense, and/or sell copies of the Software, and to permit
-	// persons to whom the Software is furnished to do so, subject to the
-	// following conditions:
-	//
-	// The above copyright notice and this permission notice shall be included
-	// in all copies or substantial portions of the Software.
-	//
-	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-	// USE OR OTHER DEALINGS IN THE SOFTWARE.
-	
-	function EventEmitter() {
-	  this._events = this._events || {};
-	  this._maxListeners = this._maxListeners || undefined;
-	}
-	module.exports = EventEmitter;
-	
-	// Backwards-compat with node 0.10.x
-	EventEmitter.EventEmitter = EventEmitter;
-	
-	EventEmitter.prototype._events = undefined;
-	EventEmitter.prototype._maxListeners = undefined;
-	
-	// By default EventEmitters will print a warning if more than 10 listeners are
-	// added to it. This is a useful default which helps finding memory leaks.
-	EventEmitter.defaultMaxListeners = 10;
-	
-	// Obviously not all Emitters should be limited to 10. This function allows
-	// that to be increased. Set to zero for unlimited.
-	EventEmitter.prototype.setMaxListeners = function(n) {
-	  if (!isNumber(n) || n < 0 || isNaN(n))
-	    throw TypeError('n must be a positive number');
-	  this._maxListeners = n;
-	  return this;
-	};
-	
-	EventEmitter.prototype.emit = function(type) {
-	  var er, handler, len, args, i, listeners;
-	
-	  if (!this._events)
-	    this._events = {};
-	
-	  // If there is no 'error' event listener then throw.
-	  if (type === 'error') {
-	    if (!this._events.error ||
-	        (isObject(this._events.error) && !this._events.error.length)) {
-	      er = arguments[1];
-	      if (er instanceof Error) {
-	        throw er; // Unhandled 'error' event
-	      }
-	      throw TypeError('Uncaught, unspecified "error" event.');
-	    }
-	  }
-	
-	  handler = this._events[type];
-	
-	  if (isUndefined(handler))
-	    return false;
-	
-	  if (isFunction(handler)) {
-	    switch (arguments.length) {
-	      // fast cases
-	      case 1:
-	        handler.call(this);
-	        break;
-	      case 2:
-	        handler.call(this, arguments[1]);
-	        break;
-	      case 3:
-	        handler.call(this, arguments[1], arguments[2]);
-	        break;
-	      // slower
-	      default:
-	        len = arguments.length;
-	        args = new Array(len - 1);
-	        for (i = 1; i < len; i++)
-	          args[i - 1] = arguments[i];
-	        handler.apply(this, args);
-	    }
-	  } else if (isObject(handler)) {
-	    len = arguments.length;
-	    args = new Array(len - 1);
-	    for (i = 1; i < len; i++)
-	      args[i - 1] = arguments[i];
-	
-	    listeners = handler.slice();
-	    len = listeners.length;
-	    for (i = 0; i < len; i++)
-	      listeners[i].apply(this, args);
-	  }
-	
-	  return true;
-	};
-	
-	EventEmitter.prototype.addListener = function(type, listener) {
-	  var m;
-	
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  if (!this._events)
-	    this._events = {};
-	
-	  // To avoid recursion in the case that type === "newListener"! Before
-	  // adding it to the listeners, first emit "newListener".
-	  if (this._events.newListener)
-	    this.emit('newListener', type,
-	              isFunction(listener.listener) ?
-	              listener.listener : listener);
-	
-	  if (!this._events[type])
-	    // Optimize the case of one listener. Don't need the extra array object.
-	    this._events[type] = listener;
-	  else if (isObject(this._events[type]))
-	    // If we've already got an array, just append.
-	    this._events[type].push(listener);
-	  else
-	    // Adding the second element, need to change to array.
-	    this._events[type] = [this._events[type], listener];
-	
-	  // Check for listener leak
-	  if (isObject(this._events[type]) && !this._events[type].warned) {
-	    var m;
-	    if (!isUndefined(this._maxListeners)) {
-	      m = this._maxListeners;
-	    } else {
-	      m = EventEmitter.defaultMaxListeners;
-	    }
-	
-	    if (m && m > 0 && this._events[type].length > m) {
-	      this._events[type].warned = true;
-	      console.error('(node) warning: possible EventEmitter memory ' +
-	                    'leak detected. %d listeners added. ' +
-	                    'Use emitter.setMaxListeners() to increase limit.',
-	                    this._events[type].length);
-	      if (typeof console.trace === 'function') {
-	        // not supported in IE 10
-	        console.trace();
-	      }
-	    }
-	  }
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-	
-	EventEmitter.prototype.once = function(type, listener) {
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  var fired = false;
-	
-	  function g() {
-	    this.removeListener(type, g);
-	
-	    if (!fired) {
-	      fired = true;
-	      listener.apply(this, arguments);
-	    }
-	  }
-	
-	  g.listener = listener;
-	  this.on(type, g);
-	
-	  return this;
-	};
-	
-	// emits a 'removeListener' event iff the listener was removed
-	EventEmitter.prototype.removeListener = function(type, listener) {
-	  var list, position, length, i;
-	
-	  if (!isFunction(listener))
-	    throw TypeError('listener must be a function');
-	
-	  if (!this._events || !this._events[type])
-	    return this;
-	
-	  list = this._events[type];
-	  length = list.length;
-	  position = -1;
-	
-	  if (list === listener ||
-	      (isFunction(list.listener) && list.listener === listener)) {
-	    delete this._events[type];
-	    if (this._events.removeListener)
-	      this.emit('removeListener', type, listener);
-	
-	  } else if (isObject(list)) {
-	    for (i = length; i-- > 0;) {
-	      if (list[i] === listener ||
-	          (list[i].listener && list[i].listener === listener)) {
-	        position = i;
-	        break;
-	      }
-	    }
-	
-	    if (position < 0)
-	      return this;
-	
-	    if (list.length === 1) {
-	      list.length = 0;
-	      delete this._events[type];
-	    } else {
-	      list.splice(position, 1);
-	    }
-	
-	    if (this._events.removeListener)
-	      this.emit('removeListener', type, listener);
-	  }
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.removeAllListeners = function(type) {
-	  var key, listeners;
-	
-	  if (!this._events)
-	    return this;
-	
-	  // not listening for removeListener, no need to emit
-	  if (!this._events.removeListener) {
-	    if (arguments.length === 0)
-	      this._events = {};
-	    else if (this._events[type])
-	      delete this._events[type];
-	    return this;
-	  }
-	
-	  // emit removeListener for all listeners on all events
-	  if (arguments.length === 0) {
-	    for (key in this._events) {
-	      if (key === 'removeListener') continue;
-	      this.removeAllListeners(key);
-	    }
-	    this.removeAllListeners('removeListener');
-	    this._events = {};
-	    return this;
-	  }
-	
-	  listeners = this._events[type];
-	
-	  if (isFunction(listeners)) {
-	    this.removeListener(type, listeners);
-	  } else {
-	    // LIFO order
-	    while (listeners.length)
-	      this.removeListener(type, listeners[listeners.length - 1]);
-	  }
-	  delete this._events[type];
-	
-	  return this;
-	};
-	
-	EventEmitter.prototype.listeners = function(type) {
-	  var ret;
-	  if (!this._events || !this._events[type])
-	    ret = [];
-	  else if (isFunction(this._events[type]))
-	    ret = [this._events[type]];
-	  else
-	    ret = this._events[type].slice();
-	  return ret;
-	};
-	
-	EventEmitter.listenerCount = function(emitter, type) {
-	  var ret;
-	  if (!emitter._events || !emitter._events[type])
-	    ret = 0;
-	  else if (isFunction(emitter._events[type]))
-	    ret = 1;
-	  else
-	    ret = emitter._events[type].length;
-	  return ret;
-	};
-	
-	function isFunction(arg) {
-	  return typeof arg === 'function';
-	}
-	
-	function isNumber(arg) {
-	  return typeof arg === 'number';
-	}
-	
-	function isObject(arg) {
-	  return typeof arg === 'object' && arg !== null;
-	}
-	
-	function isUndefined(arg) {
-	  return arg === void 0;
-	}
-
-
-/***/ },
-/* 209 */
-/***/ function(module, exports) {
-
-	/* eslint-disable no-unused-vars */
-	'use strict';
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-	
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-	
-		return Object(val);
-	}
-	
-	module.exports = Object.assign || function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-	
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-	
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-	
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-	
-		return to;
-	};
-
-
-/***/ },
-/* 210 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(202);
-	var ConstituencyConstants = __webpack_require__(206);
-	var ElectionAPI = __webpack_require__(211);
-	
-	var ActionTypes = ConstituencyConstants.ActionTypes;
-	
-	module.exports = {
-		getDivisionData: function(divisionName, postalCode) {
-			console.log('fetchDivisionData in ConstituencyActionCreators called');
-			AppDispatcher.dispatch({
-				type: ActionTypes.GET_CONSTITUENCY
-			});
-			if(divisionName)
-				ElectionAPI.getDivisionWithName(divisionName);
-			else
-				ElectionAPI.getDivisionWithPostalCode(postalCode);
-		}
-	}
-
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var RSVP = __webpack_require__(212);
-	var ConstituencyServerActionCreators = __webpack_require__(217);
+	var RSVP = __webpack_require__(208);
+	var ConstituencyServerActionCreators = __webpack_require__(213);
 	
 	var getJSON = function(url) {
 	  var promise = new RSVP.Promise(function(resolve, reject){
@@ -24682,7 +24176,7 @@
 
 
 /***/ },
-/* 212 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, setImmediate, global, module) {/*!
@@ -25894,7 +25388,7 @@
 	    function lib$rsvp$asap$$attemptVertex() {
 	      try {
 	        var r = require;
-	        var vertx = __webpack_require__(215);
+	        var vertx = __webpack_require__(211);
 	        lib$rsvp$asap$$vertxNext = vertx.runOnLoop || vertx.runOnContext;
 	        return lib$rsvp$asap$$useVertxTimer();
 	      } catch(e) {
@@ -26273,7 +25767,7 @@
 	    };
 	
 	    /* global define:true module:true window: true */
-	    if ("function" === 'function' && __webpack_require__(216)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(212)['amd']) {
 	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return lib$rsvp$umd$$RSVP; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module !== 'undefined' && module['exports']) {
 	      module['exports'] = lib$rsvp$umd$$RSVP;
@@ -26283,10 +25777,10 @@
 	}).call(this);
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(213).setImmediate, (function() { return this; }()), __webpack_require__(214)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(209).setImmediate, (function() { return this; }()), __webpack_require__(210)(module)))
 
 /***/ },
-/* 213 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(3).nextTick;
@@ -26365,10 +25859,10 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(213).setImmediate, __webpack_require__(213).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(209).setImmediate, __webpack_require__(209).clearImmediate))
 
 /***/ },
-/* 214 */
+/* 210 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -26384,24 +25878,24 @@
 
 
 /***/ },
-/* 215 */
+/* 211 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 216 */
+/* 212 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 217 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(202);
-	var ConstituencyConstants = __webpack_require__(206);
+	var AppDispatcher = __webpack_require__(201);
+	var ConstituencyConstants = __webpack_require__(205);
 	var router = __webpack_require__(157);
 	
 	var ActionTypes = ConstituencyConstants.ActionTypes;
@@ -26431,7 +25925,7 @@
 		// 	type: ActionTypes.GET_CONSTITUENCY_NAME_SUCCESS,
 		// 	name: toTitleCase(divisionData.name)
 		// });
-		router.transitionTo('info', {name: "Marsiling-Yew Tee GRC"});
+		router.transitionTo('info', {name: toTitleCase(divisionData.name)});
 	}
 	
 	function getDivisionNameFailure(errorCode) {
@@ -26446,10 +25940,10 @@
 	}
 	
 	function toTitleCase (str) {
-		var arrayOfString = str.split(',| ');
+		var arrayOfString = str.split(' ');
 		var grc = arrayOfString.pop();
 		var newString = arrayOfString.join(' ');
-		newString = newString.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});	
+		newString = newString.replace(/\b\w+/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});	
 		return newString + ' ' + grc;
 	}
 	
@@ -26461,88 +25955,23 @@
 	}
 
 /***/ },
-/* 218 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var Candidate = __webpack_require__(232)
-	
-	var Party = React.createClass({displayName: "Party",
-	
-		renderCandidates: function() {
-			var Candidates = this.props.candidates.map(function(candidate) {
-				return React.createElement(Candidate, {key: candidate._id, name: candidate.name, desc: candidate.desc, image: candidate.image})
-			});
-	
-			return Candidates;
-		},
-	
-		render: function() {
-			return (
-				React.createElement("div", null, 
-					React.createElement("img", {src: this.props.image, height: "100", width: "auto"}), 
-					React.createElement("h2", null, this.props.name, " (", this.props.abbr, ")"), 
-					React.createElement("p", null, this.props.current), 
-					React.createElement("div", null, this.renderCandidates())
-				)
-			);
-		}
-	
-	});
-	
-	module.exports = Party;
-
-/***/ },
-/* 219 */,
-/* 220 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var Ballot = React.createClass({displayName: "Ballot",
-		render: function() {
-			return (
-				React.createElement("p", null, "Ballot")
-			);
-		}
-	});
-	
-	module.exports = Ballot;
-
-/***/ },
-/* 221 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var ElectionResults = React.createClass({displayName: "ElectionResults",
-		render: function() {
-			return (
-				React.createElement("p", null, "election results")
-			);
-		}
-	});
-	
-	module.exports = ElectionResults;
-
-/***/ },
-/* 222 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(223);
+	var content = __webpack_require__(215);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(225)(content, {});
+	var update = __webpack_require__(217)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ConstituencyForm.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./ConstituencyForm.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./main.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./main.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -26552,21 +25981,21 @@
 	}
 
 /***/ },
-/* 223 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(224)();
+	exports = module.exports = __webpack_require__(216)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "body {\n\tfont-family: \"Raleway\", \"HelveticaNeue\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.block-text {\n\tdisplay: block;\n\ttext-align: center; \n}\n\n.nl-form {\n\tmargin-top: 0;\n\tdisplay: table-cell;\n  text-align: center;\n  vertical-align: middle;\n}\n\n.nl-field {\n\tdisplay: block;\n\ttext-align: center\n}\n\n.nl-field ul {\n\tbackground: #C77966;\n\tleft: 50%;\n\t-webkit-transform: translate(-50%,-40%) scale(0.8);\n\t-moz-transform: translate(-50%,-40%) scale(0.8);\n\ttransform: translate(-50%,-40%) scale(0.8);\n}\n\n.nl-field.nl-field-open ul {\n\n\t-webkit-transform: translate(-50%,-50%) scale(1);\n\t-moz-transform: translate(-50%,-50%) scale(1);\n\ttransform: translate(-50%,-50%) scale(1);\n}\n\n.nl-dd ul li.nl-dd-checked {\n    color: #703030;\n}\n\n.nl-submit-wrap {\n\ttext-align: center;\n}\n\n.content:nth-child(1) {\n\tbackground-color: #7E827A;\n  color: #2F343B;\n}\n\n.content:nth-child(1) .container {\n\theight: 100%;\n\tmin-height: 100%;\n\tdisplay: table;\n}\n\n.nl-field-toggle, .nl-form input, .nl-form select {\n\tcolor: #E3CDA4;\n  border-bottom-color: #E3CDA4;\n}\n\n.nl-form .nl-submit {\n\tbackground: #C77966;\n}\n\n.nl-submit:before {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover,\n.no-touch .nl-form .nl-submit:active {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover:before {\n\tbackground: #C77966;\n}\n", ""]);
+	exports.push([module.id, " html,body, #app {\n  height:100%;\n  margin:0;\n}\n\n.content {\n  height:100%;\n  min-height:100%; /*for mozzz*/\n}\n\nhtml>body>#app .content {\n  /*height:auto;*/\n  overflow: hidden;\n}\n\n/* Grid\n–––––––––––––––––––––––––––––––––––––––––––––––––– */\n.container {\n  position: relative;\n  width: 100%;\n  max-width: 960px;\n  margin: 0 auto;\n  padding: 0 20px;\n  box-sizing: border-box; }\n.column,\n.columns {\n  width: 100%;\n  float: left;\n  box-sizing: border-box; }\n\n/* For devices larger than 400px */\n@media (min-width: 400px) {\n  .container {\n    width: 85%;\n    padding: 0; }\n}\n\n/* For devices larger than 550px */\n@media (min-width: 550px) {\n  .container {\n    width: 80%; }\n  .column,\n  .columns {\n    margin-left: 4%; }\n  .column:first-child,\n  .columns:first-child {\n    margin-left: 0; }\n\n  .one.column,\n  .one.columns                    { width: 4.66666666667%; }\n  .two.columns                    { width: 13.3333333333%; }\n  .three.columns                  { width: 22%;            }\n  .four.columns                   { width: 30.6666666667%; }\n  .five.columns                   { width: 39.3333333333%; }\n  .six.columns                    { width: 48%;            }\n  .seven.columns                  { width: 56.6666666667%; }\n  .eight.columns                  { width: 65.3333333333%; }\n  .nine.columns                   { width: 74.0%;          }\n  .ten.columns                    { width: 82.6666666667%; }\n  .eleven.columns                 { width: 91.3333333333%; }\n  .twelve.columns                 { width: 100%; margin-left: 0; }\n\n  .one-third.column               { width: 30.6666666667%; }\n  .two-thirds.column              { width: 65.3333333333%; }\n\n  .one-half.column                { width: 48%; }\n\n  /* Offsets */\n  .offset-by-one.column,\n  .offset-by-one.columns          { margin-left: 8.66666666667%; }\n  .offset-by-two.column,\n  .offset-by-two.columns          { margin-left: 17.3333333333%; }\n  .offset-by-three.column,\n  .offset-by-three.columns        { margin-left: 26%;            }\n  .offset-by-four.column,\n  .offset-by-four.columns         { margin-left: 34.6666666667%; }\n  .offset-by-five.column,\n  .offset-by-five.columns         { margin-left: 43.3333333333%; }\n  .offset-by-six.column,\n  .offset-by-six.columns          { margin-left: 52%;            }\n  .offset-by-seven.column,\n  .offset-by-seven.columns        { margin-left: 60.6666666667%; }\n  .offset-by-eight.column,\n  .offset-by-eight.columns        { margin-left: 69.3333333333%; }\n  .offset-by-nine.column,\n  .offset-by-nine.columns         { margin-left: 78.0%;          }\n  .offset-by-ten.column,\n  .offset-by-ten.columns          { margin-left: 86.6666666667%; }\n  .offset-by-eleven.column,\n  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }\n\n  .offset-by-one-third.column,\n  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }\n  .offset-by-two-thirds.column,\n  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }\n\n  .offset-by-one-half.column,\n  .offset-by-one-half.columns     { margin-left: 52%; }\n\n}\n\n/* Clearing\n–––––––––––––––––––––––––––––––––––––––––––––––––– */\n\n/* Self Clearing Goodness */\n.container:after,\n.row:after,\n.u-cf {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n\n/* Media Queries\n–––––––––––––––––––––––––––––––––––––––––––––––––– */\n/*\nNote: The best way to structure the use of media queries is to create the queries\nnear the relevant code. For example, if you wanted to change the styles for buttons\non small devices, paste the mobile query code up in the buttons section and style it\nthere.\n*/\n\n\n/* Larger than mobile */\n@media (min-width: 400px) {}\n\n/* Larger than phablet (also point when grid becomes active) */\n@media (min-width: 550px) {}\n\n/* Larger than tablet */\n@media (min-width: 750px) {}\n\n/* Larger than desktop */\n@media (min-width: 1000px) {}\n\n/* Larger than Desktop HD */\n@media (min-width: 1200px) {}\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 224 */
+/* 216 */
 /***/ function(module, exports) {
 
 	/*
@@ -26622,7 +26051,7 @@
 
 
 /***/ },
-/* 225 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -26847,27 +26276,23 @@
 
 
 /***/ },
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(231);
+	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(225)(content, {});
+	var update = __webpack_require__(217)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./main.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./main.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ConstituencyForm.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./ConstituencyForm.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -26877,21 +26302,587 @@
 	}
 
 /***/ },
-/* 231 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(224)();
+	exports = module.exports = __webpack_require__(216)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, " html,body, #app {\n  height:100%;\n  margin:0;\n}\n\n.content {\n  height:100%;\n  min-height:100%; /*for mozzz*/\n}\n\nhtml>body>#app .content {\n  height:auto;\n}\n\n/* Grid\n–––––––––––––––––––––––––––––––––––––––––––––––––– */\n.container {\n  position: relative;\n  width: 100%;\n  max-width: 960px;\n  margin: 0 auto;\n  padding: 0 20px;\n  box-sizing: border-box; }\n.column,\n.columns {\n  width: 100%;\n  float: left;\n  box-sizing: border-box; }\n\n/* For devices larger than 400px */\n@media (min-width: 400px) {\n  .container {\n    width: 85%;\n    padding: 0; }\n}\n\n/* For devices larger than 550px */\n@media (min-width: 550px) {\n  .container {\n    width: 80%; }\n  .column,\n  .columns {\n    margin-left: 4%; }\n  .column:first-child,\n  .columns:first-child {\n    margin-left: 0; }\n\n  .one.column,\n  .one.columns                    { width: 4.66666666667%; }\n  .two.columns                    { width: 13.3333333333%; }\n  .three.columns                  { width: 22%;            }\n  .four.columns                   { width: 30.6666666667%; }\n  .five.columns                   { width: 39.3333333333%; }\n  .six.columns                    { width: 48%;            }\n  .seven.columns                  { width: 56.6666666667%; }\n  .eight.columns                  { width: 65.3333333333%; }\n  .nine.columns                   { width: 74.0%;          }\n  .ten.columns                    { width: 82.6666666667%; }\n  .eleven.columns                 { width: 91.3333333333%; }\n  .twelve.columns                 { width: 100%; margin-left: 0; }\n\n  .one-third.column               { width: 30.6666666667%; }\n  .two-thirds.column              { width: 65.3333333333%; }\n\n  .one-half.column                { width: 48%; }\n\n  /* Offsets */\n  .offset-by-one.column,\n  .offset-by-one.columns          { margin-left: 8.66666666667%; }\n  .offset-by-two.column,\n  .offset-by-two.columns          { margin-left: 17.3333333333%; }\n  .offset-by-three.column,\n  .offset-by-three.columns        { margin-left: 26%;            }\n  .offset-by-four.column,\n  .offset-by-four.columns         { margin-left: 34.6666666667%; }\n  .offset-by-five.column,\n  .offset-by-five.columns         { margin-left: 43.3333333333%; }\n  .offset-by-six.column,\n  .offset-by-six.columns          { margin-left: 52%;            }\n  .offset-by-seven.column,\n  .offset-by-seven.columns        { margin-left: 60.6666666667%; }\n  .offset-by-eight.column,\n  .offset-by-eight.columns        { margin-left: 69.3333333333%; }\n  .offset-by-nine.column,\n  .offset-by-nine.columns         { margin-left: 78.0%;          }\n  .offset-by-ten.column,\n  .offset-by-ten.columns          { margin-left: 86.6666666667%; }\n  .offset-by-eleven.column,\n  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }\n\n  .offset-by-one-third.column,\n  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }\n  .offset-by-two-thirds.column,\n  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }\n\n  .offset-by-one-half.column,\n  .offset-by-one-half.columns     { margin-left: 52%; }\n\n}", ""]);
+	exports.push([module.id, "body {\n\tfont-family: \"Raleway\", \"HelveticaNeue\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.block-text {\n\tdisplay: block;\n\ttext-align: center; \n}\n\n.nl-form {\n\tmargin-top: 0;\n\tdisplay: table-cell;\n  text-align: center;\n  vertical-align: middle;\n}\n\n.nl-field {\n\tdisplay: block;\n\ttext-align: center\n}\n\n.nl-field ul {\n\tbackground: #C77966;\n\tleft: 50%;\n\t-webkit-transform: translate(-50%,-40%) scale(0.8);\n\t-moz-transform: translate(-50%,-40%) scale(0.8);\n\ttransform: translate(-50%,-40%) scale(0.8);\n}\n\n.nl-field.nl-field-open ul {\n\n\t-webkit-transform: translate(-50%,-50%) scale(1);\n\t-moz-transform: translate(-50%,-50%) scale(1);\n\ttransform: translate(-50%,-50%) scale(1);\n}\n\n.nl-dd ul li.nl-dd-checked {\n    color: #703030;\n}\n\n.nl-submit-wrap {\n\ttext-align: center;\n}\n\n.content:nth-child(1) {\n\tbackground-color: #7E827A;\n  color: #2F343B;\n}\n\n.content:nth-child(1) .container {\n\theight: 100%;\n\tmin-height: 100%;\n\tdisplay: table;\n}\n\n.nl-field-toggle, .nl-form input, .nl-form select {\n\tcolor: #E3CDA4;\n  border-bottom-color: #E3CDA4;\n}\n\n.nl-form .nl-submit {\n\tbackground: #C77966;\n}\n\n.nl-submit:before {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover,\n.no-touch .nl-form .nl-submit:active {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover:before {\n\tbackground: #C77966;\n}\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 232 */
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var $__0=    __webpack_require__(158),State=$__0.State;
+	var ConstituencyStore = __webpack_require__(221);
+	var ConstituencyActionCreators = __webpack_require__(200);
+	var Party = __webpack_require__(224);
+	var SingaporeMap = __webpack_require__(226);
+	__webpack_require__(227);
+	
+	function getFromConstituencyStore() {
+		return {
+			currentDivisionData: ConstituencyStore.getCurrentDivisionData()
+		}
+	}
+	
+	var ConstituencyInfo = React.createClass({displayName: "ConstituencyInfo",
+	
+		mixins: [State],
+	
+		getInitialState: function() {
+			return getFromConstituencyStore();
+		},
+	
+		_getDivisionName: function() {
+			return this.getParams().name;
+		},
+	
+		_init: function () {
+			var divisionName = this._getDivisionName();
+			ConstituencyActionCreators.getDivisionData(divisionName);
+		},
+	
+		componentWillMount: function() {
+			this._init();
+		},
+	
+		componentWillReceiveProps: function(nextProps) {
+			this._init();
+		},
+	
+		componentDidMount: function() {
+			ConstituencyStore.addChangeListener(this._onChange);
+		},
+	
+		componentWillUnmount: function() {
+			ConstituencyStore.removeChangeListener(this._onChange);
+		},
+	
+		_onChange: function() {
+			this.setState(getFromConstituencyStore());
+		},
+	
+		_underscore: function(title) {
+			return title.toLowerCase().split(' ').join('-');
+		},
+	
+		renderDivisionData: function() {
+			var data = this.state.currentDivisionData;
+			return (
+				React.createElement("div", {className: "container"}, 
+					React.createElement("div", {className: "row constituency-info"}, 
+						React.createElement("div", {className: "twelve columns division-info"}, 
+							React.createElement("h1", {className: "constituency-name"}, data.divisionName), 
+							React.createElement("p", {className: "constituency-details"}, data.seats, " seats | ", data.electors, " electors"), 
+							React.createElement(SingaporeMap, {grc: this._underscore(data.divisionName)})
+						), 
+						React.createElement("div", {className: "twelve columns party-info"}, 
+							React.createElement("div", {className: "row"}, 
+								
+									data.parties.map(function(party) {
+										return React.createElement(Party, {key: party._id, name: party.name, image: party.image, candidates: party.candidates})
+									})
+								
+							)
+						)
+					), 
+					React.createElement("div", {className: "row vote-bar"}, 
+						React.createElement("div", {className: "twelve columns"}, 
+							React.createElement("button", {className: "vote-btn"}, "Vote")
+						)
+					)
+				)
+			)
+		},
+	
+		render: function() {
+			var Loading = React.createElement("p", null, "Loading...")
+			return (
+				React.createElement("div", null, 
+	   			this.state.currentDivisionData === null ? {Loading:Loading} : this.renderDivisionData()
+	   		)
+			);
+		}
+	});
+	
+	module.exports = ConstituencyInfo;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(201);
+	var ConstituencyConstants = __webpack_require__(205);
+	var EventEmitter = __webpack_require__(222).EventEmitter;
+	var assign = __webpack_require__(223);
+	
+	var ActionTypes = ConstituencyConstants.ActionTypes;
+	var CHANGE_EVENT = 'change';
+	
+	// var _constituent = [];
+	var _currentData = null;
+	
+	var ConstituencyStore = assign({}, EventEmitter.prototype, {
+	
+	  emitChange: function() {
+	    this.emit(CHANGE_EVENT);
+	  },
+	
+	  addChangeListener: function(callback) {
+	    this.on(CHANGE_EVENT, callback);
+	  },
+	
+	  removeChangeListener: function(callback) {
+	    this.removeListener(CHANGE_EVENT, callback);
+	  },
+	
+	  getCurrentDivisionData: function () {
+	    return _currentData;
+	  },
+	
+	  // containsDivisionData: function (divisionName) {
+	  //   var data = null;
+	
+	  //   for(var i=0; i<_constituent.length;i++) {
+	  //     if(_constituent[i].divisionName === divisionName) {
+	  //       _currentData = data = _constituent[i];
+	  //       break;
+	  //     }
+	  //   }
+	  //   return data;
+	  // }
+	
+	});
+	
+	ConstituencyStore.dispatchToken = AppDispatcher.register(function(action) {
+	
+	  switch(action.type) {
+	    case ActionTypes.GET_CONSTITUENCY:
+	    	_currentData = null;
+	      ConstituencyStore.emitChange();
+	      break;
+	    case ActionTypes.GET_CONSTITUENCY_SUCCESS:
+	      _currentData = action.data;
+	      ConstituencyStore.emitChange();
+	      break;
+	    case ActionTypes.GET_CONSTITUENCY_FAILURE:
+	      ConstituencyStore.emitChange();
+	      break;
+	    default:
+	      // do nothing
+	  }
+	
+	});
+	
+	module.exports = ConstituencyStore;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+	
+	function EventEmitter() {
+	  this._events = this._events || {};
+	  this._maxListeners = this._maxListeners || undefined;
+	}
+	module.exports = EventEmitter;
+	
+	// Backwards-compat with node 0.10.x
+	EventEmitter.EventEmitter = EventEmitter;
+	
+	EventEmitter.prototype._events = undefined;
+	EventEmitter.prototype._maxListeners = undefined;
+	
+	// By default EventEmitters will print a warning if more than 10 listeners are
+	// added to it. This is a useful default which helps finding memory leaks.
+	EventEmitter.defaultMaxListeners = 10;
+	
+	// Obviously not all Emitters should be limited to 10. This function allows
+	// that to be increased. Set to zero for unlimited.
+	EventEmitter.prototype.setMaxListeners = function(n) {
+	  if (!isNumber(n) || n < 0 || isNaN(n))
+	    throw TypeError('n must be a positive number');
+	  this._maxListeners = n;
+	  return this;
+	};
+	
+	EventEmitter.prototype.emit = function(type) {
+	  var er, handler, len, args, i, listeners;
+	
+	  if (!this._events)
+	    this._events = {};
+	
+	  // If there is no 'error' event listener then throw.
+	  if (type === 'error') {
+	    if (!this._events.error ||
+	        (isObject(this._events.error) && !this._events.error.length)) {
+	      er = arguments[1];
+	      if (er instanceof Error) {
+	        throw er; // Unhandled 'error' event
+	      }
+	      throw TypeError('Uncaught, unspecified "error" event.');
+	    }
+	  }
+	
+	  handler = this._events[type];
+	
+	  if (isUndefined(handler))
+	    return false;
+	
+	  if (isFunction(handler)) {
+	    switch (arguments.length) {
+	      // fast cases
+	      case 1:
+	        handler.call(this);
+	        break;
+	      case 2:
+	        handler.call(this, arguments[1]);
+	        break;
+	      case 3:
+	        handler.call(this, arguments[1], arguments[2]);
+	        break;
+	      // slower
+	      default:
+	        len = arguments.length;
+	        args = new Array(len - 1);
+	        for (i = 1; i < len; i++)
+	          args[i - 1] = arguments[i];
+	        handler.apply(this, args);
+	    }
+	  } else if (isObject(handler)) {
+	    len = arguments.length;
+	    args = new Array(len - 1);
+	    for (i = 1; i < len; i++)
+	      args[i - 1] = arguments[i];
+	
+	    listeners = handler.slice();
+	    len = listeners.length;
+	    for (i = 0; i < len; i++)
+	      listeners[i].apply(this, args);
+	  }
+	
+	  return true;
+	};
+	
+	EventEmitter.prototype.addListener = function(type, listener) {
+	  var m;
+	
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  if (!this._events)
+	    this._events = {};
+	
+	  // To avoid recursion in the case that type === "newListener"! Before
+	  // adding it to the listeners, first emit "newListener".
+	  if (this._events.newListener)
+	    this.emit('newListener', type,
+	              isFunction(listener.listener) ?
+	              listener.listener : listener);
+	
+	  if (!this._events[type])
+	    // Optimize the case of one listener. Don't need the extra array object.
+	    this._events[type] = listener;
+	  else if (isObject(this._events[type]))
+	    // If we've already got an array, just append.
+	    this._events[type].push(listener);
+	  else
+	    // Adding the second element, need to change to array.
+	    this._events[type] = [this._events[type], listener];
+	
+	  // Check for listener leak
+	  if (isObject(this._events[type]) && !this._events[type].warned) {
+	    var m;
+	    if (!isUndefined(this._maxListeners)) {
+	      m = this._maxListeners;
+	    } else {
+	      m = EventEmitter.defaultMaxListeners;
+	    }
+	
+	    if (m && m > 0 && this._events[type].length > m) {
+	      this._events[type].warned = true;
+	      console.error('(node) warning: possible EventEmitter memory ' +
+	                    'leak detected. %d listeners added. ' +
+	                    'Use emitter.setMaxListeners() to increase limit.',
+	                    this._events[type].length);
+	      if (typeof console.trace === 'function') {
+	        // not supported in IE 10
+	        console.trace();
+	      }
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+	
+	EventEmitter.prototype.once = function(type, listener) {
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  var fired = false;
+	
+	  function g() {
+	    this.removeListener(type, g);
+	
+	    if (!fired) {
+	      fired = true;
+	      listener.apply(this, arguments);
+	    }
+	  }
+	
+	  g.listener = listener;
+	  this.on(type, g);
+	
+	  return this;
+	};
+	
+	// emits a 'removeListener' event iff the listener was removed
+	EventEmitter.prototype.removeListener = function(type, listener) {
+	  var list, position, length, i;
+	
+	  if (!isFunction(listener))
+	    throw TypeError('listener must be a function');
+	
+	  if (!this._events || !this._events[type])
+	    return this;
+	
+	  list = this._events[type];
+	  length = list.length;
+	  position = -1;
+	
+	  if (list === listener ||
+	      (isFunction(list.listener) && list.listener === listener)) {
+	    delete this._events[type];
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	
+	  } else if (isObject(list)) {
+	    for (i = length; i-- > 0;) {
+	      if (list[i] === listener ||
+	          (list[i].listener && list[i].listener === listener)) {
+	        position = i;
+	        break;
+	      }
+	    }
+	
+	    if (position < 0)
+	      return this;
+	
+	    if (list.length === 1) {
+	      list.length = 0;
+	      delete this._events[type];
+	    } else {
+	      list.splice(position, 1);
+	    }
+	
+	    if (this._events.removeListener)
+	      this.emit('removeListener', type, listener);
+	  }
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.removeAllListeners = function(type) {
+	  var key, listeners;
+	
+	  if (!this._events)
+	    return this;
+	
+	  // not listening for removeListener, no need to emit
+	  if (!this._events.removeListener) {
+	    if (arguments.length === 0)
+	      this._events = {};
+	    else if (this._events[type])
+	      delete this._events[type];
+	    return this;
+	  }
+	
+	  // emit removeListener for all listeners on all events
+	  if (arguments.length === 0) {
+	    for (key in this._events) {
+	      if (key === 'removeListener') continue;
+	      this.removeAllListeners(key);
+	    }
+	    this.removeAllListeners('removeListener');
+	    this._events = {};
+	    return this;
+	  }
+	
+	  listeners = this._events[type];
+	
+	  if (isFunction(listeners)) {
+	    this.removeListener(type, listeners);
+	  } else {
+	    // LIFO order
+	    while (listeners.length)
+	      this.removeListener(type, listeners[listeners.length - 1]);
+	  }
+	  delete this._events[type];
+	
+	  return this;
+	};
+	
+	EventEmitter.prototype.listeners = function(type) {
+	  var ret;
+	  if (!this._events || !this._events[type])
+	    ret = [];
+	  else if (isFunction(this._events[type]))
+	    ret = [this._events[type]];
+	  else
+	    ret = this._events[type].slice();
+	  return ret;
+	};
+	
+	EventEmitter.listenerCount = function(emitter, type) {
+	  var ret;
+	  if (!emitter._events || !emitter._events[type])
+	    ret = 0;
+	  else if (isFunction(emitter._events[type]))
+	    ret = 1;
+	  else
+	    ret = emitter._events[type].length;
+	  return ret;
+	};
+	
+	function isFunction(arg) {
+	  return typeof arg === 'function';
+	}
+	
+	function isNumber(arg) {
+	  return typeof arg === 'number';
+	}
+	
+	function isObject(arg) {
+	  return typeof arg === 'object' && arg !== null;
+	}
+	
+	function isUndefined(arg) {
+	  return arg === void 0;
+	}
+
+
+/***/ },
+/* 223 */
+/***/ function(module, exports) {
+
+	/* eslint-disable no-unused-vars */
+	'use strict';
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+	
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+	
+		return Object(val);
+	}
+	
+	module.exports = Object.assign || function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+	
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+	
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+	
+			if (Object.getOwnPropertySymbols) {
+				symbols = Object.getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+	
+		return to;
+	};
+
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Candidate = __webpack_require__(225)
+	// var $ = require('jquery/dist/jquery');
+	
+	var Party = React.createClass({displayName: "Party",
+	
+		renderCandidates: function () {
+			var candidates = this.props.candidates.map(function(candidate) {
+				return React.createElement(Candidate, {key: candidate._id, name: candidate.name, desc: candidate.desc, image: candidate.image})
+			});
+	
+			return (
+				React.createElement("div", null, 
+					candidates
+				)
+			);
+		},
+	
+	
+		render: function() {
+			return (
+				React.createElement("div", {className: "six columns"}, 
+					React.createElement("div", {className: "party-card"}, 
+						React.createElement("div", {className: "party-card-header"}, 
+							React.createElement("img", {className: "party-image", src: this.props.image}), 
+							React.createElement("div", {className: "party-name"}, 
+								React.createElement("p", null, this.props.name)
+							)
+						), 
+						React.createElement("div", {className: "party-card-content"}, 
+							this.renderCandidates()
+						)
+					)
+				)
+			);
+		}
+	
+	});
+	
+	module.exports = Party;
+
+/***/ },
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -26908,6 +26899,198 @@
 	});
 	
 	module.exports = Candidate;
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	__webpack_require__(227);
+	
+	var SingaporeMap = React.createClass({displayName: "SingaporeMap",
+	
+		componentDidMount: function() {
+			var constituentElements = document.getElementsByClassName(this.props.grc);
+			for(var i=0;i<constituentElements.length; i++) {
+				constituentElements[i].style.opacity = 1.0;
+				constituentElements[i].style.fill = 'tomato';
+			}
+		},
+		
+		render: function () {
+			return(
+				React.createElement("svg", {x: "0px", y: "0px", viewBox: "-83 -26 792 612", className: "constituency-map"}, 
+					React.createElement("g", null, 
+						React.createElement("g", {id: "Areas_1_", transform: "translate(-163402.88462713483,2381.679511468589) scale(0.30124507594445565)"}, 
+							React.createElement("path", {className: "st0 jurong-grc", d: "M543035.9-6977.5L543035.9-6977.5l-3.1-6.6l-4-6.1l-1.9-1.9l-15.6-23.4l-2.6,1l-5.1-1.4l-9.2-6.4l-3.3-0.8    l-1.8,0.3l-19.2,11.6l-4.4,1.4l2.6,2l14.7,5.8l30.1,33.6l13.5,13.7l12.9,13.8l6.1,8.6l13.1,11.5l11,6.1l-0.4-12l3.8-18.9l1.9-11.5    l-2.8-19.1l-2.7-15.1l-5.1-4l-9.4-9.8l-4.5,3.2l-4.3,4.4l-3.5,4.2l-0.6,6.1l-0.5,5l-2.8,2.8L543035.9-6977.5"}), 
+							React.createElement("path", {className: "west-coast-grc st0", d: "M543013.1-6968.3L543013.1-6968.3l-30.1-33.6l-14.7-5.8l-0.8,3.5l-1.6,3.5l-8.6,15.6l-70.4-15.4l-22.5,102.4    l45.6,11.2l13-12.8l2.7,2.4l5.4-0.6l-5.2,9.2l0.2,4.3l3.8,3.4l19.1,5.1l6.6,0.7l13.1-0.2l8.8-1.6l10.4-1.3l4-1.7l13.3-7.3l2.7,2.2    l1.1,2.7l9.9,10.4l2.1,6l6.2,2.9l1.9,2l-0.9,1.6l2.2,1.2l-1.5,3.3l17.4,9.9l6.1-8.7l7.8-11.2l0.6-3.9l0.1-4l1.8-22.2l1.7-4.7    l2.4-4.3l1.2-3.4l1.5-7.2l-10.2-5.8l-7.7-6.3l-5.9-5.3l-5.6-7.8l-12.9-14.2l-7-7.2L543013.1-6968.3"}), 
+							React.createElement("path", {className: "st0 west-coast-grc", d: "M542759.4-7163.6L542759.4-7163.6l-35.8,23.9l-24.6,11.8l-11.7,9.1l-9.1,7.5l7.8,8.8l36.4-6.5l1.5-2.6    l0.8-3.3l1.2-3.3l7.8-5.4l11.1,15.5l2.6,8.2l0.1,7.1l12.1,1.1l5.8,0.3l5.8-0.4l2.9-1.5l2.5-2.1l6.1-4.4l-2.4-6.3l-0.2-6.4l0.4-6    l1.1-4.2l0.3-4.6l-1.9-7.2l-2.2-6.1l-1.4-3l-2.1-3l-3.7-4.1l-3.9-3.3l-3.7-4.5L542759.4-7163.6"}), 
+							React.createElement("path", {className: "st0 pioneer-smc", d: "M542678.1-7111.3L542678.1-7111.3l-8.8,10.7l-4.1,2.2l-5,1.2l0.1,4.5l3.8,5.4l-1.6-0.3l-4.3,2.6l-5.9,7.9    l0.8,1.1l22.2,0.7l33.3-0.1h12.7l3.6-1.8l3.8-5.6l4.7-12.8l3.6-6l8.9-3.8l-1.1-2.7l-4.4-6.3l-6.8-9.2l-7.8,5.4l-0.5,0.7l-0.8,2.6    l-0.8,3.3l-0.4,0.7l-0.6,0.4l-0.5,1.5l-36.4,6.5L542678.1-7111.3"}), 
+							React.createElement("path", {className: "west-coast-grc st0", d: "M542651.8-7077.1L542651.8-7077.1l-14.1,17.4l-8.4,9l-3.1,1.2l-3.6-0.4l-6.7-0.3l-30.1-2.2l-16.2-1.5l-14.2-1    l-3.7-2.4l-3.1-6l-17.8-7.9l-0.4-7.6l-8.9-6.9l-1.7-3.1l-6.1-2.8l-2.5,0l-6.4-2.7l2.9-14.4l-7.6-9.7l-7.6-9.6l-2.8-1.5l-0.6-9.3    l-6.9-3l-0.6-3.6l-5.1-4.6l-22.3-9.3l-4.8,1.5l-6.2-3.8l-3.9-0.2l-2.9-4.6l-1.8-4.6l-3.9-1.4l-7.3,3.3l-6.1-9.9l-7.1,1.1l-1.4,3    l-6.4-1.1l-8.6-7.8l-2.9-3.4l-5.5-2.9l-6.1,17.3l-5.4,15.3l-4.2-5.8l-3.1-1l-2.8,0.8l-4.6,2.5l-6.1,6.8l-1.7,6.1l0.4,6.4l1.8,5.2    l3.4,4.8l3.1,1.1l2.8-0.9l-3.1,7.6l-1.4,2.8l-7.1,8.7l0.7,1.2l2.6,4.1l-4.3,12.2l-6.1,13.8l-68.3,185.1l-9.1,31.4l7.2,23.3    l9.9,15.3l1.6,6.1l-11,14.2l-6.5,15.5l5.4,5.6l-1.8,3.8l-12.6,12.9l-21.6-3.8l-35.2,75.1l-3.6,217.5l198.6,59.3l164.9,53.9    l103.8-107.8l113-105.5l57.4-52.7l55.6-52.7l67.9-106.7l13.9-23.8l8.5-5.4l37.2-46.2l-0.8-4.9l-13.8-15.4l-8.4,3.9l-8.9,5.1    l-19.2,2.9l-16.6-0.1l-16.2-4.1l-6-1.4l-3.8-3.4l0.2-2.2l4.8-11.2l-5.4,0.6l-2.7-2.4l-9.4,8.9l-3.6,3.9l-21.9-6.3l-11.8-1.9    l-5.2-1.5l-6.6-1.5v-1.6l22.5-100.9l70.4,15.4l6.2-10.5l4-8.6l0.8-3.5l-6.3-1.9l-6.3-1.8l-11.5-2.7l-9.8-2l-6.3-2l-3.9-0.6    l-9.3-5.3l-9.6-6.5l-7.8-4.4l-6.1-1.5l-7,0.5l-67.9,15.6l-17.1,4.2l-1.8-7.7l-0.3-4.9l0.1-2.1l1.2-1.9l4.8-8.1l1.8-3.3l1.3-4.6    l0.7-4.1v-5.9l-4.1-9l-3.6-6.3l-13.1-17.7l-3.9-8.1l-8.6,6.5l-2.9,1.5l-5.8,0.4l-9.5,0l-8.3-1.3l-0.1-7.1l-1.5-5.5l-8.9,3.8    l-2.6,4.2l-2.4,5.2l-2.2,7l-1.1,2.4l-1.6,2.8l-2.2,2.8l-3.6,1.8l-16.1,0.3l-15.9-0.2l-36.2-0.6L542651.8-7077.1"}), 
+							React.createElement("path", {className: "st0 west-coast-grc", d: "M543084.4-6957.7L543084.4-6957.7l-9.4,0.8l-5.8,30.3l0.4,12l-2.7,10.7l-2.4,4.3l-1.7,4.7l-2.5,30.2    l-13.9,19.9l-17.4-9.9l1.5-3.3l-2.2-1.2l0.9-1.6l-1.9-2l-6.2-2.9l-2.1-6l0.8,4.9l-23.4,29.1l-13.8,17.2l-8.5,5.4l-8.8,14.5    l-8.3,14l-38.9,59.8l-25.8,42.2l-22.1,20.3l-19.4,19l-25.2,22.9l-10.1,8.8l-6.9,7.4l-44.6,39.9l-46.1,44.1l-51.7,48.5l-53.7,54.1    l-50.1,53.7l294.8,169.2l149.6,31l218-98.4l375.7-222.9l-14.8-31l-113.1-125.1l-27.6-31.7l-33.2-27.9l-12.4-2.1l-17.4,1.9    l-5.4,0.2l-31.9,17.1l0.4-16.6v-10.8l-19.1-0.1l-9.3-5.7l-9.1-5.6l-6.8-3.3l-7.5-4.5l-14.3-9.6l2.4-6.3l4.2-4.2l6.2-4.4l5-5.3    l5.1-6.5l3.9-7.2l3.4-7.9l3.5-7l-19.1-11.8l-16.6-4.8l-26.8-1.5l-22.9-1.2l-8.9-6.7l-3.1-6.4l-1.1-32v-8l-5.2-8.4l-4.7-4.9l-4.5-6    l-3.2-9.8l-1.3-4.1l-3.1-6l6.6-3.4l1.9,0.2l5.1-4.5l-13.1-12.6l-8.9-6.5l-5.6-3.8l-4.4-1.8l-8.5-2.5l-7.3,0.9l-4.4,1.3l-4.6,1.3    l-3.9,0.3l-3.7-0.6l-7.4-3.4l-12.6-7.5l-8.3-5.3l-8.4-4.6l-5.7-2.9l-6.8-1.2L543084.4-6957.7"}), 
+							React.createElement("path", {className: "st0 east-coast-grc", d: "M543919.5-7563.2L543919.5-7563.2l-5.6,5.1l-1.5,4.6l-3.2-0.8l-6.9-0.3l-5.6,9.1l-14.4,4.8l-2.5,6.7l4.1,2.6    l3.1,3.9l0.4,3.7l2.5,2.2l1.4,3l1.4,2.5l3.3,1.9l2.4-0.1l3.5,4.2l4.6,4.2l132,151.6l50.6,8l7.8,22.4l6,19.9l15.2,15.6l6.1,6    l5.4-4.7l7.2,6.7l-12.9,12.7l-27.9,28.2l-15.2,15.8l-7.8,7.2l-8.4,8.6l6.1,11.1l4.7,12l3.4,11.6l4.1,13.4l3.3,11.3l-6.9-4.4    l-10.5,33.6l-5.2,17.7l-6.6,12.5l-11.2,15l-13.8,11.4l-15.6,12.6l-11.1,8.5l-16.2,6l-12.6,4.8l-15.2,4.6l-6.2,1.8l2.9,15.7    l0.4,1.8l5.7-1l3.6,13.5l2.1-0.2l0.7,5.2l2.3,1.9l6.5-0.6l3.2,9.2l8.8-2l7.2-3.5l16.4,34.7l35.7-7.7l2.2-3l13.9-5l4.8-4.7l1.8,1.2    l1.6-0.4l2.6,4.2l12.9-5.3l1.8,1.1l11.4-4.8l1.1,1.8l9.2-4.2l2.6,2.7l8.4-3.6l6.9,0.5l4.9-1.3l1.6,0.9l4.4-1.1l3.9,2.9l9.8-3.3    l0.1-1.3l4.1-0.8l11.1,0.3l6.2,1.2l3.8-1.3l3.7,0.1l2.3,4l3.4,14.6l-2.7,3.7l-4.3,1.6l1.1,0.9l31-9.6l15.8,7l15.8,6.8l7.8,3.5    l10.2,3.7l10.2,1.9l12.2-1.6l32.7-20.7l20.2-9.4l35.9-1.6l10.3,0.2l0.6-22.7l32.2-0.1l0.2,22l12,0.2l5.3,0.1l5.8-8l-4-3.4    l-1.6-36.2l-48.4,0.5l-7.1-4.2l-3.4-5l-1.2-7.2l2-8.7l3.4-4.2l1.8-20.5l8.4-1.7l26.9-69.1l4.7-4.3l7.8-11.8l6.4-12.2l-4.2-6.8    l2.6-9.5l-0.7-8.8l4.1-3.5l3.4,0l3.9,3.2l2.4-1.3l9.1,6.7l6.1,0.9l18.8,13.9l-0.1-2.9l30.3-60.5l15.1-20.6l14.4-28.3l31.9,40    l80.4,62.9l-0.7-25.4l1.4-13.1l2.3-12.2l8.2-28.9l5-23.5l10.5-28.9l13.5-27.2l17.1-24.5l9.6-19.9l3.2-8.2l2.8-10.4l1.4-10.9    l0.1-10.6l-2.2-10.6l-13-29.9l-7.6-13.6l-3.2-7.7l-6.1-9.8l-4.2-10.2l-26.1-19.7l-22.9-17.9l-14.6-9.9l-36.5-14.6l-21.2-9.1    l-21.1-8.4l-36-7l-7.1-4.5l-12-21.1l-15.2-5.5l-15.2-0.1l-66.1,17.3l-10.6,4.3l-4.4,1.9l-12.2,9.5l-65.8,58l-32.8,25.8l-54.2,8.1    l-8.9-7.5l-8.5-0.9l-5.8,1.8l-4.9-5.4l-16.9,7.9l-4.2-2.6l-12.3,3.7l-20.1-5.8l-4.2,4.3l-4.2-1.9l-1.6-4.5l-16.3-3.9l-23.2,2.6    l-17.4,5.2l-4.9,3.1l-10.1,1.3l-6.2-0.9l-7.8-0.5l-7.3-3.6l-1.1-4.3l-6.1-1.9l-5.2,0.8l-3.5,3.4l-8.1-6l-5.8-1.4l-5.2,0.4    l-2.4-2.5l1.7-5.7l-4.8-6.4l-13.1-6l-4.1,1.1l-7.9-4.1l-26.8-10.7l-13-6.9L543919.5-7563.2"}), 
+							React.createElement("path", {className: "st0 east-coast-grc", d: "M543954.7-7024.4L543954.7-7024.4l-5,0.1l-6.8,0.8l-11.4,1.4l-12.5,1.8l-7.8,0.6l-5.2,0.6l-7.8,1.1l-11.4,2    l1.6,7.6l1.4,7.3l0.8,4.8l2.5,3.3l3.7,2.6l5.1,1l13.8-2.2l1.1,6.5l2.4,13.8l7.6,30.8l13.8-4.1l5.9,15.1l4-2.7l1.4,0.1l6.4-3.2    l9-3.3l0.3,0.8l9.3-3.7l17.1-6.1l4.1-0.8l1.2-0.5l1.7,1.3l6.4-2.1l3.9-1.3l0.8,2.4l2.4-1l-16.4-34.7l-7.2,3.5l-8.8,2l-3.2-9.2    l-6.5,0.6l-2.3-1.9l-0.7-5.2l-2.1,0.2l-3.6-13.5l-5.7,1L543954.7-7024.4"}), 
+							React.createElement("path", {className: "st0 east-coast-grc", d: "M543921.8-7077L543921.8-7077l7.1,0.2l9-0.1l5.4,0.5l5.1-0.9l3.9-2l3.2-2.9l0.9-12.7l-0.1-3.6l1.1-4.4    l2.1-8.1l0.4-8.5l-1.1-4l-1.8-4.3l-12.4,0.7l-0.9,4.2l-2.5,5.6l-5.6,10.2l-4,5.6l-3.8,4.1l-4.4,3.4l-7.5,2.1l6.3,34.1l-18.7,4.4    l-21.1,4.8l4.4,32.3v0.2l2.1-0.3l11.1-2l10.8-1.2l11.6-1.1l11.2-1.5l22.1-2.5l-0.3-2.1l-0.7-3.9l-1.2-7.1l-11.8,2.2l-1.5-0.1    l-0.3-0.6v-0.6l-3-14l-0.2-0.9l-0.7-0.3l-10.8,2l-0.9-6l-1.2-6.7l-2.1-13l-0.7-2.5L543921.8-7077"}), 
+							React.createElement("path", {className: "st0 fengshan-smc", d: "M544007.9-7061.7L544007.9-7061.7l-5.4-8.2l-2.9-3.5l-42.1-8l-2-0.8l-3.2,2.9l-3.9,2l-5.1,0.9l-5.4-0.5    l-16.1-0.1l-1.4-1.4l0.7,2.5l4.2,25.7l10.8-2l0.7,0.3l3.2,15.6l0.3,0.6l1.5,0.1l5.9-1l5.9-1.2l2.2,13.1l19.2-5.7l14.5-5.5    l15.4-5.9l10.5-7.9L544007.9-7061.7"}), 
+							React.createElement("path", {className: "st0 east-coast-grc", d: "M544079-7153.1L544079-7153.1l-6.6-3.1l-9.2-2l-7.1,0.2l-6.6,1.1l-9.4,4.4l-3.8,2.4l-46.9,39.2l-21.4-24.5    l-5.1,3.9l-5.9,3.7l2.8,8.3l-0.4,8.5l-3.2,12.5l-0.8,16.3l22.1,5.1l21.9,3.8l2.9,3.5l5.4,8.2l4.5,6.9l3.1,5.1l30-24.6l11.2-15    l2.2-3.9l0.4-1.1l2.7-4.6l1.3-3L544079-7153.1"}), 
+							React.createElement("path", {className: "st0 tanjong-pagar-grc", d: "M543223.4-6896L543223.4-6896l1.9,0.9l0.6-3.7l1.2-5.6l0.6-2.6l0.2-2.2l0.3-4.4l0.8-8.6l5.8-16.3l3.9-11.1    l1.7-5.6l1.2-5.7l2.3-6.8l2.3-4.4l1.2-1.4l1.4-0.9l-4.5-5.5l-1.1-1.3l1-0.9l-2.1-4.1v-0.6l0.6-1.3l0.1-0.6l-1.1-1.7l-0.3-0.5v-0.6    l0.1-1.1l0.2-1.9l0.4-3.7l-0.1-1.9l-0.4-1.1l-0.9-0.9l-1-0.8l-0.7-0.2l-0.7,0l-0.9,0l-0.9,0.2l-3,0.6l-1.4-0.1l-1.9-0.4l-0.3-0.5    l-1.4-2.4l-0.2-1.1l0.4-1l0.9-2l1.3-1.2l-13-1.7l-4,1.4l-3.9,1.5l-7.9,3.1l-10.1-8.3l-10.6-8.7l-9.4,14.9l-9.9,14.4l-5.7,7.8    l-1.8,2.4l-2.1-1.8l-3-1.6l-3.4-0.4l-5.2-0.5l12.5,18.2l12.8,9.4l5.1,9.3l2.8,17l4.4,1.8l9.3,6.3l5.1,4l13.1,12.6L543223.4-6896"}), 
+							React.createElement("path", {className: "st0 tanjong-pagar-grc", d: "M543226.3-6901.1L543226.3-6901.1l2.4,0.9l1.6,1.5l7.8,7.3l3.7,3.2l5.2,3.1l5.4,3l3.2,2.3l3.4,1.9l6.4,1.6    l4.5,1.4l4.1-1l3.1-0.4l-3.5,23l21.6,3.6l5.2,0.8l-1,6.3l5.2,3.1l5.8,4l1.6,1l1.6,0.4l5.6,0.2l2.7,0.2l2.8,0.4l-0.4,10.2l0.1,0.7    l4.7,0.2l1.6,0.2l2.8,2.9l-2.4,2.3l-1.8,2.5l-3.5,7.8l18.9,8l4.7-9.7l2.5-8.1l1.1-8.7l1.7-10.4l2.5-8.6l-0.2-3.7l-1-4.5v-1.4    l5.7-1l7.6-0.9l3.4,0.5l4.2,1.1l3.6,1.2l2.9,0.7l3.2-0.4l17.9-2l1.6,0.3l1.4,1.8l0.5,2l0.1,2l-1.4,3.8l0.2,1.3l0.6,1l5.1,1.5    l3.9,1.8l4.8,1.4l3.8-0.6l2.8-2.1l2.1-2.4l2.8-1.8l2.5-0.7l3.8,0.3l5.8-0.5l2.8-1.1l2.9,0.4l1.8,1.7l0.7,4l2.5,2.6l1.2,0.4    l1.2-0.6l7.2-2.8l3.3-0.3l2.6,1.2l3-2.9l1.2-1.7l0.8-1.6l2.1-5.2l2.4-5.2l4.2-8.2l-7.7-4.9l0.1-2.6l2.1-2.6l-3.2-4.5l-3.8-3.6    l2.7-3.4l3.5-4.2l3.4-11.5l0.1-7.8l0.6-4.5l3.4-5l-26.6-25.4l-8.1-4.7l-26.9-12.8l-10-13.4l-9.1-8.8l-19.9-6l-11.1-4.1l-13.1-5.3    l-7.7-2.6l-6.4-2.2l-12.3-3.9l-16.1-3.9l-17.9-2l-10.1-1.1l-0.8-0.1l-1.2,5.8l-1.9,3.5l-6.9,7.3l-9.4,4.7l-6.6,4.9l-8.9,8.9    l-6.4,5.3l-1.4,0.9l-1.2,1.4l-2.5,5l-1.8,5l-2.8,10.4l-4.2,12.5l-5.9,17l-1.1,12.3L543226.3-6901.1"}), 
+							React.createElement("path", {className: "st0 tanjong-pagar-grc", d: "M543304.8-6839.5L543304.8-6839.5l-5.2-3.1l1-6.3l-26.8-4.4l3.5-23l-3.1,0.4l-4.1,1l-4.5-1.4l-6.4-1.6    l-6.7-4.2l-10.6-6.1l-13.1-12l-2.4-0.9l-1.1,6l-1.9-0.9l-17.5-13.9l-5.1,4.5l-1.9-0.2l-6.6,3.4l3.4,6.6l4.1,13.4l2.1,3.1l2.4,3    l4.7,4.9l5.2,8.4l1.1,40l3.1,6.4l8.9,6.7l49.7,2.6l13.8,4l2.8-5.9l1.7-5.2l0.2-5.5l-3-0.4l0.4-1.2l0.1-4.2l1.4-0.8l6.1-7.1    L543304.8-6839.5"}), 
+							React.createElement("path", {className: "st0 tanjong-pagar-grc", d: "M543354.1-6830.7L543354.1-6830.7l-2.8,16.8l-6.6,15.5l10.4,5.2l-0.9,2.3l-0.8,2.2l5.9,3.5l-1.4,3.4l-1.8,0.1    l-2.6,0.5l-4.4,0.8l9.6,7l13.4,10.3l-0.9,0.8l-1.7,2.3l0.4,3.2l1.3,4.5l-12,10.5l-5.9,2.8l-1.4,3.2l0.1,4.5l2.1,5.4l3.6,6.3    l-4.5,3.5l-3.9,1.7l-4.3,0.2v1.1l0.1,13.6l3.2-0.2l40.4-22.8l30.6-1.1l5.8-0.5l36,32.3l3.8-4l-12.2-16.8l7-6.4l-17-22.5l2.7-2.8    l2.4-2.7l0.9-1.2l0.6-0.7l1.1-1l-3.6,0.2l-0.1-5.3l-0.6-2.7v-2.6l1.2-6.9l1.1-5.6l0.6-4.5l1.1-3.7l0.2-1.9l-0.1-2.4l0.4-2.3    l0.9-2.7l-0.9-0.9l-2.1,1.4l-3.9,1.9l-3-5.5l-1.8-3.2l-1.4-2.8l-10.3,12.6l-1.1-2.7l-2-3.5l-1.6-2.1l-3.6-3.1l-5.7-3.6l-2.6-1.3    l-3.2-2.2l-1.9-2.5l-3.2-9l-0.9-4.4l-1.1-1.2l-1.5-0.3l-2.9,2.2l0.2-5.1l-5.6-0.3l-5.7,0.2l-5.8-1.2l-2.9-0.2l-2.6,0.3l-2.5,0.5    l-1.6,0.4l-2.9-0.2l-3.4-2.4l-4.3-2L543354.1-6830.7"}), 
+							React.createElement("path", {className: "st0 jalan-besar-grc", d: "M543471.1-6839.5L543471.1-6839.5l-2.6-1.2l-3.3,0.3l-2.7,1l-7.1,2.1l-2.5-2.6l-0.7-4l-1.8-1.7l-2.9-0.4    l-5.8,1.3l-6.5-0.1l-2.5,0.7l-2.8,1.8l-4.9,4.5l-3.8,0.6l-4-1.2l-4.7-1.9l-5.1-1.5l-0.8-2.3l1.4-3.8l-0.6-4.1l-1.4-1.8l-1.6-0.3    l-17.9,2l-3.2,0.4l-2.9-0.7l-7.8-2.3l-3.4-0.5l-13.2,1.9l0.4,4.5l0.8,5.1l-2.7,7.5l-0.4,5.7l5.2,0.1l5.2,2.9l2.6,1.5l2.9,0.2    l6.7-1.2l2.9,0.2l5.8,1.2l11.3,0.2l-0.2,5.1l2.9-2.2l1.5,0.3l1.1,1.2l0.9,4.4l3.2,9l1.9,2.5l2.1,1.5l2.2,1.3l7.2,4.2l3.6,3.1    l3.1,4.7l1.6,3.6l10.3-12.6l3.8,7.4l2.4,4.1l3.1-1.2l2.9-2.1l0.9,0.9l-0.9,2.7l-3.4,21.5l-0.9,4.7v3.8l0.6,8l3.6-0.2l-2.6,2.9    l-5.1,5.5l17,22.5l29.3,31.6l4.4-4.4l-7.3-7.9l2.8-2.3l1.8-0.4l0.2-5.7l-0.2-17.5l-0.2-20.8l0.2-4.6l1.7,1.1l1.1-2.2l-7.4-4.2    l0.9-3.9l1.5,0.7l25.1,11.1l-2.7,6.1l4.9,4.5l12.9,4.9l6.9,1.5l5.6-1.5l4.9-2.4l48.3-35.3l1.9-3.3l1-3.3v-4l-3-9.9l-3.9-4.5    l-15.8-12.5l-13.7-6.9l-12.6-4.2l-17.2-5.1l-1.2,0.2l-1.2,1.1l-3.4,3.9l-1.4,8.1l-3.7,5.2l1,2.1l-3.1,3.5l0.9,1.5l-5.9,8.9    l-6.3-3.9l1.2-2.2l-0.8-0.6l-0.9-3.5l-3.4,0.6l-7.3,12.9l-5.4-4.2l-39.4-23.3L543471.1-6839.5"}), 
+							React.createElement("path", {className: "st0 radin-mas-smc", d: "M543304.8-6839.5L543304.8-6839.5l-10.4,13.1l-1.4,0.8l-0.1,4.2l-0.4,1.2l3,0.4l-0.2,5.5l-1.7,5.2l-2.8,5.9    l2.8,0.7l19.1,11.8l-3.7,8l-3.6,7.9l-3.6,6.3l-5.6,7.4l-4.6,4.3l-6.2,4.4l-4.2,4.2l-2.4,6.3l18.4,12.1l10.9,5.7l17.8,10.9    l19.1,0.1v-1.1l4.3-0.2l3.9-1.7l4.5-3.5l-3.6-6.3l-2.1-5.4l-0.1-4.5l1.4-3.2l5.9-2.8l12-10.5l-1.3-4.5l-0.4-3.2l2.6-3.1    l-23.1-17.2l4.4-0.8l4.3-0.6l1.4-3.4l-5.9-3.5l1.8-4.5l-10.4-5.2l-18.9-8l4.6-9.6l3-3l-2.8-2.9l-6.2-0.5l-0.1-0.7l0.4-10.2    l-11-0.8l-1.6-0.4L543304.8-6839.5"}), 
+							React.createElement("path", {className: "st0 sembawang-grc", d: "M543092.1-7683.5L543092.1-7683.5l11.8,10.2l-1.1,4.2l-0.6,2.5l-0.6,2.6l-0.6,2.5l3.8,0.8l2,0.6l1.7,1.1    l1,0.9l0.8,1.1l0.6,1.2l0.5,1.1l1.2,2.6l0.7,1.4l0.4,0.6l0.4,0.6l0.8,0.9l0.8,0.9l1,0.7l1,0.6l1.1,0.6l0.9,0.3l1.6,0.6l3.5,1.2    l3.1,1.1l2.9,1.5l2.4,1.7l1,0.8l0.8,0.7l1.5,1.3l1.8,1.5l2.2,1.7l1.4,1.2l-0.4,0.6l-0.4,0.6l-0.8,1.2l-1.5,2.3l-3.2,4.7l-2.2,3.2    l-3.6,5.1v6.9l-0.1,1.9l1.6,2.5l4.3,3.5l4.6,2.3l4.5,0.9l1.8,0.1l1.6-0.2l2.9-0.5l2.9-0.7l5.9-1.5l3-11.4l0.1-2l-0.2-2l-0.6-1.9    l3.4-1.4l2.1-0.8l1.8-0.7l2-0.6l1.6-0.3l1.7-0.1l3.2-0.2l3.7-0.2l7-0.4l9.2-0.5l0.8,12.1l0.4,5.2l-0.3,2l-1.2,2.4l-3.8,6.5    l1.3,0.6l1.4,0.4l2.7,0.8l4.9,1.1l1.6,0.3l1.6,0.1l0.4-3.7l0.1-2l4.2,0.3l0.1-4.7l-1-0.1l-0.8,0l-0.8-0.3l-0.6-0.3l-0.6-0.5    l-0.4-0.6l-0.2-0.8l-0.3-5.3l2.9-0.2l0.1,0.8l1.4-0.1l1.6,0.3l2.8,0v1.9l-0.1,4.4l2.4-0.1l-0.1,1.1l2.4,0.1l1.4-0.1l1.3-0.5    l3.4-4.2l2.7,2.3l2.8,2.3l2.6-3l1.6-1.9l1.4-2l0.6-1.1l0.4-1.2l0.1-1.5l-0.1-1.6l-0.6-1.9l-0.8-2.1l-1.5-3.5l-6,2.8l-1.8-3.8    l-0.4-0.5l-0.6-0.3l-0.8-0.2l-0.6-0.1l-0.7,0.2l-2.6,0.9l-3.2-7.8l-6.9,2.8l-0.9-2.4l-0.3-1.9l-0.1-3.8l-0.1-3.7l-3.9,0.2l-3,0.4    l-0.9,0l-0.9-0.5l-0.9-1.1l-2-3l-2.8-4.1l-6.2,4.5l-5.9-8.5l-2.6-3.6l-1.6-4.2l-5-14.8l-5.6-16.6l-1.6-3.2l-12.8-34.2l-18.5,13.2    l-9.2,8.2l-15.9,10.4l-5.4,3.6l-4.8,3l0.7,3.1l-2.7,0.6l-2.9-0.1L543092.1-7683.5"}), 
+							React.createElement("path", {className: "st0 marsiling-yew-tee-grc", d: "M543022.1-7613.6L543022.1-7613.6l-2.9,4l-3.6,3.1l-4.1,3l-0.6,2.1l0.4,2.8l1.6,3.1l1.6,2.6l0.1,3.7l0.8,6.7    l2.6,19.3l0.8,3.5l1.6,2.4l4.4,3.1l-6.8,5.8l-4,2.7l-3.9,1.6l-4.4,1.7l-4.4,0.8l-5.7,2.4l-3.5,3.3l-1.9,3.7l-3.4,6.9l-2.6,5.7    l-0.8,6.3l0.1,12.9l1.2,4.8l1.6,3.9l1.3,2.9l1.1,3.2l0.6,3.4l0.2,5.7l1.2-0.4l2.3-0.3l10.2-1.4l2.7-0.5l2.7,0l2.1,0.1l2.3,0.8    l2.5,0.8l2.5,1.4l7.8,3.6l3.8,1l3.8,0.5l6.4,0.6l9,0.5l-2.2-0.1l10.7,0.6l3.4-0.4l4.1,0.2l7.3,0.7l-0.7-6.5l-0.6-7.5l-0.6-33.3    l-0.4-14.7l-0.2-7.3l-0.8-7.6l-0.8-4.2l-1.3-4.6l-3.2-9.3l-5.9-17.5l3.2-0.8l17.5-3.2l0.8,5.6l0.6,3.6l1.1,2.5l1.7,2l1.7,1.2    l1.8,0.7l4.2,0.3l10.1,0l8.9-0.1l5.9-0.1l2.8-0.7l5.2-2.7l-1.3-2.4l-0.8-0.8l-3.1-0.8l-3.4-5.1l-1.7-4.6l2.8-1l2.6-1.2l3.4-2.1    l1.7-1.2l1.4-1.7l1.9-1.6l1.6-1.5l-0.8-1.1l-2.9-3.1l-2.9-2.9l-2.3-1.8l0.4-0.6l0.6-0.6l1.1-1.2l0.1-1.9l-1-2.6l-1.9-2.3l-0.9-0.6    l-1.9-0.1l-0.6-4.5v-6.3l1.7,1.1l3.6,1.8l2.9,1.7l2.2,3l4.4,4.2l3.6-5.1l4.5-6.2l4-6.4l-8.7-7.2l-3-2l-2.4-1.2l-9.1-3.2l-3.9-2.9    l-2.2-3.4l-3.1-6l-1-0.9l-1.7-1.1l-2-0.6l-3.8-0.8l0.6-2.5l2.2-9.3l-11.8-10.2l-6.5,2.1l-8.4,3.6l-5.4,4.7l-4.6,2.3l-6.2,0.3    l-2.6,3.3l-7.9,6.3l-1.8,2.4l-0.8,2.6l-1.2,3.2l0.1,1.9l1.1,1.6l-1.3,1.3l-1.9,0.3l-1,0.7l-3.2,1l-0.9,0.2l-1.4,0.5l-0.2,2.1    l-1.6,2.2l-0.6,0.8l-1.1,0.8l-0.2,2.3l-0.4,2.8l-1.8,1.2l-0.8,0.9l-2.3,2.3l-0.3,2.3l0.6,2.3l-0.4,1.9l-0.6,1.7l-0.6,0.5l-0.8,0.4    l-0.8-0.1l-0.7,0.6l-0.7,1.4l-2.3,4.5L543022.1-7613.6"}), 
+							React.createElement("path", {className: "st0 marsiling-yew-tee-grc", d: "M543071.8-7468.8L543071.8-7468.8l5.8,0.3l1.4-0.2l5.1-1.4l5.1-1.6l4.8-1.2l3.1-0.4l2.8-0.2l15.9,0.6    l11.2-0.6l4.6-0.4l3.9-0.9l5.2-2l4.2-1.3l7-1.9l7.1-1.6l2.8-0.4l4.6-0.5l2.8-0.9l27.6-9.5l13.8-4.2l14.3-3.1l5.8-10.3l-15.5-12.5    l-19.3-11l-19.4-10.4l-7.2-3.5l-10.8-4l-6-1.6l-3.4-0.7l0.4-2.4l3.4-14.7l3-11.8l0.6-2.3l2.4-0.5l2.4-0.1l2.6,0.3l1.5,0.1l1.1-4.2    l0.7-2.2l0.4-1.2l0.6-0.7l0.8-0.5l0.9-0.2l4.9,1.3l4.9,1.5l0.8,0.7l0.3,0.9l0.2,0.8v0.9l-0.3,1.7l2.5,1.2l4.6,2.2l6.2-10.6l5-8.9    l0.3-2l-0.4-5.2l-0.8-12.1l-7.8,0.7l-5.3,0.4l-6.8,0.1l-4.9,0.3l-1.6,0.3l-2,0.6l-7.2,2.9l0.6,1.9l0.1,4l-3,11.4l-8.1,2.1    l-3.7,0.6l-3.4,0.1l-3.6-0.5l-2.6-0.5l-3.9-2.7l-3.3-3l-1.6-2.5l-0.4-2.5l0.5-6.2l-4.4-4.2l-2.2-3l-8.2-4.6v6.3l0.6,4.5l1.9,0.1    l0.9,0.6l1.9,2.3l1,2.6l-0.1,1.9l-1.7,1.8l-0.4,0.6l2.3,1.8l5.8,6.1l0.8,1.1l-1.6,1.5l-1.9,1.6l-1.4,1.7l-1.7,1.2l-3.4,2.1    l-2.6,1.2l-2.8,1l1.6,4.1l0.7,1.5l2.8,4.1l3.1,0.8l0.8,0.8l1.3,2.4l-5.2,2.7l-2.8,0.7l-23.1,0.1l-1.8,0l-4.2-0.3l-1.8-0.7    l-1.7-1.2l-1.7-2l-1.1-2.5l-1.4-9.2l-17.5,3.2l-3.2,0.8l9.1,26.9l1.3,4.6l0.8,4.2l0.8,7.6l0.2,7.3l0.6,31.1l0.4,16.8l0.4,7.1    L543071.8-7468.8"}), 
+							React.createElement("path", {className: "st0 sembawang-grc", d: "M543194.6-7534.8L543194.6-7534.8l2.6-2.6l4.9-6l8.3-9.7l16.2-18.9l32.8-37.5l4.2-5.3l4.2-5l4.8-5.4l4.6-5.9    l1.7-3.7l1.6-4.7l1.3-8.8l-18.1-7.2l-1.7,1.8l-5,4.7l-6.8,5.6l-6.1,3.8l-4.3,1.9l-8.2,3.6l-11.9,5.2l3.2,7.8l3.3-1.1l1.4,0.3    l1,0.8l1.8,3.8l6-2.8l2.6,6.4l0.3,2.7l-0.1,1.5l-1,2.2l-5.7,6.9l-5.5-4.6l-3.4,4.2l-1.3,0.5l-1-0.1l-2.9,0.1l0.1-1.1l-2.4,0.1    l0.1-6.3l-2.8,0l-1.6-0.3l-1.4,0.1l-0.1-0.8l-2.9,0.2l0.1,3.4l0.2,1.8l0.2,0.8l1,1.1l1.4,0.6l1.8,0.1l-0.1,4.7l-4.2-0.3l-0.5,5.7    l-8.1-1.5l-5.4-1.8l-6.2,10.6l-7.1-3.5l0.3-1.7v-0.9l-0.6-1.8l-0.8-0.7l-9.8-2.7l-0.9,0.2l-0.8,0.5l-0.6,0.7l-0.4,1.2l-1.8,6.4    l-4.1-0.5l-2.4,0.1l-2.4,0.5l-3.9,15.6l-3.4,15.5l9.4,2.3l10.8,4L543194.6-7534.8"}), 
+							React.createElement("path", {className: "st0 sembawang-grc", d: "M543155.3-7726.6L543155.3-7726.6l14.5,37.4l12.1,35.6l8.6,12.1l6.2-4.5l4.8,7.2l0.9,1.1l0.9,0.5l7.8-0.5    l0.2,7.5l0.4,2.8l0.9,1.5l18.8-8l12.5-5.5l6.1-3.8l6.7-5.6l5.1-4.7l1.7-1.8l1.4-1.4l1.2-1.1l1.2-0.9l0.8-0.5l0.9-0.6l2-1.2    l2.9-1.6l2.4-1l3.4-0.9l2.5-0.6l3.8-0.8l2.2-14.4l0.8-7.6l0.1-2.9l-0.4-1.1l-0.1-1.6l0.1-2.5l-0.3-2.9l-0.2-2.7l-0.4-2.7l-0.6-3.2    l-0.4-2l-0.5-1.9l-0.4-1.8l-0.6-1.9l-0.9-3.1l-1.3-3.3l-2.9-6.6l-1.9-4.4l-2.2-4.7l-2-3.7l-0.9-1.8l-1.2-1.8l4.2-2l3.3-1.5    l1.7-0.8l1.5-0.7l2.5-0.9l1.6-0.6l2.1-0.4l2.1-0.1l1.2-0.2l0.9,0l0.8,0.2l2.3,0.1l2.6,0.7l2.8,1.1l2.6,1.4l2.4,1.3l2.4,1.6    l5.8,4.2l4.6,3.4l4.6,3.1l2.7,2l3.2,1.9l3.9,2.7l4,2.2l1.9,1.2l-7.1,9.2l-4.2,4l-5.2,4.9l-1.2,1.2l-0.4,0.6l-0.3,0.6l-0.5,0.9    l-0.2,0.7l-0.2,1.2v0.9v0.4l0.1,1l0.2,0.5l0.2,0.4l0.3,0.8l0.7,1l2.4,4l3.3,4.9l3.2,5.3l1.9,3.4l0.8,1.8l2.5,5.6l2.4,5.1l2.5,5    l1.2,2.3l1.4,3.8l0.6,2.5l0.2,1.1l0.2,1.4l0.6,3.7l0.3,3.7l0.1,1.9l0.2,1.9l0.9,2.2l0.8,1.9l2,4.5l0.7,2l0.9,1.9l1.1,2.9l0.9,3.3    l0.2,2.3l0.3,2.7l0.3,3.5l0.6,4.3l0.6,2.3l0.2,0.9l1.4-0.3l2.6-0.5l4.2-1.6l2.1-1l1.8-1.2l2-2.2l2.3-3l0.8-0.9l0.7-1l0.8-1.8    l0.8-2.5l1.1-3.6l0.9-3.5l0.8-2.1l0.6-2.5l0.6-1.5l0.4-1l0.9-0.9l3.8-2.4l6.9-4.3l7.4-4.6l7.4-4.5l3.4-2l1.6-1.5l0.7,0l21.8,15.6    l0.6,1l-0.7,1.2l-1.3,1.8l-1.9,1.9l-3.4,1.9l4.7,12.1l1.8,3.1l4.4,5l8.3,9.2l7.6,8.1l3.1-3l4.2-3.5l3.6-2.9l5.1,2.9v-1.6l1.6-1.3    l2.8-1.9l1-1.8l-0.2-1.6l-2.5-0.6l-2.7-0.3l-1.1-1.4l1.3-0.6l3.4-0.4l1.2-0.5l9.8-5.3l8.4-3l4.2-3.4l9.1-9.7l8.8-10l1.3-1.6    l0.1-1.9l-0.4-1.9l-2.3-9.2l-4.5-11.5l-3.8-1.7l-5.4-2.1l-2.4-0.1l-4.1,0.2l-2.3-8.6l0.8-0.4l0.6-0.9l0.8-0.8l0.4-1.4l0.8-2.3    l-0.6-2.6l-1.6-5.5l-2.2-6.6l-2.2-2.8l-4.7-4.2l-3.9-2.2l-3.4-1.5l-4.5-1.4l-1.8-1.2l-6.5-3.3l-4.8-3.8l-1.4-0.2l-1.4-2l-1-1.5    l-3.4-2.4l-4.9-3.2l-2.9-2l-1.1,0.5l-1.1-0.4l-1.4-0.4l-0.2,0.7l-0.4-0.3l-1-0.6l-2.3-2.2l-2.6-3.1l-4.6-3.8l-7-4.3l-5.7-3.5    l-1.8-0.1l-2.1-0.6l-2.2-0.5l-1.9-0.1l-2.4,0.6l-4.9-3.3l-5.6-2.8l-29.6-17.3l-27.5-1.4l-3.5-1.6l-3.1-2l-4.2-1.4l-1.5-1.3    l-0.9-0.3l-1.3-0.3l-1.6-0.3l-2.8-0.9l0.7-0.6l0.2-0.8l-0.5-0.2l-0.6-0.1l-1,1.4l-1.6-0.1l-4.1-1.2l-2.4,0.2l-1.1,0.1l-1.1,0    l-2.4,0.1l-10.9,0.6l-5.4,0.8l-5.5,0.3l-7.7,1.9l-1.8-0.9l-2.9-0.8l-0.8-0.6l-1.3,0.3l-1.3-0.7l-0.7-0.3l-0.7,0l-10.7,2.3    l-5.9,1.6l-0.8,0.4l-1.1,0.4l-1.7,0.3l-5.2,1.9l-5.1,1.3l-6.4,2.9l-5.3,5.4l-4.4,3l-0.8,0l-1.1-0.9l-1.1-0.3l-0.9,0.1l-0.4,0.1    l-2.1,1.1l-1.2,0.8l-0.9-0.1l-0.9,0.4l-0.8,0.6l0.8,1.6l-2.4,1.5l-0.4-0.8l-1.6,1.1l0.1,0.8l-0.6,0.3l-0.5-0.4l-0.7,0.8l0.5,1    l-23.5,15.2L543155.3-7726.6"}), 
+							React.createElement("path", {className: "st0 bukit-panjang-smc", d: "M543046.4-7324.5L543046.4-7324.5l-4.2,7.7l2.6,1l2.4,1.3l2.8,1.9l-2.9,5.5l-4.2,6.2l9.7,6.2l13.2,7.9    l14.8,9.8l3.2,2.3l2.2,4.2l3,5.7l1.5,4.9l0.9,6.8l0.4,6.8v13.9l9.7-0.7l12.2-2.2l-0.7-5.1l-2.2-12.2l-2.1-7.4l-7.2-26.1l-2.8-9.8    l-3.1-10.4l-3.2-13.4l-15.2-0.9l2.1-6.9l0.1-1.7l-0.1-1.7l-0.2-2.7l-0.5-2.8l-0.4-1.4l-0.6-1.6l-1.2-2.1l-1.9-1.9l-2.7-1.6    l-3.1-1.8l-6.2-3.8L543046.4-7324.5"}), 
+							React.createElement("path", {className: "st0 holland-bukit-timah-grc", d: "M543158.1-6936.2L543158.1-6936.2l7.3-0.9l8.5,2.5l-2.8-17l-5.1-9.3l-12.8-9.4l-12.5-18.2l8.6,0.9l3,1.6    l2.1,1.8l3.5-5l11.8-16.6l11.6-18l20.6,17l15.8-6l13,1.7l-1.3,1.2l-1.4,3l0.2,1.1l1.8,2.8l3.3,0.5l5.4-0.8l1.4,0.6l1.2,1.3    l0.4,1.1l0.1,1.9l-0.8,7.2l1.4,2.2l-0.1,0.6l-0.6,1.9l2.1,4.1l-1,0.9l5.6,6.7l6.4-5.3l8.9-8.9l6.6-4.9l4.1-2.1l5.4-2.7l6.9-7.3    l1.9-3.5l1.2-5.8l-1.1,0.4l-1.8,0.3l-3.8-0.4l-2.9-0.2l-2.1-0.9l-2.4-1.7l-38.8-26.6l-14.1-5l-14.7-5l-29.2-10.3l-58.2-20.2    l1,22.3l0.8,22.1l-5.6,2.6l-11.8,3.9l-16.8,6.2l-7.9,0.2l-2.1,2.7l-4.8-2.3l-1.8,1.1l-2.9,2.1l-5.4,4l-5.2,4.4l-7.7,5.2l1.6,1.7    l2.9,3.7l9.4,9.8l5.1,4l5.4,34.1l17.3-1.9l6.8,1.2l11.9,6.7l30.5,17l3.7,0.6l3.9-0.3L543158.1-6936.2"}), 
+							React.createElement("path", {className: "st0 holland-bukit-timah-grc", d: "M543055.1-7004.9L543055.1-7004.9l-4.5-5.4l8.1-5.5l5.2-4.5l9.6-6.7l4.8,2.3l2.1-2.7l7.9-0.2l3.2-0.9    l13.6-5.3l11.8-3.9l5.6-2.6l-0.6-19.6l-1-21.4l-0.1-3.4l5.7,2l81.8,28.4l28.8,10.1l41.2,28.3l12.4,0.9l28,3.1l34.8,10l7-16.8    l-1.1-10.6l-6.5-6.9l-9.2-8.2l-18.3-8.9l-19.2-10.5l-20.1-7.4l-7.6-4.8l-24.4-21.8l-32.2-33.1l-7.1,4.7l-6.8-0.3l-1.4-5.6l2.8-3.6    l-3.1-1.9l-1.5-10.8l-3.6-2.8l-4.4-1.7l-7.9-1.2l-6.2,0.1l-6.4-1.2l-1.3-19.1l-8.1,1.9l-7.1-1l-5.4,1.7l-1.9-0.1l-3-1.3l-2.2-0.1    l-8.3-6.9l-3.6,2.2l6.6,6.4l-1.1,1.2l-1.3,1.8l-0.2,1l0.2,1l0.1,0.8l-0.1,0.8l-6.3-4l-0.8,0.7l-1.9,0.7l-1,0.1l-1.5,1.1l-0.9,1.8    l-1.9,3.6l-2.4,0.8l-6.7,13v3.5l-1.7,3.4l-2.2,4.1l-2.6-0.8l-4-0.9l-4.2-1.5l-4.4-2.1l-1.4-0.8l-1.8-1.1l2.6-6l1.6-2.4l2.1-2.1    l2.8-3.4l-0.2-3l-1.7-2.5l0.9-4l-1.4-1.2l-2.8,1.7l-4.2,1.2l-4.5,3.5l-6,4l3.2,4.1l-2.1,1.2l-2.4,1.5l-3.2,1.9l15.9,20.8l7.9,10.2    l6.9,7.8l3.1,4.2l2.4,3.1l3,4.4l1.8,3.1l1.2,3.8l0.8,3.6l-0.1,1.6l-2.2-0.4l-2.6-0.9l-13.9-4.8l-0.9-1.4l-0.9-0.8l-0.9-1.1    l-2.4-3.2l-1.5-1.7l-2-1.9l-0.8-1.3l-2.8,0l-5.6-0.1l-7-0.4l-3.1-1.2l-2.7-2.6l-1.7,1l-5.9,2.5l-2.2,0.3l-2.2,0.9l-5.9,3.2    l-1.6,0.4l-1.6-0.1l-3.4-0.6l-3.1-0.4l-3.1,0l-6.5,0.6l-2.4,0.8l-2.9,1.1l-2.7,0.1l-2.7,0.5l-0.9,1l-0.7,1.4l-0.8,1.7l-0.8,0.9    l-0.7,0.9l-1.8,0.7l-3.1,1.1l-3,0.4l-0.6,2.2l-1.1,3.7l-1.8,5.3l17.6,10l4.2,2.1l2.8,1.4l-1.8,11.5l-0.6,6.4l0.1,6.2l0.6,8.1    l0.4,5.8l0.3,9l-2.7-0.9l-1.9-0.8l-2.1-0.5l-3.5-0.1l-3.5,0.6l-2.4,1.1l-1.7,1.1l-1.9,1.2l-2,0.8l0.9,1.5l14.7,22l1.9,1.9l4,6.1    l3.1,6.6l3.1-1.7l2.8-2.8l1.1-11.1l3.5-4.2l4.3-4.4L543055.1-7004.9"}), 
+							React.createElement("path", {className: "st0 holland-bukit-timah-grc", d: "M543267-7444.6L543267-7444.6l-4.5-1.5l-1.8-2.6l-4.9-14.8l-3.8-9.4l-4.5-15.3l-1.8-4.4l-1.1-2.3l-2-2.1    l-5.1-3.3l-5.5-1.3l-7.2,1.5l-14.3,3.1l-44.1,14.6l-6.6,0.8l-6.2,1.4l-12.9,3.6l-9.1,3l-16.9,0.8l-17.6-0.3l-7.8,1.6l-11.6,3.2    l-5.8-0.3l-11.4-0.8l-2.9,0.4l-17.9-1.1l-10.1-1l-3.8-1l-15.1-6.6l-3.4-0.1l-17.9,2.6l-0.9,7.1l-1.3,10.5l-0.5,2.2l-0.2,1.4    l-1.6,4.5l-4.1,11.5l-1.6,3.7l-2.5,6.8l-3.1,12.6l-0.4,7.9l1,6.8l1.8,6.5l2.8,4.9l-0.2,4.1l0.9,5.6l0.8,5.6l1.4,5.7l1.5,6l2.1,6.1    l5.7,9.4l5.1,6.7l7.8,9.7l4.8-2.7l3.7-2.4l1.9,3.2l1.5,3.6l2.3,6.4l1.4,0.5l1.9-0.6l2.8-1.5l-1.1-2.8l-0.2-2.3l-0.1-2.7l1-2.9    l1.8-3.5l2.1-1.9l1.9-1.4l4.1,6.3l2.8,1.3l5.4-0.8l0.8,4.6l1.6,3.5l2.4,2.9l5.8-10.1l10.2-16.2l11.9,7.2l1.9,1.9l2.3,5.1l0.8,4.6    l-0.1,4.4l-2.1,6.9l15.2,0.9l3.2,13.4l8.4,28.8l6.7,24.9l2.9,17.3l1.2,8.5l1.7,6l-9.7,3.1l-0.2,7.2l-1.4,5.7l-0.9,3.1l-2.4,2.5    l-5.7-0.2l-0.2-3.8l0.6-5.6l0.6-8.7l-2.4-2.5l-2.2-0.5l-3,10.2l-3.2,3.7l-4.9-0.6l-2.3,2.9l-1.1,6.2l1.1,1.2l3.1,2.6l0.4,6.5    l1.9,4.1l-17.9,12.9l12.1,22.4l7.6-4.6l-3.2-4.1l10.5-7.5l4.2-1.2l2.8-1.7l1.4,1.2l-0.9,4l1.7,2.5l0.2,3l-4.9,5.5l-1.6,2.4l-2.6,6    l4.9,3.1l4.9,1.7l8.6,2.3l3.9-7.5v-3.5l6.7-13l2.4-0.8l3.2-6l4.8-1.9l6.3,4l0.1-3.7l2.4-2.9l-6.6-6.4l3.6-2.2l8.3,6.9l2.2,0.1    l3,1.3l1.9,0.1l5.4-1.7l7.1,1l8.1-1.9l1.3,19.1l6.4,1.2l14.1,1.1l4.4,1.7l3.6,2.8l1.5,10.8l3.1,1.9l-2.8,3.6l1.4,5.6l6.8,0.3    l7.1-4.7l87.1-123.5l-0.4-3.2l0.9-2.5l2.3-2.3l3.3-1.3l6.4,1.7l5.1,2.5l3.6,3.4l-2.4,7.1l-2.5,2.2l-4.7,1.8l-1.9-0.5l0.7,3.2    l-0.4,1.9l-1.9,1.3l-2.2,0l-0.1,1.9l-0.5,1.5l-7.3,1.5l6.9,1.5l3.6-0.2l1.4,3.7l0.9,1l1.1-0.5l0.7-4.2l2.2-5.7l7.8-5.4l3.1-2.5    l1.2-1.5l2.7-1.6l1.9-0.5l1.9,0.2l-4.6,13l0.8,0.2l7.8-9.5l6.8-1.6l4.6-12.7l-6.2-5.6l-0.9-0.1l-1.5-1.3l-0.9-1.4l-1.9,0.3    l0.1-1.7l-0.4-1.9l1.4-5.7l2-1.9l-2-0.3l-0.6-0.8l0.4-2.7l-0.4-0.8l-2.2,1.2l-2.2-1.5l-0.7,0.2l1.4,2.7l0.6,2.2l-0.1,1.9l-0.6,1.8    l-1.1,1.7l-1.2,0.7l-0.9,0.2l-1-0.4l-1.2-0.2l-0.8-0.6l-0.9-1.3l-0.9-0.8l-1.2-1.9l1.4,4.5l0.6,4.2l-1.9,0.7l-1.9-0.1l-2.9-0.7    l-4.6-2.7l-5.8-6.1l-1.1-4.1l0.5-6.6l0.9-1.8l1.4-1.3l1.6-1.1l2.1-0.8l-1.3-4.3l-3.1,4.4l-1.3,1.5l-1.7,0.9l-2-0.2l-2.1-0.8    l-3.4-3.6l-1.7-3.1l-0.9-2.6l-3.1-4l-0.5-1.5l-21.3-87.5l-4.9-3.9l-3.9-4.8l-4.4-7l-2.6-7l-10.6-2.6L543267-7444.6"}), 
+							React.createElement("path", {className: "st0 choa-chu-kang-grc", d: "M543003.8-7331.2L543003.8-7331.2l2.5,3.2l6.2,11l7.1,14.3l1.4,2.6l2.9,13l2.2,12.1l2.8,10.3l2.6,5.5l3.1,4.8    l7.1,10.1l6.4,9.9l1.3,2.2l0.7,1.9l0.9,4.2l0.4,2.4l-0.4,2.4l-1.4,2.3l-1.7,1.6l-0.7,1.3l-0.4,2l-0.1,1.5l0.2,1.5l1.8,5.7l0.8,4    l0.5,3.8l0.4,2.7l0.9,2.1l1.4,2l3,4.5l2.8,7.6l1.3,3.6l1.9,6.8l1.6,9.8l0.8,7.5l0.9,1.9l10.6-4.9l-9.1-17.1l17.9-12.9l-1.9-4.1    l-0.4-6.5l-2.7-2.2l-1.4-1.6l1.1-6.2l1.6-2.3l0.8-0.6h0.9l4,0.6l3.2-3.7l3-10.2l2.2,0.5l2.4,2.5l-0.6,8.7l-0.4,5.2v4.2l5.7,0.2    l2.4-2.5l2.3-8.8l0.2-7.2l9.7-3.1l-1.7-6l-1.2-8.5l-12.2,2.2l-9.7,0.7v-13.9l-1.2-13.5l-1.5-4.9l-5.2-9.9l-3.2-2.3l-37.7-23.9    l4.2-6.2l2.9-5.5l-5.2-3.2l-2.6-1l4.2-7.7l-2.4-2.9l-1.6-3.5l-0.8-4.6l-5.4,0.8l-1.4-0.2l-1.4-1.1l-4.1-6.3l-1.9,1.4l-2.1,1.9    l-2.8,6.5l0.3,5.1l1.1,2.8l-4.3,2.1l-1.8-0.5l-3.8-10l-1.9-3.2L543003.8-7331.2"}), 
+							React.createElement("path", {className: "st0 jurong-grc", d: "M542780.2-7117.8L542780.2-7117.8l-0.4,5.2l0.2,6.4l2.4,6.3l3.9,8.1l1.9,2.8l9.6,12.6l5.1,8.6l4.1,9v5.9    l-0.7,4.1l-1.3,4.6l-7.8,13.3l0.2,6.9l1.8,7.7l85-19.8l7-0.5l6.1,1.5l7.8,4.4l10.8,7l8.1,4.8l11.9,2.9l-0.1-9.4l-0.4-5.6l-1.4-4.5    l-2.1-3.5l-2.4-2.8l-1.4-1.5l-3.9-3.4l-5.5-4l-24.1-16.8l-7.7-6.8l-7.2-9l-2.8-4.9l-1.8-4.6l-0.3-4.3l0.8-4.1l1.4-3.8l2.1-3    l-5.3-4.3l-6.5-4.7l-5.9-4.2l-2.8-1.9l-3.4-1.5l-4.4-0.7l-4.3-0.2l-6.8,0l-7.7-1.7l-8.1-1.6l-6.9-0.2l-6.7,0.6l-6.2,1.6l-8.2,2.8    L542780.2-7117.8"}), 
+							React.createElement("path", {className: "st0 jurong-grc", d: "M542759.4-7163.6L542759.4-7163.6l6.5,8.8l4.4,3.9l3.7,4.1l2.1,3l1.4,3l2.2,6.1l1.9,7.2l-0.3,4.6l-1.1,5    l23.9-8.7l6.2-1.6l4.4-0.3l2.2-0.3l6.9,0.2l8.1,1.6l7.7,1.7l4.3-0.2l-0.1-11.6l-12.4-0.5l-0.9,0.8l-4.6,0.2l-4.1-0.2l-1.5-0.4    l-0.9-0.9l-0.8-1.3l-0.3-2.2l-0.1-6.5l-0.9-1.5l-1.1-0.9l1.9-4.5l2.5,0.7l1.1-4.4l-4.1-1.3l-3.4-0.6l-4.3-0.1l-3.4,0l-0.1-22.2    l-4.7,0.5l-4.2,0.7l-3.9,0.6l-3.5,1.2l-3.6,1.1l-3,1.3l-5.5,2.2l-4.3,2.4L542759.4-7163.6"}), 
+							React.createElement("path", {className: "st0 jurong-grc", d: "M542806.3-7182.9L542806.3-7182.9l0.1,22.2l7.7,0.1l3.4,0.6l4.1,1.3l-1.1,4.4l-2.5-0.7l-1.9,4.5l1.1,0.9    l0.9,1.5l0.4,8.8l0.8,1.3l0.9,0.9l5.1,0.6l5.1-0.1l0.9-0.8l12.4,0.5l-0.2-17.7l1.3-0.1h2.9l2.7,0.5l3,0.6l3,1.5l1.5,1.5l1.6,2.6    l1.3,4l0.8,4.8l1.1,4.9l1.2,2.4l1.3,1.6l2.3,1.9l4.4,1.9l4.6,2l8.8,4.6l5.8-14.2l-11.7-10.9l-3.9-4l-4.1-4.3l-6.4-6.6l-6.2-5    l-12.6-7.4l-9.5-4.7l-8.2-2.8l-7.4-1.7l-7.4-1L542806.3-7182.9"}), 
+							React.createElement("path", {className: "st0 yuhua-smc", d: "M542843.7-7154.7L542843.7-7154.7l0.2,29.3l6.8,0.4l4.4,0.7l3.4,1.5l15.2,10.7l5.3,4.3l-2.1,3l-1.4,3.8    l-0.8,4.1l0.3,4.3l1.8,4.6l2.8,4.9l7.2,9l8.9,7.7l12.3,8.7l16.1,11.2l5.4,4.8l6.3-9l5.9-8.1l-2.4-1.7l-2.8-2.4l-7.6-6.3l-2.7-3.2    l-3.1-4.4l-4-5.8l-2.2-2.3l-2.4-1l-7.2-2.2l2.2-2.1l3.9-4.2l7.8-10.2l12.3-17l-5.2-2.8l-4.7-1.8l-4.1-1.4l-4.2-0.7l-8.8-0.4    l-4.3-0.5l-4.4-1.4l-6.7-3.5l-5.8,14.2l-8.8-4.6l-4.6-2l-4.4-1.9l-2.8-2.3l-2.1-3.6l-1.9-9.8l-1.3-4l-1.6-2.6l-1.9-1.7l-2.6-1.2    l-2.4-0.5l-3.3-0.5L542843.7-7154.7"}), 
+							React.createElement("path", {className: "st0 bukit-batok-smc", d: "M542891.3-7134.1L542891.3-7134.1l6.7,3.5l4.4,1.4l2.6,0.2l10.5,0.6l4.2,0.7l6,2.1l2.8,1.1l5.2,2.8l11.8,7    h0.4l6.3-9l1.4-2l1.4-2l-0.1-1.6h2.9l5.4,0.1l1.6-0.1l2.3,0.5l4.4,1.1l12.4,3.9l2.4,0.3l2.2-0.1l3.1-1.1l3.5-2.9l3.3-3.5l-3.9-5.5    l-3.3-5.4l-2.1-2.2l-1.4-1.3l-2-1.4l-3.2-1.4l-5.1-1.5l-4.4-2.5l-9-6.5l-2.1-1.7l-2.5-2.6l-3.2-3.1l-3.1-0.8l-2.4-0.3h-2.9    l-6.1,0.2l-5.6,0.7l-6.3,1l-2.8,1l-2,1.3l-1.5,1.7l-2.6,3.6l-1.8,1.7l-1.9,1.1l-1.4,0.7l-1.7,0.2l-17.6,0.2l0.6,4.9l-0.1,3.5    l-0.9,3.3l-1.4,3L542891.3-7134.1"}), 
+							React.createElement("path", {className: "st0 jurong-grc", d: "M542929.6-7041.6L542929.6-7041.6l2.4,2.8l2.1,3.5l1.4,4.5l0.6,7.7v7.3l12.2,2.7l7.4,1.7l6.3,1.8l3.7-0.1    l4.4-1.4l19.2-11.6l1.8-0.3l1.8,0.6l1.6,0.2l9.2,6.4l2.6,0.8l2.6,0.6l2.6-1l2-0.8l3.6-2.3l2.4-1.1l3.5-0.6l3.5,0.1l2.1,0.5    l4.6,1.7l-0.6-13.2l-0.8-15.9l0.6-6.4l1.8-11.5l-12-6.4l-12.6-7.1l2-5.9l1.5-5.3l3.4-0.4l4.6-1.8l1.5-1.8l1.5-3.1l0.9-1l2.7-0.5    l2.7-0.1l5.2-1.9l9.6-0.7l3.4,0.5l3.1,0.5l1.9,0.1l1.2-0.3l5.9-3.2l2.2-0.9l2.2-0.3l5.9-2.5l1.7-1l2.7,2.6l3.1,1.2l7,0.4l8.4,0    l0.8,1.3l3.5,3.7l3.3,4.4l0.9,0.8l0.9,1.4l15.2,5.3l1.7,0.6l1.8,0.3l-0.1-2.3l-0.6-2.8l-1.2-3.8l-4.8-7.5l-5.5-7.3l-6.9-7.8    l-11.4-14.7l-12.4-16.3l-3-5.3l-11.7,5.4l-16.4,8l-1.4,0.2l-1.9-0.1l-3.7-0.1l-2.8,0.2l-6.3,1.6l-4.1,1l-3.9,0.5l-8.2-0.1    l-0.2-16.3l-0.7-2.3l-1.5-2.9l-1.4-2.9l-0.8-2.6l-2.7,0.3l-4.2,0.7l-8.2,1l-8.1,0.8l-7.1,0.1l-1.7,0.2l-1.6,1l-1.9,3.3l-2.6,4.4    l4.8,2.9l5.1,1.5l1.6,0.8l1.7,0.6l2,1.4l3.5,3.5l7.2,10.9l-3.3,3.5l-3.5,2.9l-3.1,1.1l-2.2,0.1l-3.4-0.7l-11.4-3.5l-6.7-1.5    l-9.9,0l0.1,1.6l-9.6,13l-11.8-7.1l-19.5,26.4l-6.8,7.1l9.7,3.2l2.2,2.3l4,5.8l5.8,7.6l10.3,8.7l2.4,1.7L542929.6-7041.6"}), 
+							React.createElement("path", {className: "st0 hong-kah-north-smc", d: "M542670.8-7279.8L542670.8-7279.8l-3.4,10.6l-1.1,4.7l-0.8,3.6l-0.1,9.7l-0.2,4.1l-0.3,2.1l-0.9,2l-3.5,7.1    l-1.4,3.1l-0.8,2.6l-0.4,2.7l0.5,2.7l4.9,14.6l5,14.2l1.8,3.1l2.2,2.5l14.6,10.4l17.8,12.6l2.8,2.2l2,2l3.6,4.4l-4.8,1l-2.8,0.7    l-3-0.1l-12.4-0.1l-1.7-0.1l-1.6,0.2l-1.2,0.4l-1.1,0.9l-1.4,1.2l-0.9,1.9l-0.6,5.6l-1.1,8.9l7.5,1l1.6,0.5l1.3,1.9l5.9,9l2.1-1.9    l24.6-11.8l50.1-33.4l4.3-2.4l8.5-3.6l7.1-2.2l3.9-0.6l8.9-1.1l7.5,0.3l7.4,1l7.4,1.7l8.2,2.8l10.1,4.9l12.1,7.2l6.2,5l16.9,17.2    l9.2,8.5l3.4-4.7l1.4-3l0.9-3.3l0.1-3.5l-0.6-4.9l16.3-0.3l2.9-0.2l3.3-1.8l1.8-1.7l4.1-5.3l2-1.3l2.8-1l11.9-1.8l8.2-0.4l-0.2-4    l-0.9-2.3l-1.2-1.6l-1.1-1.9l-1.3-2.8l-0.4-3.2l-0.4-2.8l0.1-2.7l9.1-0.2l-0.1-13.8l2-2.7l0.8-0.5l0.9-0.1l9.2-0.3l-0.6-19    l-0.4-8.2l-0.4-3.3l-0.8-3.3l-2.5-4.1l-3.1-3.6l-3.8-3.4l-4.4-3.4l-1.6,1.4l-20.1,17.3l-10.9,13l-8.3,10.8l-5.1-19.3l-1.3-0.5    l-1.2-1l-1-2.1l-5.2-16.1l-0.4-1.4l-0.9-1.4l-1.1-1l-1.3-0.6l-1.1-0.6l-1.3-1l-0.5-1.4l-0.2-1l-5.8-23.1l0.4-7.7l-16-16.8    l-27.2,23.7l-3.8,0.5l-5.7-0.1l-41.1-0.1l-29.5,7.6l-17.8,12.3l-2.6,0.9l-2.6,0.4l-3-0.9l-3.1-1.9l-6.5-4.5l-4-2.2l-3.5-0.6    l-18.7-0.9l-13.5-0.8L542670.8-7279.8"}), 
+							React.createElement("path", {className: "st0 choa-chu-kang-grc", d: "M542935.4-7360.9L542935.4-7360.9l1.1,3.3l1,4.7l0.5,2.8v5.5l0.2,3.9l0.2,1.3l0.5,1.3l3.4,5.6l-19.1,12.7    l1.4,1.7l1.1,1.3l1.1,0.7l1.9,1.3l8.6,3.8l13.8,6.2l-1.7,3.8l-1.2,1.9l-1.1,0.9l-13.2,3.8l-6.5,1.5l-8.3,1.1l-1.5-0.1l-1.6,7.6    l-7-2.5l-3.7-1.1l-5.4-2l-3.9-2l-1.1-0.5l-1.3-1.1l-2.7-4.1l-8.8,6.1l1.2,1.3l-0.4,7.7l3.2,13l3.2,12.5l1.3,1l2.4,1.2l1.3,1.1    l0.8,1l0.4,1.7l5.2,16.1l1,2.1l1.2,1l1.3,0.5l5.1,19.3l19.2-23.8l21.6-18.8l14.9-14.7l2.6-3l1.2-2.5l2.2-6.5l1.8-4.8l2.8-3.7    l2.1-2.5l2.4-1.9l3.7-1.4l3.2-0.8l3.2-1.6l2.1-1.5l8-3.9l15.4-6.3l-3.4-7.1l-6.3-11.3l-2.5-3.2l-7.8-9.7l-3.6-4.7l-3.2-4.7    l-4.4-7.7l-1.8,0l-2.2-0.1l-5.8-0.9l-10.2-2.1l-10.1-1.8l-3.5-0.4l-3.6,0l-3.4,0.3l-2.2,0.3l-2.2,0.5L542935.4-7360.9"}), 
+							React.createElement("path", {className: "st0 choa-chu-kang-grc", d: "M542950.4-7254.5L542950.4-7254.5l3.8,2.8l4.4,4l3.1,3.6l2.5,4.1l0.8,3.3l0.4,3.3l1.1,27.2l-10.2,0.4    l-0.8,0.5l-2,2.7l0.1,13.8l-9.1,0.2l-0.1,2.7l0.8,6l2.4,4.7l1.2,1.6l0.9,2.3l0.2,4l3.1,0.5l3.1,0.8l7.2,7l9.3,6.5l1.6-2.8l2.9-4.8    l1.6-1l5.3-0.3l4.8,0l15.1-1.7l6.9-1.1l0.8,2.6l2.9,5.8l0.7,2.3l0.2,16.3l8.2,0.1l3.9-0.5l10.4-2.6l2.8-0.2l7,0l17.5-8.5l-0.9-1.9    l-2.4-17.3l-1.9-6.8l-4.1-11.2l-4.4-6.5l-0.9-2.1l-1.7-10.6l-2-7.2l0.6-3.5l0.7-1.3l1.7-1.6l1.4-2.3l0.4-2.4l-1.3-6.6l-0.7-1.9    l-7.7-12l-10.2-14.9l-2.6-5.5l-2.2-7.5l-0.9-3.6l-4.9-24.3l-4.9-9.5l-21.1,9l-7.6,4.2l-6.9,2.2l-2.4,1.9l-4.9,6.2l-5.2,13.9    l-2.1,2.8L542950.4-7254.5"}), 
+							React.createElement("path", {className: "st0 choa-chu-kang-grc", d: "M542385.5-7190.1L542385.5-7190.1l5.5,2.9l2.9,3.4l8.6,7.8l6.4,1.1l1.4-3l7.1-1.1l6.1,9.9l7.3-3.3l3.9,1.4    l1.8,4.6l2.9,4.6l3.9,0.2l6.2,3.8l4.8-1.5l22.3,9.3l5.1,4.6l0.6,3.6l6.9,3l0.6,9.3l2.8,1.5l15.2,19.3l-2.9,14.4l6.4,2.7l2.5,0    l6.1,2.8l1.7,3.1l8.9,6.9l0.4,7.6l10,4.4l7.8,3.6l3.1,6l3.7,2.4l70.7,5.3l3.1-1.2l10.2-11.8l12.8-14.7l5.9-7.9l4.3-2.6l1.6,0.3    l-3.8-5.4l-0.1-4.5l5-1.2l4.1-2.2l8.8-10.7l18.7-14.8l-7.2-11l-9.1-1.4l2.1-15.4l1.9-2.2l1.1-0.9l2.9-0.6l17.1,0.4l7.6-1.7    l-8.4-8.5l-32.4-23l-2.2-2.5l-1.8-3.1l-10.4-31.5l1.2-5.3l5.8-12.3l0.6-15.9l5.3-18.8l-2.1-0.6l-8-0.6l-2.7-0.4l-2.2,0.5l-2,1.7    l-2.2,2.9l-3,3.8l-4.1,2.5l-3.4,1.5l-1.8,1.9l-3.2,3.9l-3.6,2.1l-3.9,1.2l-1.7-0.5l-2.4-1.8l-14.4-10.7l-6.1-0.1l-1.7-3.4    l-2.7-2.2l-1.9-4.1l-1-4.2l-0.8-6.3l-4.4-4.4l-12.8-13.5l-6.3,0.6l-2.4-0.7l-2.8-1.6l-2-1.2l-2.8-2.9l-1.5-1.1l-1.8-1.8l-2.1-2.4    l0.9-6.2l-1.7,0.1l-1.8-0.6l-2.8-1.8l-2.4,1.8l-4.4-1.6l-1.1,0.4l-1.3-0.9l-1.3,0.2l-0.1-1.8l-2.1,0.6l0.1,1.6l-1.2,1.9h-3.2    l-1.4-1.7l-3.2-0.4l-2.2,1.5l-2.9-0.7l-1.6,0.9l-7.6,1l-0.1,1l-1.1,1l-3.1-1l-3.9,0.8l-1.2,2.3l-2.1,1.4l-2-0.1l-2.1-1l-1.4-1.7    l-2.3-0.4l-2.3,0.7l-1.7,1.8l-2-2.5l-1.4-3.3l-7.3-5.1l-3.2-1.5l-4.4,0.3l-20.9,30.2l-21.4,31.6l-0.6,0.4l-0.1,0.8l0.4,2l1.2,1.4    l0.4,1.2l-0.1,1.2l-2.4,4.7l-12.8,24l-19,34.4l-2,1.6l-8.1,4.3l-2.1,2.1l-0.9-2.2l-0.9,2.7l-0.9,2L542385.5-7190.1"}), 
+							React.createElement("path", {className: "choa-chu-kang-grc st0", d: "M542742.2-7660.2L542742.2-7660.2l-2.5,1.9l-1.6,0.7l-1.5,1.8l-6.6,3.1l-0.4,0.8l-0.8,0l-7.5,5.7l-3.1,3.5    l-4,6.3l-1.9,1.8l-1.4,1l-0.1,0.9l-4.4,3.4l-4.4,1.6l-3.2,1.9l-0.8,0.6l-0.6,1.4l-2.1,1.9l-0.8,1.8l-0.9,0.1l-3.1,3l-0.4,1.3    l-3.4,1.2l-0.1,1l-7.2,7.7l-3.8,3.7l-4.8,3.5l-12.1,5.8l-7.4,0l-0.9,0.5l-0.4,1.6l-3.6-0.4l-3.7-1l-2.4,1.7l-4.2,0.2l-4.3,3.3    l-2.1,0.1l-1.8,1.3l-3.6,1.2l-5.1,6.6l-3.6-0.6l-1.9-0.4l-1.9-1.1l-3.6-0.4l-2.7,2.9l-3.4,2.9l-8.8,6.1l-5.8,0.3l-5.6-2l-1.8,0.9    l-5.6,7.2l-0.7,1.1l-5.2,8.3l-0.6,0.7l-1.9,0.2l-1.9,0.7l-1.6,1.4l-1.4,1.7l-1,7.5l-2.5,8.5l-2.8,5.5l-1.4,6.6l-2.1,1.7l0.1,0.9    l-0.7,0.3l0.8,1.8l-0.2,3.1l-1.1,1l-0.9,1.2l0.4,1.4l-0.2,1l-3.2,17.3l-2.2,1.5l-3.6,4.1l-0.8,5.4l-3.4,8.3l-4.2,1.7l-4.5,4.6    l-5.1-1.7l-4.2,1.1l-3.3,0.1l-2.6,1.8l-0.2,6.1l-0.6,2.2l-1.9,2.4l-1.6,2.4l-2.8,1l-3.8,0.3l-0.2,1.5l-1.2,0.6l-0.1,1l2.6,13.1    l-0.5,7.4l-3.9,12.4l-3,1l-1.4-0.5l-1.5,0.9l-0.8,1.4l0.9,0.5l0.6,0.8l-1.6,2.3l0.3,1.1l-0.5,1.8l-1.7,0.6l-1.1,1.3l10.4,11.1    l-0.2,6.6l-0.9,3.7l-5.7,22.4l-3.9,3.1l-6.2,11.2l-4.4,4.1l-1.7,0.9l-1.7,1.9l-0.8,1.2l-0.2,1l0.4,0.2l4.4-0.3l3.2,1.5l7.3,5.1    l1.4,3.3l2,2.5l1.7-1.8l2.3-0.7l2.3,0.4l1.4,1.7l2.1,1l2,0.1l2.1-1.4l1.2-2.3l3.9-0.8l3.1,1l1.1-1l0.1-1l7.6-1l1.6-0.9l2.9,0.7    l2.2-1.5l3.2,0.4l1.4,1.7h3.2l1.2-1.9l-0.1-1.6l2.1-0.6l0.1,1.8l1.3-0.2l1.3,0.9l1.1-0.4l4.4,1.6l2.4-1.8l2.8,1.8l3.4,0.5    l-0.9,6.2l2.6,3.1l2.8,2.2l2.8,2.9l4.8,2.8l2.4,0.7l6.3-0.6l17.2,17.9l0.8,6.3l1,4.2l1.9,4.1l2.7,2.2l1.7,3.4l6.1,0.1l16.9,12.5    l1.7,0.5l3.9-1.2l3.6-2.1l5-5.8l7.5-4l5.2-6.7l2-1.7l2.2-0.5l2.7,0.4l8,0.6l2.1,0.6l14,6.2l35.7,2.3l4,2.2l9.6,6.4l3,0.9l2.6-0.4    l2.6-0.9l17.8-12.3l29.5-7.6l46.8,0.2l3.8-0.5l27.2-23.7l14.8,15.4l8.8-6.1l2.2,3.3l7.5,4.5l3.2,0.9l12.1,4.6l1.9-7.6l8.6-0.9    l20.6-5.4l2.3-2.8l1.7-3.8l-22.9-10.2l-2.5-1.8l-2.5-2.9l19.1-12.7l-3.1-4.9l-1.1-3.3l-0.2-9.4l-2.6-10.9l-6.8,3.1l-13.7,10.3    l-2.7-4l-2.4-3.7l-2.2-6l-0.3-7.6l1.4-5.8l4.2-7.2l4.7-9l4.3-11.9l1-8.6l0.9-8.1l1.1-6.5l2.2-7.1l3.5-4.8l6.6-7.8l-9.5-3.5    l-5.8-3.2l-2.6-4.1l-2.1-3.2l-1.6-3.9l-1-4.4l0.4-4.1l1.1-5l1-5.5l0.5-5.5l-0.9-5.1l-2.2-7.7l-3.9-12.2l-4-12.3l1.4-71.2l-0.4-6.5    l0.2-9.6l-0.2-8.2l-10.2,0l-1.9-6.2l0.1-1l-0.8-1l-0.6-0.4l-1.2,1.3l-1.4,0.7l-0.4-1l0.2-1l0.6-0.9l-0.7-0.3l-0.5-0.9l0.3-0.7    l-1.1-1.2l2.3-2.9l0.1-1.8l-0.7-2.6l-0.6-0.8l-0.9-0.8l-0.9-0.3l-1.9-1.2l-0.4,0.2l-2.1-1.3l-0.5-1l-0.5-0.2l-1.6-2l-4.9-4.3    l-1.9-1l-1.6,1.3l-1.5-0.2l0.6-2.1l0.1-1.1l-1.9-2.6l-0.7,1.2l-1.9-3l0.6-1.4l-3.8-3.3l-1.2-0.9l-0.1-1l-2.9-2.8l-1.7-3l-0.9-0.7    l-1.3-1.5l0.4-1l-1,0l-9.8-1.1l-1.5-1.3l-0.7,0.1l-0.6-0.6l-0.4-3.1l-1.7-0.3l-2.2-0.7l-1.2-0.1l-1.2-0.7l-0.8,0.5l-2.3-0.2    l-1.4-0.5l-1.5,0.2l-2.4-0.9l-0.5,0l-0.4-0.7l-2.6,0.2l-1-0.3l-10.3,2l-2.4-1.1l-2.6-0.6l-3.9,0.1l-2.1,0.4l-1.5,0.5l-3.9,0.1    l-1.8,0.3l-1.8,0.7l-1.8,0.1l-0.1,0.4l-1.2,0l-2.7,0.9l-1.1,0.9l-1.9-0.3l-1.1,0.4l-1.2-0.6l-1.2,1l-2.8,0.5l-3.1,1.3l-1-0.3    l-1.2,1.3l-1.7,0.4l-1.9-0.2l-5.3,1.4l-4.2,1.8l-0.4,1l-0.9-0.1l-0.4,1.2l-1.3,0.8l-1-0.1l-1.2,0.9l-1.2,0.4l-0.2,0.7l-0.7,0.1    l-1.6,1l-0.2,0.8h-0.9l-1.6,2.9L542742.2-7660.2"}), 
+							React.createElement("path", {className: "st0 sembawang-grc", d: "M543313.6-7631.7L543313.6-7631.7l10.6,9.2l11,13l3.1,4.4l3.3,2.9l3.2,1.8l3.2,0.3l7.3-1.8l-2.7-18.3    l-7.2-18.8l-1.4-12.6l-2.2-7.4l-9.3-19.7l-12.1-20.3l0.4-4.2l1.2-2.1l10.6-10.1l7.1-9.2l-1.9-1.2l-30.2-20.4l-6.1-3.3l-5.4-1.8    l-3.1-0.3l-5.5,0.5l-6.4,2.3l-9.2,4.3l1.2,1.8l10.7,22.2l2,7.4l2.6,14.3l0.2,7l0.4,1.1l-0.9,10.6l-2.2,14.4l-3.8,0.8l-7.6,2.1    l-3.7,1.9l-7.4,5.6l18.1,7.2l9.2,3.4l6.1,3.4l-0.8-0.7l4.9,2.3l3,1.9L543313.6-7631.7"}), 
+							React.createElement("path", {className: "st0 nee-soon-grc", d: "M543281.7-7648.3L543281.7-7648.3l-1.3,8.8l-3.2,8.4l-82.5,96.3l20.4,11.9l15.5,12.5l-5.8,10.3l7.2-1.5    l5.5,1.3l5.1,3.3l3.1,4.4l6.3,19.7l8.8,24.2l1.8,2.6l4.5,1.5l-12.3,23.9l10.6,2.6l23.3-2.4l6.6-0.2l6.2-0.3l9.1,0.8l-0.5-4.2    l2.1-4.1l3.4-7.3l4.4-5.4l3.3-6.5l6.6-12.1l8.4-17.5l1.9-4.7l0.8-5.3l2.5-10.1l3.1-11.2l4.8-20.3l3.4-17.8l3.1-7.8l4.8,2.4l2.7,1    l1.8-3.3l0.2-3.7l11.6-0.7l3.2-0.2l1.6-1.1l1.2-1.2l-2.6-2.1l-6-4.9l-0.5-4.8l0.2-2.4l6.9-0.5l5.9,0.2l16,0.3l-0.9-10.7l-2.9-12.7    l-1.1-3.7l-2-4.6l-5.5-9.7l33.6-14.2l3.4-1.9l1.9-1.9l2-3.1l-0.6-1l-22.4-15.5l-31.4,20.2l-1.1,2.5l-5,15.9l-5.8,7.1l-5.9,3    l-6.1,1.6l0.4,2.4l-7.3,1.8l-3.2-0.3l-3.2-1.8l-3.3-2.9l-4.3-5.8l-9.8-11.6l-10.6-9.2l-12.6-8.1l-10.2-5L543281.7-7648.3"}), 
+							React.createElement("path", {className: "st0 nee-soon-grc", d: "M543310.5-7424.5L543310.5-7424.5l0.5,4.2l0.5,2.4l4.6,12.5l1.7,5l1.4,7.9v5.4l5.3,1.7l9.5,2.8l9.2,1.9    l6.8,1.1l6,0.2l10.8-0.1l9.8-1.3l9.8-2l17.4-4.7l26.6-7.2l-4.1-9.3l-5.8-6.2l-4.2-7.9l0.2-8l5.6-5.3l3.9-2.9l4.6-1.3l8.6-2.1    l26.2-12.5l32.8-30.7l39.8-58.3l-26.1-13.4l-4.3-1.5l-3.4,0.7l-2.8,1.9l1.2,5.1l-0.1,3.9l-0.4,4.2l-2.1,6.1l-0.9,2.8l-0.8,2.3    l-1,2l-16.2,22.2l-6.4,2.7l-6,2.6l-6.1-0.1l-2.9-0.1l-3.3-1.2l7.6-14.3l-1.8-1.7l-3.6-3.5l-1.7-0.7l-2.7-0.1l-3.3,0.2l-1.4,0.3    l-0.9,1.8l-1.4,2.5l-3.2,3.2l-3.6,2.5l-3.4,0.1l-4.4-1.7l-3.1-1.4l-2.2-0.7l-1.9,0.6l-6.4,2.8l-5.3,1.8l-2.2,1.3l-1.7,0.4    l-1.3-0.3l-2.4-1.2l-8.9-4.9l4.1-7.3l1.1-3.3l1.1-5l0.6-8.9l-18.3-0.1v-3.4l3.1-8.6l0.1-5l-0.8-5l-2.9-2.8l-2.9,2.4l-14.8,0.9    l-0.2,3.7l-1.8,3.3l-2.7-1l-4.8-2.4l-3.1,7.8l-5.9,27.5l-8.4,31.9l-0.2,5.3l-9.8,21.3l-10.3,19.5l-4.4,5.4L543310.5-7424.5"}), 
+							React.createElement("path", {className: "st0 nee-soon-grc", d: "M543376.1-7575.8L543376.1-7575.8l0.2,7.2l8.6,7.1l2.9,2.8l0.8,5l-0.1,5l-3.1,8.6v3.4l18.2,0.1l-0.9,10.7    l-1.9,6.5l-4.1,7.3l11.3,6.1l1.3,0.3l1.7-0.4l2.2-1.3l13.6-5.2l2.2,0.7l7.6,3.1l3.3-0.1l3.7-2l3.7-3.6l1.4-2.5l0.9-1.8l-0.2-9    l-0.2-5.7l0.9-3.7l5.8-6.8l3.6-3.4l3.2-4l0.2-6.7l-0.4-9.4l-0.4-3.1l-2-2.7l-3.6-3.3l-3.2-2.5l-1.1-0.6l-2.1-0.1v0.4v2.8l-0.1,1.4    l-0.2,1.2l-0.2,0.6l-0.1,0.5l-0.6,0.9l-1.2,1.6l-6,6.4l-1.1,0.7l-1.2,0.4l-2.8,0.4l-2.1,0.3l-0.9,0.2l-0.5-2.2l-0.9-2.2l-2-2.9    l-3.7-3.3l-3.4-2l-2.5-0.4l-8.5-0.6h-7.1l-21.9-0.5L543376.1-7575.8"}), 
+							React.createElement("path", {className: "st0 sembawang-grc", d: "M543449.2-7588.1L543449.2-7588.1l0.6,8.1l2.1,0.1l1.1,0.6l6.8,5.7l2,2.7l0.4,3.1l0.6,12.9l-0.4,3.1l-3.2,4    l-3.6,3.4l-5.8,6.8l-0.9,3.7l0.6,13.4l-0.1,1.4l1.4-0.3l2.8-0.2l2.9,0.1l1.9,0.8l1.2,1.2l4.1,3.9l-7.6,14.3l3.3,1.2l9,0.3    l12.4-5.3l16.2-22.2l1.1-2.4l3.8-10.8l0.5-8.1l-1.2-5.1l2.3-1.9l3.4-0.7l30.3,14.9l30.6-40.5l18.7-22.2l-9.7-8.1l-10.7-10.1    l-0.8-5.3l-2.1-5.4l-3-4.7l-2.6-4.4l-2.2-1.9l-3.3-4l-2-3.7l-1.8-3.1l-3.8-5.2l-3-4.6l-1.6-2l-1.9-1.6l-6.1-6.4l-2.1-2.2l-4.3-2.5    l-1.9-1.1l-1.9-0.3l-3.8,0.7l-5.4,4.5l11,20.9l-9.9,8.5l-17.8,19.7l-4.2,3.4l-8.4,3l-11.1,5.8l-3.4,0.4l-1.3,0.6l1.1,1.4l5.2,0.9    l0.2,1.6l-1,1.8l-4.4,3.2v1.6l-5.1-2.9l-10.8,9.5l-3,3.8L543449.2-7588.1"}), 
+							React.createElement("path", {className: "st0 nee-soon-grc", d: "M543265.3-7418.1L543265.3-7418.1l2.6,7l2.6,4l1.9,3.1l3.9,4.8l4.9,3.9l21.3,87.5l0.5,1.5l3.1,4l0.9,2.6    l1.7,3.1l3.4,3.6l2.1,0.8l2,0.2l1.7-0.9l1.3-1.5l3.1-4.4l1.3,4.3l-2.1,0.8l-2.9,2.4l-0.9,1.8l-0.5,6.6l1.1,4.1l5.8,6.1l4.6,2.7    l2.9,0.7l1.9,0.1l1.9-0.7l-0.6-4.2l-1.4-4.5l1.2,1.9l0.9,0.8l0.9,1.3l0.8,0.6l2.2,0.6l0.9-0.2l1.2-0.7l1.1-1.7l0.6-1.8l0.1-1.9    l-0.6-2.2l-1.4-2.7l0.7-0.2l2.2,1.5l2.2-1.2l0.4,0.8l-0.4,2.7l0.6,0.8l2,0.3l-2,1.9l-1.4,5.7l0.4,1.9l-0.1,1.7l1.9-0.3l0.9,1.4    l1.5,1.3l0.9,0.1l6.2,5.6l-4.6,12.7l-2.1,0.6l0.3,1.9l1.1,1l7.3,0l8.8-0.3l0.8-4.6l12.6,1.3l5.2,0.6l4.8,1.3l14.8,4.6l3.4-8.8    l2.2-3.5l2.9-2.2l6-2.2l4.1-0.2l9.1,0.7l9.6,1.2l1.8-14.3l-8.9-1l-4.6-8.3l2.8-11.3l8.4-0.5l-0.4-5.6l-6.9,0.8l-8.6,0.3l-4.5,0    l-5.6-0.3l-2-0.9l-2.2-1.4l-4.6-5.2l-8.8-13.1l3.8-1.9l3.4-2.7l-12.4-11.5l7.4-9.3l-5-4.7l-4.8-6.5l-14.1-27l-11.6,1.5l-16.8-0.1    l-16.6-3l-14.3-4.4v-5.4l-1.4-7.9l-6.2-17.5l-0.6-2.4l-9.1-0.8l-12.8,0.6L543265.3-7418.1"}), 
+							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543377.9-7381.1L543377.9-7381.1l1.9,3.7l10.4,20.5l1.8,2.9l4.8,6.5l5,4.7l-7.4,9.3l12.4,11.5l-3.4,2.7    l-3.8,1.9l8.8,13.1l4.6,5.2l2.2,1.4l2,0.9l5.6,0.3l13.1-0.3l6.9-0.8l0.4,5.6l-8.4,0.5l-2.8,11.3l4.6,8.3l8.9,1l-1.8,14.3l-9.6-1.2    l-9.1-0.7l-4.1,0.2l-6,2.2l-2.9,2.2l-2.2,3.5l-3.4,8.8l22.2,7.6l8.2,2.8l8.1,1.4l2.2-5.5l2.7-4.2l6.8-8.9l1.4-6.1l4.1,0.6    l10.1,0.7l4.1-0.1l4-1l-5.9-12l-1.6-5.4l-1.1-7.9l-1.4-14.6l18.3,2.2l0.8-40.4l-8.5-8.5l2.6-35.7l-4.7,0l-4.2,1.1l-7.3,2.6l-6.6,4    l-14.4,10.3l-3.1-5.7l-6.9-15.2l-6.6-15.2L543377.9-7381.1"}), 
+							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543445.1-7229.8L543445.1-7229.8l12.2,0.8l5.6,1.1l6,2l3.8,1.5l3.3,1.7l12.2,9.1l6.1,4.8l3.5,3.4l3.9,5.8    l4,7.9l2.3,2.9l2.1,1.8l2.1,1.2l5.6,2.1l1-6.6l1.7-6l4.7-13.5l9.2-25.8l3.4-9.7l1.5-4.9l0.1-2.6l-0.4-3.8l-4.9,0.9l-5.2,0.5    l-4.9,0.5l-6.2-0.2v5.9l-0.9,5.1l-2,5.5l-1.8,4.9l-13.2-4.4l-7.8,3.4l-11.5-19.9l-4,1l-4.6,0.1l-13.7-1.3l-1.4,6.1l-6.8,8.9    l-2.7,4.2L543445.1-7229.8"}), 
+							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543506.2-7289.9L543506.2-7289.9l0.2,2.7l0.5,2.6l1.5,2.9l1.5,2.1l4.6,6.6l1.4,2.6l0.7,2.4l0.9,5.5l0.3,7.7    l6.2,0.2l4.9-0.5l10.1-1.4l17.6-5.6l5.4-2.4l4.5-3.1l2.9-1.2l3.1-0.7l7.6,0.3l6.9,1.1l8.1,2.2l13.9,3.5l11.2,3.7l2-13l1.1-13.5    l-0.2-9.3l-1.6-11.8l44.9-2l5.1-1l2.6-1.2l2.1-2.5l16.7-20.8l3.2-5.2l2.2-7.4l-5.6-1.5l-5.6-2.6l-36.2-22.4l-3.6-1.5l0.2,4.4    l0.1,4.4l-0.8,4l-4,6.2l-0.4,1.2l-8.3-1.9l-5.8-0.3l-0.3,1.8l-1.1-0.5l-1.1-0.3l-2.5-0.3l-5.4,2.3l-2.4-6.2l-0.4-5.4l0.1-2.3    l1.9-11.6l-0.2-11.7l-14.8-0.5l-2.1,10.2l-5.8,8.8l-13.5,14.3l-0.7,2.4l20.6,4.4l13.6,9.2l5.1,4.9l1.7,2.5l1,2.5l0.6,3.3l0.1,2.8    l-0.7,6.8l-9.4-2l-26.2-4.8l-2.7,13.5l-1.3,7.6l-17.8,0.8l-4.5,0.5l-4.3,1.1l-29.4,8.1l-9.9,2.9l-2.4,0.7l-2.5,0.4    L543506.2-7289.9"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543647.4-7374.3L543647.4-7374.3l3.6,1.5l36.2,22.4l5.6,2.6l5.6,1.5l24.2-70.3l-7.4-1.2l-6.5-0.8l-16.1-2.3    l-14.4-1.9l-14.8-1.1l-45.8,0.2l-0.2,6.6l-0.2,8.6l-0.2,2.2l-0.8,6.1l-0.3,2.5l0.4,2.3l0.9,4.7l0.2,3.4v8.3l-2,13.9l0.4,5.4    l2.4,6.2l5.4-2.3l2.5,0.3l1.1,0.3l1.1,0.5l0.3-1.8l5.8,0.3l8.3,1.9l0.4-1.2l4-6.2l0.8-4L543647.4-7374.3"}), 
+							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543446.5-7358.6L543446.5-7358.6l20.9-14.4l11.5-3.7l4.7,0l-2.6,35.7l8.5,8.5l-0.8,40.4l-18.3-2.2l2.5,22.5    l1.6,5.4l17.4,31.9l7.8-3.4l13.2,4.4l1.8-4.9l2.8-9.2l0.1-7.4l-0.3-7.7l-1.6-7.9l-8.9-14.2l-0.7-5.2l5.4,0l4.9-1.1l43.7-12.1    l22.3-1.4l4-21.1l35.6,6.8l0.1-12.9l-2.7-5l-5.1-4.9l-13.6-9.2l-20.6-4.4l0.7-2.4l14.6-15.2l4.9-8.6l1.8-9.4l14.8,0.5l-1.2-7    l1.8-26.1l57,0.7l0.2-6.5l2.4-5.6l7.3-7.2l10.6-5l13.8-13.8l7.3-7.9l6.1-8.8l6.4-16.1l7.6-15.3l2.4-6.2l-6.2-4.4l-15.2-11    l-73.2-46.1l-9.4-5.5l-6.8-1.5l-9.4-0.7l-31.7-17.7l-49.2,62.8l-39.8,58.3l-7.2,7l-25.6,23.7l-6.5,2.6l-19.8,9.9l-13.2,3.4    l-3.9,2.9l-5.6,5.3l-0.2,8l4.2,7.9l5.8,6.2l4.1,9.3l13.5,29.5L543446.5-7358.6"}), 
+							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543621.6-7306.3L543621.6-7306.3l1.6,11.8l0.2,9.3l-1.1,13.5l-2,13l5.1,0.5l13.6,2.2l28.9,6.1l6.6,1.5    l0.8-2.7l1.2-2.2l2.4-2.2l4-3.2l1.1-1.9l1.4-2.5l-2.1-2l-1.8-1.4l-1.8-0.3l-4.8-1.3l-2.7-1l-2.6-1.8l-4.3-3.7l0.8-4.5l0.4-3.8    l-2.8-4.3l-0.5-4.4l-0.4-3.4l0.1-2.8l-0.2-4.7l0.2-5.8L543621.6-7306.3"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543706.2-7312.1L543706.2-7312.1l11.4,0.6l3.4,0.9l3.8,1.7l2.6,0.1l15-2.1l26.2-3.9l-0.6-3.7l0.1-3.9    l-13.1,2.3l-5.9,0.9l-3.4-0.5l-4.5-2.7l-6.3-5.3l-11.3-11.9l-3.8-3.6l-2.8-1.5l-3.4-1.5l-3.2-1.1l-1.5,0.1l-1.6,0.1l-9,1.2    l-2.2,7.4l-2.6,4.1l-9.8,12.3l7.8,6l4.4,3.1l2.4,0.6L543706.2-7312.1"}), 
+							React.createElement("path", {className: "st0 punggol-east-smc", d: "M543734.9-7327.8L543734.9-7327.8l6.3,5.3l4.5,2.7l3.4,0.5l18.9-3.2l0.6-5.5l1-2.6l2.3-2.6l3.1-2.4l4.2-2.4    l6.5-1.7l3.8-0.8l5-0.6l4.9,0.7l5.9,1.8l4.8,0.6l4.9-1.7l1.8-1.1l1.4-2.5l-12.8-15.5l-10.3-11.7l-16-17.7l-9.1-7.3l-7.3-5.1    l-4.6,6.6l-3.9,3.6l-2.4,3.3l-1.8,4l-0.1,6.5l1.4,6.5l1.4,5.6l0.7,6.1l-0.1,7.6l-0.9,4.8l-2.8,6l-4.2,4.2L543734.9-7327.8"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543722.6-7416.5L543722.6-7416.5l-24.2,70.3l12.1-1.3l6.6,2.6l2.8,1.5l3.8,3.6l11.3,11.9l10.6-8l4.2-4.2    l2.8-6l0.6-2.5l0.4-2.3l0.1-6.8l-0.2-4.6l-3.2-14.4l0.1-3.4v-3.1l1-2.1l0.8-1.9l2.4-3.3l3.9-3.6l4.6-6.6l-8.8-4.8l-7.1-3.3    l-4.3-1.8l-3.6-1.4l-4.8-1.8l-8-2.3L543722.6-7416.5"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543674.6-7422.9L543674.6-7422.9l48,6.4l9.8,2.4l10,3.6l20.2,9.9l7.2-14.4l7.6-16.6l13.9,9l9-11.7l6.8-8.5    l22-26.3l-2.7-4.1l-5.6-10.6l-3.1-15l-0.1-4.2l-0.8-9.9l-2.6-4.9l-0.9-3l-2-3.5l-1.6-2.9h-2.1l-4.5-1.5l-4.1-0.4l-8.7,0.8l-6,1.3    l-4.8,4.8l-4.8-0.5l-3.9-0.4l-4.6,0.2l-4.1,1.6l-5.6,3l-9.7,6.5l-8.2-3.5l-2.4,6.2l-5.1,9.2l-5.3,13.4l-3.6,8.8l-6.1,8.8l-7.3,7.9    l-13.8,13.8l-10.6,5l-7.3,7.2l-2.4,5.6L543674.6-7422.9"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543762.7-7400.6L543762.7-7400.6l16.4,12.4l14.1,15.7l25.1,29.2l2.5-2.7l1.3-1.9l2.7-6l3.1-7.4l1.9-4.7    l11.2-12.9l6.2-7.3l4.6-5.1l7.4-5.9l10.8-8.3l11.1-7.3l19.3-10.8l5.7-4.7l1.2-5.6l-2.4-4.2l-2.9-2.4l-11.8-11.2l-16.4-15.8    l-9.7-9.9l-5.6-3.6l-6.8-4.1l-8.2-6.3l-7.2-7.6l-1.9-2.6l-6.4-6.1l-3.6,0.2l-2.2,4.2l7.2,34.3l-19.9,23.9l-17.9,22.6l-13.9-9    L543762.7-7400.6"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543818.2-7343.3L543818.2-7343.3l8.7,10.1l5.9,5.8l2.8,2.6l-3.7,3.9l-2.5,3.8l8.9,4.9l4.6,2.5l2.4,3.3    l1.9,5.1l1.8,20.7l1,4.4l2.1,3.3l12.1,13.6l10.1,10.2l4.1,2.4l3.9,0.8l4.6,0.6l4.4-1l13.5-8.2l5.2-4.7l3.2-2.2l4.8-1.5l10.2-2.6    l15.2-0.4l10.4,0.4l2.7-0.4l2.2,1.8l2.1,1.2l6.8,6.8l4.4,3.9l4.4,2.8l9.6,4.7l14.2,3.6l13.1,2.8l9.3,2.7l2.7-8.4l1.1-4.5l0.4-6    l-0.4-8l-0.1-2.8l-0.9-3.8l-1.6-3.8l-3.8-8.8l-0.9-6.2l0.2-7.1l0.3-2l1.3-3.9l2.8-7.2l3.3-12.8l-2.5-1.8l-2.9,0.2l-4.2-0.8    l-3.2-1.1l-1.1,0.4l-6.4-2.2l-0.6-0.8l-4.6-0.6l-9.2-4.7l-2.4-1.9l-1.6,0.1l-7.2-4.7l-5.2-4.5l-0.2-1l-14.5-8.9l-5.4-3.8l-2.9-1.4    l-2.1-0.7l-2.1-1.8l-7.4-3.2l-0.8-1.1l0.7-0.7l-5.1-8.2l0.4-1.3l-1.2-0.3l-10.4-20.1l-4.9-6.8l-6.3-5.5l-3.9-2.8l-3.1-2l-2.9-0.7    l-2.2-0.2l-4.4,0.8l-3.9,1.4l-9.7,3.7l-2.7-4.5l-11.1,7.3l-18.1,14.2l-18.6,21.6l-3.4,3.8l-7.6,18l-1.3,1.9L543818.2-7343.3"}), 
+							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M544022.9-7235.8L544022.9-7235.8l8.8,2.3l4.9,2.2l7.8,4.2l9.1,7.2l5.5,5.6l5.2,6.3l72.2-72.5l-7.2-6.7    l-5.4,4.7l-21.3-21.6l-4.5-14.8l-3.7,2.5l-0.5-4.7l-1-0.3l-0.9,0.6l-2.2,0.8l-7.5-3.4l-19.9,4.8l-1.7,0.6l-3.9,0.1l-5.7-0.7    l-7.1-0.8l-8.7-0.2l-3.2-1.1l-0.8-1.5l-1.6-0.4l-2.2,1.7l-3.1,12.8l-4.6,12l0.5,13.5l5.8,13.6l0.9,3.8l0.5,10.8l-0.2,6.8    L544022.9-7235.8"}), 
+							React.createElement("path", {className: "st0 tampines-grc", d: "M543989.5-7110.9L543989.5-7110.9l34.8-28.9l12.1-10.3l3.8-2.4l9.4-4.4l6.6-1.1l7.1-0.2l9.2,2l3.7,2.1    l9.8,5.5l-8.6-28.2l-7.8,2.2l-36.9-0.2l-0.8,3.9l-2,3.9l-4.2,5.2l-1.6,1.9l-2.2,1.5l-7.2,2.8l-15,5.2l-20.2,6.7l-3,1.5l-3.2,2.4    l-5.2,4.4L543989.5-7110.9"}), 
+							React.createElement("path", {className: "st0 tampines-grc", d: "M543905.5-7209.2L543905.5-7209.2l-0.2,3.6l-0.8,2.7l-0.8,2.6l-1.7,3.9l-14.2,26.1l13.1,6.3l7.8,3.8l9.1,4.1    l17.3,7.6l2.2,0.5l2.1-0.1l4.3-0.5l-0.4-5.4l0.4-4.1l1.1-2.2l2.3-2.2l1.1-0.7l1.4-0.3l3.8-0.2l7.9-0.1l0.2-12.5l4.9,0.3l0.1-3.8    l2.2-2.7l2.4-1.1l3.8,0v-5.9l-3.9-0.6l-2.4-1.1l-2.5-2.3l-1.5-3.2l-0.1-12.3h-21.3L543905.5-7209.2"}), 
+							React.createElement("path", {className: "st0 tampines-grc", d: "M543887.8-7170.3L543887.8-7170.3l-7.2,13.5l11.8,7l10.1,5.6l7.2,3.9l6.6,3l20,7.9l3.8,1.7l4.5,0.6l12.4-0.7    l11-7.5l6.6-5.4l4.8-3l19.2-6.4l-15.5-18.5l-1.2,1.9l-2.4,2l-2.4,0.6l-6.2,0.2l-6.7,0l-3.1,0.2l-11.6,0.2l-2.6,1l-2.3,2.2    l-1.1,2.2l-0.4,4.1l0.4,5.4l-4.3,0.5l-4.3-0.4l-26.8-11.9L543887.8-7170.3"}), 
+							React.createElement("path", {className: "st0 tampines-grc", d: "M543974.8-7189.7L543974.8-7189.7v5.9l-3.8,0l-2.4,1.1l-2.2,2.7l-0.1,3.8l-4.9-0.3l-0.2,12.5l15.9-0.4    l2.4-0.6l2.4-2l1.2-1.9l15.5,18.5l20-6.9l3.9-2l1.6-1l5.6-6.5l2.2-4.5l0.8-3.9l36.9,0.2l7.8-2.2l-2.2-8.1l-4.7-12l-6.1-11.1    l-17.4,16.6l-2.9,2.4l-2.6,1.2l-7.1,0.1h-2.8l-8.5-0.2l-9.4-1.1l-3.9-0.8l-3.2-0.3l-9.4-0.3l-11.1,0.1l-7.7,0.3L543974.8-7189.7"}), 
+							React.createElement("path", {className: "st0 tampines-grc", d: "M543904.9-7254.7L543904.9-7254.7l0.1,3.8l0.6,14.8l-0.1,26.9l58.8,0.1l-0.1,8.7l0.2,3.6l1.5,3.2l1.6,1.7    l1.7,1l1.6,0.7l3.9,0.6l3.7-0.3l31.4,0.1l13.2,1.9h4.3l14.1,0.1l2.6-1.2l20.3-19l-11-11.9l-9.1-7.2l-12.6-6.3l-8.8-2.3l-36.6-9.1    l-14.1-7.5l-13.2-11.9l-2.2-1.8l-2.7,0.4l-25.6,0.1l-12.7,3.3l-3.4,1.8L543904.9-7254.7"}), 
+							React.createElement("path", {className: "st0 aljunied-grc", d: "M543620.6-7167.8L543620.6-7167.8l1.4,0.8l1.3,0.9l1.2,0.5l1.8,0.6l3.1,0.9l1.6,0.7l1.1,0.6l0.8,0.6l2.1,2    l1.1-0.6l2-0.3l3.4,0.2l6.7,1.1l3.6-0.3l3.8-0.6l3.4-0.5l3.2-0.7l0.9,10.4l2.8,0.4l3.2,1.2l3.1,1.5l17.6-1.7l0.4-4l1.1-4l3.6-8.6    l8-19.7l4.6-15.4l0.5-4.2v-4.6l-1.7-12.2l-0.9-3.1l-1.9-3.1l-7.6-8.2l-37.1,35.7L543620.6-7167.8"}), 
+							React.createElement("path", {className: "st0 hougang-smc", d: "M543667.9-7249.7L543667.9-7249.7l-0.4,1.5l0.1,1l0.8,1.7l0.2,2.5v2l-0.4,1.5l-1.1,2.8l13.4,14.4l15.3-14.7    l7.6,8.2l1.9,3.1l2,10.7l12.2-1.5l2.2-2.1l0.5-0.7l0.3-1.3l0.4-4.2l17.2-16.8l2.4-2.4l6.6-15.8l2-4.1l2.8-5.1l4.7-5.8l6.7-7    l-11.1-10.5l-13.6,13.2l-24.5,23.4l-3.6-4l-0.4-2l-0.3-1.3l-0.9-1.3l-4.1,3.4l-1.1-0.7l-0.2,1.3l-2.8,1.4l-0.2-2.8l-2.2-0.1    l-3.1-2.5l-5.3-5.4l-6.3,6.8l-0.7,1.4l-1.8,3l-4,3.2l-2.4,2.2l-1.2,2.2l-0.8,2.7l-2.8-0.7L543667.9-7249.7"}), 
+							React.createElement("path", {className: "st0 aljunied-grc", d: "M543517.8-7183.6L543517.8-7183.6l0.7,8.6l2,8.4l10.8,31l4.6,10.6l2.6,4.3l-2-10.3l-1.9-10.3l0.5-5.7l2.6-4.6    l9.4-11.5l10.4-12l17.4-7.6l13.4-1.3l9.1-0.5l7.5,0.1l1.9,1.7l5.2,4.9l8.6,10l36.2-32.1l23.6-22.4l-13.4-14.4l1.4-4.3l-0.2-4.5    l-0.8-1.7l-0.1-1l0.4-1.5l-26.8-5.8l-20.9-3.1l-12.2-3.7l-21.1-5.7l-14.6-1.4l-6,1.9l-4.5,3.1l-22.9,8l0.3,6.3l-1.5,4.9l-19,55    L543517.8-7183.6"}), 
+							React.createElement("path", {className: "st0 aljunied-grc", d: "M543846.2-7062.5L543846.2-7062.5l2.9,4.3l6.4,4.9l7.5,4.7l8.1,2l6.1-0.2l5.1-1.8l39.8-9.2l-3.5-20.2    l-3.4-0.1l-5.1-0.1l-7.8-0.8l-11.4,0.1l-8.3,1.1l-7.2,1.8l-8.3,3l-11,5.1L543846.2-7062.5"}), 
+							React.createElement("path", {className: "st0 aljunied-grc", d: "M543846.2-7062.5L543846.2-7062.5l-4-8.4l-1.9-3.6l-1.4-4.9v-3.4l-0.4-6.8l-0.2-3.6l-0.3-4.8l0.9-4.8l1.7-4.5    l0.2-2l0.5-3.6l0.4-7.1l-0.4-5l-0.4-3.2l-3.6,1.6l-3.4,3.2l-7.1,8.4l-16.2-10.1l-10.9,9.1l-11.1,8.2l-4.2,1.1h-6.2l-13.1-1    l-19.1-5.2l-7.8-2.2l-1,2.1l-2.6,5.6l-1.8,2.8l-5.6,8.5l-4.2,5.8l41.6,38.6l4.5,4.5l3.2,4.6l1.2,3.7l0.3,9l14.2-4.3l30.8-15.8    L543846.2-7062.5"}), 
+							React.createElement("path", {className: "st0 aljunied-grc", d: "M543689.8-7150L543689.8-7150l0.6,3.3l1.7,3.3l2.4,4.6l1.3,5.6l2.8,14.3l1.8,8.3l0.7,2.7l1.6,2.3l2.1,2.3    l6.6,3.8l3.9,1.7l3.6,2.4l2.6,2.1l1.6,2.8l11.6-17.1l3.6-7.7l26.9,7.4l13.1,1h6.2l4.2-1.1l10.9-7.8l11.2-9.5l8.5,5.3l7.7,4.8    l7.1-8.4l3.4-3.2l3.6-1.6l0.8,8.3l-0.4,7.1l-0.8,5.6l-1.7,4.5l-0.9,4.8l0.6,8.5l0.4,10.2l1.4,4.9l5.9,12l10.1-5.4l11-5.1l8.3-3    l7.2-1.8l8.3-1.1l11.4-0.1l16.2,1l-2.8-13.9l7.5-2.1l4.4-3.4l3.8-4.1l4-5.6l5.6-10.2l2.5-5.6l0.9-4.2l-4.5-0.6l-30.9-12.8    l-28.6-16.3l23.1-43.5l1.6-5.3l0.2-3.6l0.1-17.8l-0.6-27.7l-13.5,8.2l-4.4,1l-4.6-0.6l-3.9-0.8l-4.1-2.4l-10.1-10.2l-12.1-13.6    l-2.1-3.3l-1-4.4l-1.8-20.7l-1.9-5.1l-2.4-3.3l-4.6-2.5l-8.9-4.9l2.5-3.8l3.7-3.9l-2.8-2.6l-5.4-5.2l-8.2-9.6l-0.9-1.1l-1.4,2.5    l-1.8,1.1l-4.9,1.7l-4.8-0.6l-5.9-1.8l-4.9-0.7l-5,0.6l-10.2,2.5l-4.2,2.4l-3.1,2.4l-2.3,2.6l-1,2.6l-0.6,5.5l-0.1,3.9l0.6,3.7    l-41.2,6l-0.8,6.9l-0.3,4.3l-0.9,2.3l-1.7,2.5l-1.5-0.8l-3.6-1.3l-1.9-0.3l-10.8-0.1l-9.4,2.2l-3.4,1.4l-4.6,2.5l-7.8,5.8    l-6.8,7.3l-4.4,5.7l2.6,1.8l7.5,2.4l1.8,0.3l1.8,1.4l2.1,2l6.3-6.8l5.3,5.4l3.1,2.5l2.2,0.1l0.2,2.8l2.8-1.4l0.2-1.3l1.1,0.7    l4.1-3.4l0.9,1.3l0.8,3.4l3.6,4l38.1-36.6l11.1,10.5l-6.7,7l-4.7,5.8l-4.4,8.1l-6.9,16.8l-19.6,19.2l-0.7,5.5l-2.7,2.8l-12.2,1.5    l0.6,4.6v4.6l-0.5,4.2l-4.6,15.4l-8,19.7l-3.6,8.6L543689.8-7150"}), 
+							React.createElement("path", {className: "st0 marine-parade-grc", d: "M543538.4-7120.7L543538.4-7120.7l4.6-0.3l5.6-1l6.3-2l3.4-1.2l3.2-0.2l9,3.4l8.6,3.7l3.6,1.5l3.1,0.6    l3.9-1.5l2.4-1.9l3.1-1.2l3.2-0.3l5.1,0.5l5.9-0.2l7.9-3.1l3.6-1.1l2.8,0.1l8.2,4.4l7.8,4.5l10.4,4.7l6.1,3.1l5.6,1.4l3.8-0.2    l-4.5-4l-2.9-2.9l-2.6-3.3l-1.8-3.1l-2.7-6.5l-2-2.8l-3.3-4.3l-3.7-3.6l-0.9-1.2l-0.2-1.9l-0.2-4.5l-1.6-6.3l-4.2-8.4l-2.1-2    l-1.9-1.3l-6.4-2.2l-3.9-2.2l-8.6-10l-7.2-6.6l-7.5-0.1l-9.1,0.5l-10.4,1.1l-2.9,0.2l-17.4,7.6l-19.8,23.5l-2.6,4.6l-0.5,5.7    l0.5,2.2l2,10.7L543538.4-7120.7"}), 
+							React.createElement("path", {className: "st0 macpherson-smc", d: "M543685.9-7068.6L543685.9-7068.6l-52.6,12l8.1,24.9l5.4,20l0.8,8.9l1.4,12.5l-0.1,3.5l-0.5,8.5l0.1,6.9    l54.6-10.3l7.6-0.7l-3.8-17.1l-2.9-15.5l-7.8,2.2L543685.9-7068.6"}), 
+							React.createElement("path", {className: "st0 potong-pasir-smc", d: "M543501-7119.5L543501-7119.5l-0.7,7.7l-1.8,8.3l4.4,2.4l24.2,0.2l1.9,0.3l1.6,1.2l1.8,2.2l4.2-3.1l6.9,2.8    l1.2,6.1l0.4,4.3l1.4,26.7l0.1,8.8l13,5.2l15,4.9l4.7,2l3.7,2.2l4.3,3.5l9.4,10.9l6,8.3l5.6,7.9l4.1,5.3l1.9,1.8l1.5,0l31.1-12    l-4.8-18.3l-8.6-26.6l-2.5-12.2l-3.1-13.8l-0.8-2.5l-1.9-2.1l-7-5.5l-6-5.1l-3.3-1.9l-2.6-0.3l-15.5,0.1l-0.1-18.9l-2.1,1.6    l-2.8,1l-24.2-9.2l-3.2,0.2l-9.7,3.3l-5.6,1l-4.6,0.3l-1.9,0.7l-1.8,0.2L543501-7119.5"}), 
+							React.createElement("path", {className: "st0 marine-parade-grc", d: "M543769.8-6993.8L543769.8-6993.8l-40.6,8.1l1.5,7.8l11.7,15.8l0.2,0.3l11.5-2.6l22.4-3.5l17.8-3.7l26.2-5.5    l-7.6-16.7l16.1-5.8l18.2-5.5l21.9-7.8l7.6-1.7l10.1-1.5l-4.4-32.6l-5.1,1.8l-6.1,0.2l-8.1-2l-7.5-4.7l-6.4-4.9l-2.9-4.3    l-26.3,11.7l-32,16.4l-14.2,4.3l0.2,1.2l-0.1,1.2l-0.5,4l-1.1,7.3l-1.8,13.4L543769.8-6993.8"}), 
+							React.createElement("path", {className: "st0 marine-parade-grc", d: "M543729.2-6985.7L543729.2-6985.7l40.6-8.1l3.9-36.4l-0.3-9l-1.2-3.7l-3.2-4.6l-46.1-43.1l-1.6-2.8l-6.2-4.5    l-10.5-5.5l-3.7-4.6l-0.7-2.7l-2.8-16.3l-3.1-11.8l-4.1-7.9l-0.6-3.3l-17.6,1.7l-3.1-1.5l-6.1-1.6l-0.9-10.4l-14,2.1l-10.1-1.3    l-3.1,1l4.2,8.4l1.6,6.3l0.5,6.4l0.9,1.2l3.7,3.6l5.3,7.1l2.7,6.5l4.4,6.4l7.4,7l-3.8,0.2l-5.6-1.4l-4.1-1.7l-28.4-15l-1.8,0.2    l-2.6,0.2l-4.4,1.4l-5.6,2.4l-5.9,0.2l-5.1-0.5l-3.2,0.3l-4.6,2l0.1,18.9l18.1,0.2l3.3,1.9l13,10.6l1.9,2.1l6.4,28.5l52.6-12    l10.3,55.8l7.9-2.2l3.1,16.7l3.7,15.8l-7.6,0.7l-21.7,4.3l-32.9,6.1l0.1,1.8l1.2,8l0.5,13.6l8.3-1.6l10-2.1l16-3.1l4.4,16.8    l25.3-5.1l2-0.2l1.9,0l5.4,0.2l15.7,0.5l-2.7-5.9l-1.9-3.9l-1.4-2.6l9-6.7l-11.9-16.2L543729.2-6985.7"}), 
+							React.createElement("path", {className: "st0 marine-parade-grc", d: "M543739.6-6942.7L543739.6-6942.7l3.5,6.8l4.3,8.5l3.7,6.7l2.7,5.7l1.6,0.7l7.2,12.7l-1.7,1.2l-0.5,0.5    l7.1,22.2l10-3.7l30.3-9.6l1.2,0.2l0.8-1.5l2.1-1.2l3.2-1.5l3.3-1.2l2.6-0.5l-0.9,1.8l4.2-1.8l-0.9-0.3l0.4-1.2l2.2-1.2l2.8-1    l3.8-1.1l1.9-0.2l0.6,0.2l0.1,0.6l1.4-0.7l0.2-0.5l7.2-0.6l2.4,0.3l0.7,0.6l-3-12.2l-2.8-14.6l-1.3-3.7l-4.2,0.5l-6.4,1.2l-15.9,4    l-11.7,2.8l-3.8,1.2l-2.2,0.8l0.3,0.7l-7.9-15.5l-1.9-4.9l-1.8-7.2l-3.2-8.6l-5-10.6l-22.4,3.5l-11.5,2.6l-9,6.7L543739.6-6942.7"}), 
+							React.createElement("path", {className: "st0 marine-parade-grc", d: "M543776.6-6967.8L543776.6-6967.8l5.1,11.3l2.1,5.4l1,2.6l1.8,7.2l9.5,19.6l3.8-1.3l3.7-0.9l26.7-6.7l10-1.6    l1.3,3.7l2.7,13.9l3.1,12.9v-2.5l3.5-1.3l2.4-0.6l2.7-0.4l1,0.2l0.4-1.6l1.3-0.3l7-1.9l2,0.1l1.2,1l0.4-1l1.4-0.6l6.8-1.6l1.2,0.1    l1.2,0.7l1-1l1.4-0.6l1.6-0.2l1.6,0.7l1.2-1.2l1.6-0.3l1.4,0.1l1.4,0.8l0.6-1.2l6.9-2.4l1.8,0.3l0.9-1.4l6.9-1.7l2-1l1.8-2    l1.9,0.4l0.4,0.9l0.6,0.5l1.2,0l1-0.4l2.5,1.3l2-1.1l9.8-3.7l12.8-4.7l0.8,0.8l1.6-1.2l-5.9-15.1l-13.8,4.1l-2.2-9.9l-6.2-25.8    l-2.3-13.2l-0.4-2.2l-13.8,2.2l-5.1-1l-3.7-2.6l-2.5-3.3l-0.8-4.8l-2.9-14.9l-10.1,1.5l-7.6,1.7l-21.9,7.8l-18.6,5.7l-15.8,5.7    l7.6,16.7L543776.6-6967.8"}), 
+							React.createElement("path", {className: "st0 mountbatten-smc", d: "M543767.5-6877.5L543767.5-6877.5l-7.1-22.2l2.2-1.7l-7.2-12.7l-1.6-0.7l-14.2-27.8l-23-0.7l-2,0.2l-25.3,5.1    l-4.4-16.8l-52.1,10.7l-4.2,2.5l-1.2,2.4l-1.2,3.1l-5,5.5l-2.8,1.4l-3.6,0.3l-7.1,0.2l-4.7,0.1l-3.4,0.5l-2.7,0.8l-3.9,2.1    l-11.1,7l1.2,1.5l1.2,0.6l1.2,0.7l1.2-0.4l4.5-0.4l5.6,1.7l-0.8,2l0.8,4.5l1.3,4.1l1.6,3.2l3.1,5.1l4.5,4.9l-2.7,4.5l-0.9,0.8    l-4.6,0.3l-2.2-4.1l-5.5,0.2l1.4,1.1l2.4,0.6l0.6,1.6l-4.5,1.7l-6.6,1l-11.2,0.3l-0.1-1.6l-1.6-1.2l-2-0.2l-2,0.7l-0.9,1.9    l-0.1,1.5l-0.8,1.5l-0.4,2.4l0.3,6.9l2.9,12.8l4,12.1l6.7,13l7.1,11.2l18,21.1l11.8,9.9l23-17.6l-2.1-2.4l0.5-1.1l0.9,0l3.8,0.3    l12.5-10.4l5.4-3.5l2.5-1.1l1.2,0l1.1,1.1l17.1-15.9l1.9-1.7l2.1-0.8l2,0.1l2,1.2l19.9-17.1l1.2-0.3l1.5,0.3l0.6,2l2.7-1.5    l1.2-1.3l4.9-1.1l2.1,1.3l6.4-5l3.8-2.2l5.6-2l20.4-8.2l0.8,1.2L543767.5-6877.5"}), 
+							React.createElement("path", {className: "st0 jalan-besar-grc", d: "M543549.4-7004.1L543549.4-7004.1l1.4-0.2l1.7,0.3l1.6,0.2l1.8,0.9l7.6,4.3l7.2,3.4l1.7,0.7l1.2,3.3l0.7,2.3    l9.2,14.7l9.5-5.6l4.4-2.7l1.2-1.7l0.7-1.9l0.2-3.7l0.3-1.4l1.8-1.4l2.4-1l9.8-1.5l-0.9,6l-0.9,4.5l-0.9,4.3l-0.2,4.9l1.6,12.4    l0.8-2.4l1.7-1.1l5.2-4.2l8.9-4.1l7-1.4l5.8-0.8l3.8-0.7l2.7-0.5l0.6-12l-0.8-6.2l-1.4-15.2l-31.1,11.9l-1.5,0l-1.9-1.8l-7.4-9.6    l-8.2-11.9l-9.4-10.9l-4.3-3.5l-3.7-2.2l-4.7-2l-14-4.6l-7.8-3l-6.2-2.5l-1.5-1.2l-4.4-0.2l-20.6,6.9l-8.9,0.6l-33.9-2.8l0.1,3.1    l16.4,9l-9.2,11.5l11.6,13.4l1.9,17.3l29.4,17l17.4-21.3L543549.4-7004.1"}), 
+							React.createElement("path", {className: "st0 jalan-besar-grc", d: "M543527.6-6977L543527.6-6977l-26.4-16.2l-3.1-0.8l-19,9.3l29.4,31.6l-3.4,4.2l3.5,3l4.8,4.5l15.1,13.7    l2.2,2.2l1.3,1.7l6-1.5l2.8-0.5l2.9,0.1l0.9,0.7l0.9,0.2l2.5,0.2l1.6-0.3l1.9-0.5l1.9-1.3l1.5-1.6l0.7-0.7l1.4-0.8l5.5,8.5l4.3,6    l4.1,4.6l11-7.6l11.1-7l3.9-2.1l2.7-0.8l3.4-0.5l13.2-0.5l2.1-0.1l2.8-1.4l5-5.5l2.5-5.5l4.2-2.5l17.8-3.9l-0.5-13.6l-1.6-16.5    l-12.3,1.9l-7,1.4l-8.9,4.1l-6.9,5.3l-0.8,2.4l-1.4-10l-0.2-2.8l0.2-4.5l2.7-14.8l-9.4,1.7l-2.8,0.9l-1.8,1.4l-0.3,1.4l-0.2,3.7    l-0.7,1.9l-1.2,1.7l-13.9,8.3l-9.2-14.7l-0.7-2.7l-1.2-3l-8.9-4.1l-9.4-5.1l-1.6-0.2l-1.7-0.3l-1.4,0.2L543527.6-6977"}), 
+							React.createElement("path", {className: "st0 jalan-besar-grc", d: "M543505.2-6948.9L543505.2-6948.9l-19.1,30.1l-3.4,5l-0.6,4.5l-0.1,8l-1.6,5.2l-1.9,6.1l-6.2,7.6l3.8,3.6    l3.2,4.5l-2.1,2.5l-0.1,2.8l7.7,4.9l-4.2,8.2l-1.9,4.2l-2.6,6.2l-0.8,1.6l-1.2,1.7l-3,2.9l-20.6,25.5l21.9,12.9l17.4,10.3l5.4,4.2    l7.3-12.9l0.6-10.7l0.2-5.1l3.9-9.9l-0.9-0.7l-2.8,1l0.5-2.3l1.4-8.1l6.5,0.1l1.4,0.7l1.8-0.4l10.9,0.8v4.2l5.6,0.2l0.3-3.9    l21.2,0.7l3.6-0.4l2.1-1.6l1.6-2.3v-3.8l-2.2-19l-1.9-10.5l0.6-2.4l0.1-2.4l-1.6-0.1l0.5-5.4l1.2-4.3l2.8-4.5l1.4-1.6l1.4-1.1    l2.5-2.5l5.4-4.3l4.1-0.6l1.6-3.4l-0.8-3.9l2.3-1.5l-0.1-2.5l-1.2-2.5l-0.8-0.8l-4.8,3.4l-13.9-19.1l-1.4,0.8l-2.2,2.3l-1.9,1.3    l-3.5,0.9l-2.5-0.2l-1.8-0.9l-2.9-0.1l-8.8,2l-1.3-1.7L543505.2-6948.9"}), 
+							React.createElement("path", {className: "st0 bishan-toa-payoh-grc", d: "M543439.1-7212.3L543439.1-7212.3l-1.5,5.3l-0.3,4.6l-0.3,2.1v3.2l0.8,6.4l-0.2,4.7l-0.6,3.2l-2.2,6.3    l-5.1,11.3l-1.4,4.6l-2,14.7l-2.4,20.3l0.8,4.2l1.6-1.4l1.5-1.9l3-2.8l1.2-0.6l1.3-0.2l3.2,2.6l2.1,2.2l1.2,2.3l0.8,4.6l0.4,3.1    l0.8,1.1l1.1,7.2l2.1-0.4l3.5-0.3l3.8,2.3l2.5-1.6l1.6-1.1l2.5-1l4.6-0.4l9.9,0.6l4.7,0.3l1.9,0.4l2.8,0.9l4.8,3.1l4.6,2.7    l1.9,1.8l2.7-3.5l1.8-2.2l1.8-8.3l0.7-7.7l-21.7-3.5l-8.2-0.5l-8,0.1l2.3-11l2.1-12.8l6.1-26.7l3.6-7.5l6.4-10.2l10.7-17.2    l-15.1-11.9l-3.2-2l-7.1-3.2l-6-2l-7.8-1.3l-10-0.6L543439.1-7212.3"}), 
+							React.createElement("path", {className: "st0 bishan-toa-payoh-grc", d: "M543494.2-7208.8L543494.2-7208.8l-17.1,27.4l-3.6,7.5l-6.1,26.7l-2.1,12.8l-2.3,11l8.9-0.1l7.3,0.5l21.7,3.5    l33.8-0.3l3.6-0.9l-2.6-4.3l-5.9-14.4l-9.4-27.2l-2-8.4l-0.7-8.6l-5.6-2.1l-2.1-1.2l-2.1-1.8l-2.3-2.9l-4-7.9l-3.9-5.8    L543494.2-7208.8"}), 
+							React.createElement("path", {className: "st0 bishan-toa-payoh-grc", d: "M543498.6-7103.5L543498.6-7103.5l-4.4,5.7l-6.6-4.4l-3.9,6.5l3.5,2.2l4.2,3.8l2.6,2.2l2.9,3.5l1.9,1.9    l1.6,2.2l0.8,0.9l0.6,1.4l0.1,1.8l-0.2,1.3l-0.8,2.4l-1.9,1.7l-9.6,1.7l2.2,11.9l3.2-0.2l5.7-0.5l3.8-0.8l2.4-0.8l4.5,13.4l2,0.1    l4.6-0.3l13.4-3.9l9.5-3.4l2.9-0.1l1.5,0.3l1.5,1.2l-1.9-39.8l-1.2-6.1l-6.9-2.8l-4.2,3.1l-1.8-2.2l-1.6-1.2l-1.9-0.3l-24.2-0.2    L543498.6-7103.5"}), 
+							React.createElement("path", {className: "st0 bishan-toa-payoh-grc", d: "M543466.6-7107.4L543466.6-7107.4l-0.1,2.1l-0.2,1.5l-3.2,8.3l-1.1,3.1l-0.7,3.4v3.3l0.6,3.3l1.2,2.8l0.6,1.2    l0.8,1.1l0.9,2.3l0.2,1.7l-0.1,1.5l-0.8,4.1l-3.6-1.6l-0.2-1.2l-1.9-0.1l-0.1-1.1l-1.4,0.1l-11.3-0.5l-0.4-2.9l0.2-3l-3.9,0.1    l-5.9,0.2l-4.7,1.2l-5.2,1.5l-9.4,4l1.7,2.1l1.5,3.7l4,10.6l4.7,5.2l2,2.4l2.2,2.5l2.8,6.5l3,7.3l-0.5,21l9,15.7l10.4,28.6l5-7    l4.1-6.1l31.2-15.4l-1.9-17.3l-11.6-13.4l9.2-11.5l-16.4-9l-0.1-3.1l33.9,2.8l-4.5-13.4l-6.2,1.6l-8.9,0.7l-2.2-11.9l9.6-1.7    l1.9-1.7l0.8-2.4l0.2-1.3l-0.1-1.8l-0.6-1.4l-2.4-3.1l-1.9-1.9l-2.9-3.5l-4.2-3.8l-2.7-2.2l-3.5-2.2l3.9-6.5l-4.8-3.1l-4.7-1.3    L543466.6-7107.4"}), 
+							React.createElement("path", {className: "st0 bishan-toa-payoh-grc", d: "M543424.7-7121.3L543424.7-7121.3l-0.8-4.2l4.4-35l1.4-4.6l7.2-17.7l0.6-3.2l0.1-7.4l-0.5-4.5l0.2-4.5    l0.9-6.1l6.8-21.2l-8.1-1.4l-8.2-2.8l-42.6-13.7l-17.1-1.6l-0.8,4.6l-12.3,0.4l-3.8,0l-1.4-2.9l-4.6,0.9l-7.8,9.5l-0.8-0.2l4.6-13    l-1.9-0.2l-1.9,0.5l-14.9,11l-2.2,5.7l-0.7,4.2l-1.1,0.5l-2.4-4.7l-3.6,0.2l-6.9-1.5l7.3-1.5l0.5-1.5l0.1-1.9l2.2,0l1.9-1.3    l0.4-1.9l-0.7-3.2l1.9,0.5l7.2-4l2.4-7.1l-3.6-3.4l-5.1-2.5l-6.4-1.7l-3.3,1.3l-2.3,2.3l-0.9,2.5l0.4,3.2l-31.8,45.3l-55.3,78.2    l32.2,33.1l16.3,14.1l12.2,9.1l9.9,4.6l26.8,14l24.6,11.6l15.7,15.1l8-3.1l8.4-0.4l16.2,5.8l26.1-8.6l14.9-9l-8.9-10.1l-7.2-16.4    l9.4-4l9.9-2.7l9.8-0.3l-0.2,3l0.4,2.9l11.3,0.5l1.4-0.1l0.1,1.1l1.9,0.1l0.2,1.2l3.6,1.6l1-4.8l-0.3-2.5l-0.9-2.3l-1.4-2.3    l-1.2-2.8l-0.6-3.3v-3.3l0.7-3.4l4.3-11.4l0.2-3.6l-3.2-0.1l-4.6,0.4l-2.5,1l-4.1,2.7l-3.8-2.3l-5.6,0.7l-1.1-7.2l-0.8-1.1    l-1.2-7.7l-1.2-2.3l-3.7-3.1l-1.6-1.7l-3.4,1.4L543424.7-7121.3"}), 
+							React.createElement("path", {className: "st0 nee-soon-grc", d: "M543392.5-7617.1L543392.5-7617.1l7.5,14.3l3.9,16.4l0.9,10.7l7.6,0.2l10.5,0.8l3.4,2l3.7,3.3l2,2.9l0.8,1.9    l0.6,2.6l7-1.3l1.6-1l5.6-6.1l1.8-2.5l0.5-2.2l0.1-4.6l-0.6-8.1l0.8-2l3-3.8l-20.4-22.3l-1.9-3.6l-4.6-11.6L543392.5-7617.1"}), 
+							React.createElement("path", {className: "st0 marsiling-yew-tee-grc", d: "M542934.8-7399.4L542934.8-7399.4l10,2.1l8.1,0.4l9.5-0.5l5.5-0.4l3.6,0.2l3.4,0.7l-1.1-5.5l-0.7-5.8v-4.2    l0.4-3.6l3.1-12.6l2.5-6.8l7.2-19.7l1.6-10.1l1.4-11l-0.2-5.7l-0.9-4.1l-3-6.8l-1.8-5.4l-0.3-6.4l-0.4-6.6l0.9-7.3l3.4-8l3-5.3    l1.9-3.7l2.2-2.6l1.2-0.8l5.7-2.4l4.4-0.8l5.8-2.2l6.6-3.7l6.8-5.8l-4.4-3.1l-1.6-2.4l-0.8-3.5l-2.1-14.6l-1.3-11.4l-0.1-3.7    l-3.1-5.7l-0.4-2.8l0.6-2.1l4.1-3l4-4l1.9-6.2l-5.1,0.1l-17.5-1l-4.1,0.4l-4.9-0.3l-2-0.7l-5.9,0.3l-3.9,0.4l-0.4,1l-3.1,0.2    l-2.8,2.5l-2.2,0.9l-3.7,0.6l-3.1-1.1l-1.6,0.7l-3.2,2.7l-3.4-2.2l-6.3-3l-3.9-2.3l-3.2-1.3l-0.6-2.3l-10-4.4l-4.4-2.7l-3.8,1    l-2.4,2.9l-1.6,2.9l-10.8,0.8l0.2,9.2l-0.3,8.6l0.4,6.5l-1.4,71.2l10.2,32.2l0.9,5.1l-0.5,5.5l-2.1,10.5l-0.4,4.1l1.5,5.1l1.1,3.3    l4.6,7.3l5.8,3.2l9.5,3.5l-6.6,7.8l-3.6,5.6l-2.1,6.3l-1.1,6.5l-2.3,19.8L542934.8-7399.4"}), 
+							React.createElement("path", {className: "st0 tanjong-pagar-grc", d: "M543505.2-6948.9L543505.2-6948.9l3.4-4.2l-29.4-31.6l-12.2,6.1l-9.1,13.1l-10.4-28.6l-9-15.7l0.5-21    l-5.8-13.8l-12.7,8.5l-28.3,9l-16.2-5.8l-8.4,0.4l-8,3.1l1.1,10.6l-7,16.8l51.8,17.9l9.1,8.8l10,13.4l26.9,12.8l8.1,4.7l26.6,25.4    L543505.2-6948.9"}), 
+							React.createElement("path", {className: "st0 marsiling-yew-tee-grc", d: "M542974.9-7397L542974.9-7397l-3.4-0.7l-6.8-0.1l-10.6,0.7l-9.4-0.2l-9.1-1.8l-9.1-0.2l-5.1-0.1l-4.5,9.8    l-8.3,15.2l-1.4,5.8l0.3,7.6l2.2,6l5.1,7.7l13.7-10.3l6.8-3.1l6.6-1.7l9.2-0.6l9.3,1.3l20.3,3.8l4,0.2l-1.4-4.1l-3.3-12.9    l-1.7-11.1l0.2-4.1l-2.4-4.2L542974.9-7397"}), 
+							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543662.9-7308L543662.9-7308l-0.1,13.4l0.9,7.7l2.8,4.3l-1.2,8.3l4.3,3.7l2.4-3.4l3.4-4.2l5.5-5.4l6-4.8    l6.4-3.5l3.4-1.4l9.4-2.2l11.6,0.3l6.2,2.2l2.6-4.7l0.2-3.9l0.9-7.3l-4.8-0.8l-5.1-1.8l-11.4-0.6l-9.3-0.7l-3-1.9l-10.1-7.7    l-9.6,12.1l-2.6,1.2l-3.8,0.8L543662.9-7308"})
+						)
+					)
+				)
+			) 
+		}
+	});
+	
+	module.exports = SingaporeMap;
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(228);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(217)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./ConstituencyInfo.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./ConstituencyInfo.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(216)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".vote-bar {\n\theight: 30px;\n}\n\n.vote-btn {\n\tdisplay: block;\n\tmargin: auto;\n}\n\n.division-info {\n\ttext-align: center;\n}\n\n.constituency-name {\n\tfont-size: 6vw;\n\tmargin-bottom: 0;\n  margin-top: 10px;\n}\n\n.constituency-details {\n\tfont-size: 2vw;\n}\n\n.constituency-map {\n\twidth: 70%;\n  margin-top: -5%;\n}\n\n.constituency-map .st0 {\n\tfill:#cccccc;\n\tstroke:#ffffff;\n\topacity: 0.8;\n\tstroke-width:1.2191;\n}\n\n.constituency-map .st0.highlight-map {\n\tfill: tomato;\n\topacity: 1.0;\n}\n\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var Ballot = React.createClass({displayName: "Ballot",
+		render: function() {
+			return (
+				React.createElement("p", null, "Ballot")
+			);
+		}
+	});
+	
+	module.exports = Ballot;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var ElectionResults = React.createClass({displayName: "ElectionResults",
+		render: function() {
+			return (
+				React.createElement("p", null, "election results")
+			);
+		}
+	});
+	
+	module.exports = ElectionResults;
 
 /***/ }
 /******/ ]);
