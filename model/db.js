@@ -1,2 +1,2 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/ge2015');
+mongoose.connect('mongodb://muneer:letsdothis@ds035543.mongolab.com:35543/ge2015');
