@@ -1,5 +1,5 @@
 var React = require('react');
-var { State } = require('react-router');
+var { State, Navigation } = require('react-router');
 var ConstituencyStore = require('../stores/ConstituencyStore.js');
 var ConstituencyActionCreators = require('../actions/ConstituencyActionCreators.js');
 var Party = require('./Party.js');
@@ -14,7 +14,7 @@ function getFromConstituencyStore() {
 
 var ConstituencyInfo = React.createClass({
 
-	mixins: [State],
+	mixins: [State, Navigation],
 
 	getInitialState: function() {
 		return getFromConstituencyStore();
@@ -75,7 +75,7 @@ var ConstituencyInfo = React.createClass({
 				</div>
 				<div className="row vote-bar">
 					<div className="twelve columns">
-						<button className="vote-btn">Vote</button>
+						<a className="vote-btn" href={this.makeHref("ballot", {name: this._getDivisionName()})}>Vote</a>
 					</div>
 				</div>
 			</div>

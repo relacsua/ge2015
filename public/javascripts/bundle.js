@@ -24184,7 +24184,7 @@
 	 * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors
 	 * @license   Licensed under MIT license
 	 *            See https://raw.githubusercontent.com/tildeio/rsvp.js/master/LICENSE
-	 * @version   3.0.21
+	 * @version   3.1.0
 	 */
 	
 	(function() {
@@ -24415,7 +24415,7 @@
 	        @param {*} options optional value to be passed to any event handlers for
 	        the given `eventName`
 	      */
-	      'trigger': function(eventName, options) {
+	      'trigger': function(eventName, options, label) {
 	        var allCallbacks = lib$rsvp$events$$callbacksFor(this), callbacks, callback;
 	
 	        if (callbacks = allCallbacks[eventName]) {
@@ -24423,7 +24423,7 @@
 	          for (var i=0; i<callbacks.length; i++) {
 	            callback = callbacks[i];
 	
-	            callback(options);
+	            callback(options, label);
 	          }
 	        }
 	      }
@@ -24957,7 +24957,7 @@
 	        var promise = this;
 	        lib$rsvp$config$$config.after(function() {
 	          if (promise._onError) {
-	            lib$rsvp$config$$config['trigger']('error', reason);
+	            lib$rsvp$config$$config['trigger']('error', reason, promise._label);
 	          }
 	        });
 	      },
@@ -26320,7 +26320,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var $__0=    __webpack_require__(158),State=$__0.State;
+	var $__0=     __webpack_require__(158),State=$__0.State,Navigation=$__0.Navigation;
 	var ConstituencyStore = __webpack_require__(221);
 	var ConstituencyActionCreators = __webpack_require__(200);
 	var Party = __webpack_require__(224);
@@ -26335,7 +26335,7 @@
 	
 	var ConstituencyInfo = React.createClass({displayName: "ConstituencyInfo",
 	
-		mixins: [State],
+		mixins: [State, Navigation],
 	
 		getInitialState: function() {
 			return getFromConstituencyStore();
@@ -26396,7 +26396,7 @@
 					), 
 					React.createElement("div", {className: "row vote-bar"}, 
 						React.createElement("div", {className: "twelve columns"}, 
-							React.createElement("button", {className: "vote-btn"}, "Vote")
+							React.createElement("a", {className: "vote-btn", href: this.makeHref("ballot", {name: this._getDivisionName()})}, "Vote")
 						)
 					)
 				)
@@ -27065,11 +27065,23 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var $__0=    __webpack_require__(158),State=$__0.State;
+	var BallotPaper = __webpack_require__(231);
+	__webpack_require__(232);
 	
 	var Ballot = React.createClass({displayName: "Ballot",
+	
+	  mixins: [State],
+	
+	  _getDivisionName: function() {
+	    return this.getParams().name;
+	  },
+	
 		render: function() {
 			return (
-				React.createElement("p", null, "Ballot")
+	      React.createElement("div", {className: "container"}, 
+				 React.createElement(BallotPaper, {name: this._getDivisionName()})
+	      )
 			);
 		}
 	});
@@ -27091,6 +27103,66 @@
 	});
 	
 	module.exports = ElectionResults;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	__webpack_require__(232);
+	
+	var BallotPaper = React.createClass({displayName: "BallotPaper",
+	  render: function() {
+	    return(
+	      React.createElement("div", {className: "ballot-paper"}, 
+	        React.createElement("h1", {className: "text-center"}, "Unofficial General Elections"), 
+	        React.createElement("h3", {className: "text-center text-italic"}, this.props.name)
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = BallotPaper;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(233);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(217)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./Ballot.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./Ballot.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(216)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "html,body {\n  height:100%;\n  margin:0;\n}\n\n.ballot-paper {\n  width: 100%;\n  margin-top: 80px;\n  padding: 20px;\n  border: 2px solid #E1E1E1;\n  border-radius: 4px\n}\n\n.text-center {\n  text-align: center;\n}\n\n.text-italic {\n  font-style: italic;\n}", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);
