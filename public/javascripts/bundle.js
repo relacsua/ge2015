@@ -23593,8 +23593,8 @@
 			React.createElement(Route, {name: "form", path: "/", handler: __webpack_require__(199)}, 
 				React.createElement(Route, {name: "info", path: "/division/:name", handler: __webpack_require__(220)})
 			), 
-			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(229)}), 
-			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(230)})
+			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(231)}), 
+			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(235)})
 		)
 	);
 	
@@ -26324,8 +26324,8 @@
 	var ConstituencyStore = __webpack_require__(221);
 	var ConstituencyActionCreators = __webpack_require__(200);
 	var Party = __webpack_require__(224);
-	var SingaporeMap = __webpack_require__(226);
-	__webpack_require__(227);
+	var SingaporeMap = __webpack_require__(228);
+	__webpack_require__(229);
 	
 	function getFromConstituencyStore() {
 		return {
@@ -26388,7 +26388,7 @@
 							React.createElement("div", {className: "row"}, 
 								
 									data.parties.map(function(party) {
-										return React.createElement(Party, {key: party._id, name: party.name, image: party.image, candidates: party.candidates})
+										return React.createElement(Party, {key: party._id, name: party.name, image: party.image, candidates: party.candidates, status: party.status})
 									})
 								
 							)
@@ -26852,26 +26852,23 @@
 			});
 	
 			return (
-				React.createElement("div", null, 
+				React.createElement("div", {className: "candidate-panel u-cf"}, 
 					candidates
 				)
-			);
+			)
 		},
 	
 	
 		render: function() {
 			return (
-				React.createElement("div", {className: "six columns"}, 
-					React.createElement("div", {className: "party-card"}, 
-						React.createElement("div", {className: "party-card-header"}, 
-							React.createElement("img", {className: "party-image", src: this.props.image}), 
-							React.createElement("div", {className: "party-name"}, 
-								React.createElement("p", null, this.props.name)
-							)
-						), 
-						React.createElement("div", {className: "party-card-content"}, 
-							this.renderCandidates()
-						)
+				React.createElement("div", {className: "twelve columns"}, 
+					React.createElement("div", {className: "party-header u-cf"}, 
+						React.createElement("img", {className: "party-image", src: this.props.image}), 
+						React.createElement("h3", null, this.props.name), 
+						React.createElement("span", null, "(", this.props.status, ")")
+					), 
+					React.createElement("div", {className: "party-content u-cf"}, 
+						this.renderCandidates()
 					)
 				)
 			);
@@ -26886,13 +26883,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	__webpack_require__(226);
 	
 	var Candidate = React.createClass({displayName: "Candidate",
 		render: function() {
 			return (
-				React.createElement("div", null, 
-					React.createElement("img", {src: this.props.image, height: "80", width: "auto"}), 
-					React.createElement("p", null, "Name: ", this.props.name)
+				React.createElement("div", {className: "candidate"}, 
+					React.createElement("img", {src: this.props.image}), 
+					React.createElement("span", null, this.props.name)
 				)
 			);
 		}
@@ -26904,8 +26902,48 @@
 /* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(227);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(217)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./Party.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./Party.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(216)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".party-header {\n\twidth: 100%;\n\tborder-bottom: 1px dashed #aaa;\n  padding-bottom: 10px;\n}\n\n.party-header h3 {\n\tfloat: left;\n  margin: 0;\n  line-height: 50px;\n  padding: 0 10px\n}\n\n.party-header span {\n\tline-height: 51px;\n}\n\n.party-image {\n  width: 50px;\n  float: left;\n  display: inline-block;\n}\n\n.party-content {\n\twidth: 100%;\n\tmargin: 50px 0;\n}\n\n.candidate {\n\tfloat: left;\n  text-align: center;\n  padding: 0 20px;\n}\n\n.candidate-panel {\n\tmargin: auto;\n}\n\n.candidate img {\n\twidth: 60px;\n\theight: 60px;\n \tborder-radius: 50%;\n}\n\n.candidate span {\n  display: block;\n  font-size: 14px;\n  padding-top: 15px;\n  font-weight: 300;\n}", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
-	__webpack_require__(227);
+	__webpack_require__(229);
 	
 	var SingaporeMap = React.createClass({displayName: "SingaporeMap",
 	
@@ -27021,13 +27059,13 @@
 	module.exports = SingaporeMap;
 
 /***/ },
-/* 227 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(228);
+	var content = __webpack_require__(230);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(217)(content, {});
@@ -27047,7 +27085,7 @@
 	}
 
 /***/ },
-/* 228 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(216)();
@@ -27061,13 +27099,13 @@
 
 
 /***/ },
-/* 229 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var $__0=    __webpack_require__(158),State=$__0.State;
-	var BallotPaper = __webpack_require__(231);
-	__webpack_require__(232);
+	var BallotPaper = __webpack_require__(232);
+	__webpack_require__(233);
 	
 	var Ballot = React.createClass({displayName: "Ballot",
 	
@@ -27089,27 +27127,11 @@
 	module.exports = Ballot;
 
 /***/ },
-/* 230 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	
-	var ElectionResults = React.createClass({displayName: "ElectionResults",
-		render: function() {
-			return (
-				React.createElement("p", null, "election results")
-			);
-		}
-	});
-	
-	module.exports = ElectionResults;
-
-/***/ },
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	__webpack_require__(232);
+	__webpack_require__(233);
 	
 	var BallotPaper = React.createClass({displayName: "BallotPaper",
 	  render: function() {
@@ -27125,13 +27147,13 @@
 	module.exports = BallotPaper;
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(233);
+	var content = __webpack_require__(234);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(217)(content, {});
@@ -27151,7 +27173,7 @@
 	}
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(216)();
@@ -27163,6 +27185,22 @@
 	
 	// exports
 
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var ElectionResults = React.createClass({displayName: "ElectionResults",
+		render: function() {
+			return (
+				React.createElement("p", null, "election results")
+			);
+		}
+	});
+	
+	module.exports = ElectionResults;
 
 /***/ }
 /******/ ]);

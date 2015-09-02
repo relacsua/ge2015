@@ -67,7 +67,7 @@ var ConstituencyInfo = React.createClass({
 						<div className="row">
 							{
 								data.parties.map(function(party) {
-									return <Party key={party._id} name={party.name} image={party.image} candidates={party.candidates} />
+									return <Party key={party._id} name={party.name} image={party.image} candidates={party.candidates} status={party.status} />
 								})
 							}
 						</div>

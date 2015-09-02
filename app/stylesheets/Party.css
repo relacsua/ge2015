@@ -1,10 +1,50 @@
-.party-card {
-
+.party-header {
+	width: 100%;
+	border-bottom: 1px dashed #aaa;
+  padding-bottom: 10px;
 }
 
-.party-name {
+.party-header h3 {
+	float: left;
+  margin: 0;
+  line-height: 50px;
+  padding: 0 10px
+}
+
+.party-header span {
+	line-height: 51px;
 }
 
 .party-image {
+  width: 50px;
+  float: left;
+  display: inline-block;
+}
 
+.party-content {
+	width: 100%;
+	margin: 50px 0;
+}
+
+.candidate {
+	float: left;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.candidate-panel {
+	margin: auto;
+}
+
+.candidate img {
+	width: 60px;
+	height: 60px;
+ 	border-radius: 50%;
+}
+
+.candidate span {
+  display: block;
+  font-size: 14px;
+  padding-top: 15px;
+  font-weight: 300;
 }
