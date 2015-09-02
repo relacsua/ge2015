@@ -1,11 +1,12 @@
 var React = require('react');
+require('../stylesheets/Party.css');
 
 var Candidate = React.createClass({
 	render: function() {
 		return (
-			<div>
-				<img src={this.props.image} height='80' width='auto' />
-				<p>Name: {this.props.name}</p>
+			<div className="candidate">
+				<img src={this.props.image} />
+				<span>{this.props.name}</span>
 			</div>
 		);
 	}

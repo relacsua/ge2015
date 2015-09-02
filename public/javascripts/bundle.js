@@ -26388,7 +26388,7 @@
 							React.createElement("div", {className: "row"}, 
 								
 									data.parties.map(function(party) {
-										return React.createElement(Party, {key: party._id, name: party.name, image: party.image, candidates: party.candidates})
+										return React.createElement(Party, {key: party._id, name: party.name, image: party.image, candidates: party.candidates, status: party.status})
 									})
 								
 							)
@@ -26852,26 +26852,23 @@
 			});
 	
 			return (
-				React.createElement("div", null, 
+				React.createElement("div", {className: "candidate-panel u-cf"}, 
 					candidates
 				)
-			);
+			)
 		},
 	
 	
 		render: function() {
 			return (
-				React.createElement("div", {className: "six columns"}, 
-					React.createElement("div", {className: "party-card"}, 
-						React.createElement("div", {className: "party-card-header"}, 
-							React.createElement("img", {className: "party-image", src: this.props.image}), 
-							React.createElement("div", {className: "party-name"}, 
-								React.createElement("p", null, this.props.name)
-							)
-						), 
-						React.createElement("div", {className: "party-card-content"}, 
-							this.renderCandidates()
-						)
+				React.createElement("div", {className: "twelve columns"}, 
+					React.createElement("div", {className: "party-header u-cf"}, 
+						React.createElement("img", {className: "party-image", src: this.props.image}), 
+						React.createElement("h3", null, this.props.name), 
+						React.createElement("span", null, "(", this.props.status, ")")
+					), 
+					React.createElement("div", {className: "party-content u-cf"}, 
+						this.renderCandidates()
 					)
 				)
 			);
@@ -26886,13 +26883,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	__webpack_require__(231);
 	
 	var Candidate = React.createClass({displayName: "Candidate",
 		render: function() {
 			return (
-				React.createElement("div", null, 
-					React.createElement("img", {src: this.props.image, height: "80", width: "auto"}), 
-					React.createElement("p", null, "Name: ", this.props.name)
+				React.createElement("div", {className: "candidate"}, 
+					React.createElement("img", {src: this.props.image}), 
+					React.createElement("span", null, this.props.name)
 				)
 			);
 		}
@@ -27091,6 +27089,46 @@
 	});
 	
 	module.exports = ElectionResults;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(232);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(217)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./Party.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./Party.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(216)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".party-header {\n\twidth: 100%;\n\tborder-bottom: 1px dashed #aaa;\n  padding-bottom: 10px;\n}\n\n.party-header h3 {\n\tfloat: left;\n  margin: 0;\n  line-height: 50px;\n  padding: 0 10px\n}\n\n.party-header span {\n\tline-height: 51px;\n}\n\n.party-image {\n  width: 50px;\n  float: left;\n  display: inline-block;\n}\n\n.party-content {\n\twidth: 100%;\n\tmargin: 50px 0;\n}\n\n.candidate {\n\tfloat: left;\n  text-align: center;\n  padding: 0 20px;\n}\n\n.candidate-panel {\n\tmargin: auto;\n}\n\n.candidate img {\n\twidth: 60px;\n\theight: 60px;\n \tborder-radius: 50%;\n}\n\n.candidate span {\n  display: block;\n  font-size: 14px;\n  padding-top: 15px;\n  font-weight: 300;\n}", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);

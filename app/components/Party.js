@@ -10,26 +10,23 @@ var Party = React.createClass({
 		});
 
 		return (
-			<div>
+			<div className="candidate-panel u-cf">
 				{candidates}
 			</div>
-		);
+		)
 	},
 
 
 	render: function() {
 		return (
-			<div className="six columns">
-				<div className="party-card">
-					<div className="party-card-header">
-						<img className="party-image" src={this.props.image} />
-						<div className="party-name">
-							<p>{this.props.name}</p>
-						</div>
-					</div>
-					<div className="party-card-content">
-						{this.renderCandidates()}
-					</div>
+			<div className="twelve columns">
+				<div className="party-header u-cf">
+					<img className="party-image" src={this.props.image} />
+					<h3>{this.props.name}</h3>
+					<span>({this.props.status})</span>
+				</div>
+				<div className="party-content u-cf">
+					{this.renderCandidates()}
 				</div>
 			</div>
 		);
