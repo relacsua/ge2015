@@ -94,6 +94,7 @@ html,body {
 
 .candidate-checkbox-container {
   padding-top: 10%;
+  position: relative;
 }
 
 .cast-vote-container {
