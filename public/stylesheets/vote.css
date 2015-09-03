@@ -11,6 +11,10 @@ html,body {
   font-style: italic;
 }
 
+.text-bold {
+  font-weight: 400;
+}
+
 .ballot-paper {
   width: 100%;
   margin-top: 40px;
