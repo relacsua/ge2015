@@ -23676,8 +23676,35 @@
 							React.createElement("span", {className: "block-text"}, "I am from"), 
 							React.createElement("select", null, 
 								React.createElement("option", {value: ""}, "constituency"), 
+								React.createElement("option", {value: "Aljunied GRC"}, "Aljunied GRC"), 
 								React.createElement("option", {value: "Ang Mo Kio GRC"}, "Ang Mo Kio GRC"), 
-								React.createElement("option", {value: "Marsiling-Yew Tee GRC"}, "Marsiling-Yew Tee GRC")
+								React.createElement("option", {value: "Bishan-Toa Payoh GRC"}, "Bishan-Toa Payoh GRC"), 
+								React.createElement("option", {value: "Bukit Batok SMC"}, "Bukit Batok SMC"), 
+								React.createElement("option", {value: "Bukit Panjang SMC"}, "Bukit Panjang SMC"), 
+								React.createElement("option", {value: "Choa Chu Kang GRC"}, "Choa Chu Kang GRC"), 
+								React.createElement("option", {value: "East Coast GRC"}, "East Coast GRC"), 
+								React.createElement("option", {value: "Fengshan SMC"}, "Fengshan SMC"), 
+								React.createElement("option", {value: "Holland-Bukit Timah GRC"}, "Holland-Bukit Timah GRC"), 
+								React.createElement("option", {value: "Hong Kah North SMC"}, "Hong Kah North SMC"), 
+								React.createElement("option", {value: "Hougang SMC"}, "Hougang SMC"), 
+								React.createElement("option", {value: "Jalan Besar GRC"}, "Jalan Besar GRC"), 
+								React.createElement("option", {value: "Jurong GRC"}, "Jurong GRC"), 
+								React.createElement("option", {value: "MacPherson SMC"}, "MacPherson SMC"), 
+								React.createElement("option", {value: "Marine Parade GRC"}, "Marine Parade GRC"), 
+								React.createElement("option", {value: "Marsiling-Yew Tee GRC"}, "Marsiling-Yew Tee GRC"), 
+								React.createElement("option", {value: "Mountbatten SMC"}, "Mountbatten SMC"), 
+								React.createElement("option", {value: "Nee Soon GRC"}, "Nee Soon GRC"), 
+								React.createElement("option", {value: "Pasir Ris-Punggol GRC"}, "Pasir Ris-Punggol GRC"), 
+								React.createElement("option", {value: "Pioneer SMC"}, "Pioneer SMC"), 
+								React.createElement("option", {value: "Potong Pasir SMC"}, "Potong Pasir SMC"), 
+								React.createElement("option", {value: "Punggol East SMC"}, "Punggol East SMC"), 
+								React.createElement("option", {value: "Radin Mas SMC"}, "Radin Mas SMC"), 
+								React.createElement("option", {value: "Sembawang GRC"}, "Sembawang GRC"), 
+								React.createElement("option", {value: "Sengkang West SMC"}, "Sengkang West SMC"), 
+								React.createElement("option", {value: "Tampines GRC"}, "Tampines GRC"), 
+								React.createElement("option", {value: "Tanjong Pagar GRC"}, "Tanjong Pagar GRC"), 
+								React.createElement("option", {value: "West Coast GRC"}, "West Coast GRC"), 
+								React.createElement("option", {value: "Yuhua SMC"}, "Yuhua SMC")
 							), 
 							React.createElement("span", {className: "block-text"}, "or"), 
 							React.createElement("input", {type: "text", value: "", placeholder: "postal code", "data-subline": "For example: <em>Singapore 271030</em> or <em>131 Jalan Bukit Merah</em>"}), 
@@ -26309,7 +26336,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n\tfont-family: \"Raleway\", \"HelveticaNeue\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.block-text {\n\tdisplay: block;\n\ttext-align: center; \n}\n\n.nl-form {\n\tmargin-top: 0;\n\tdisplay: table-cell;\n  text-align: center;\n  vertical-align: middle;\n}\n\n.nl-field {\n\tdisplay: block;\n\ttext-align: center\n}\n\n.nl-field ul {\n\tbackground: #C77966;\n\tleft: 50%;\n\t-webkit-transform: translate(-50%,-40%) scale(0.8);\n\t-moz-transform: translate(-50%,-40%) scale(0.8);\n\ttransform: translate(-50%,-40%) scale(0.8);\n}\n\n.nl-field.nl-field-open ul {\n\n\t-webkit-transform: translate(-50%,-50%) scale(1);\n\t-moz-transform: translate(-50%,-50%) scale(1);\n\ttransform: translate(-50%,-50%) scale(1);\n}\n\n.nl-dd ul li.nl-dd-checked {\n    color: #703030;\n}\n\n.nl-submit-wrap {\n\ttext-align: center;\n}\n\n.content:nth-child(1) {\n\tbackground-color: #7E827A;\n  color: #2F343B;\n}\n\n.content:nth-child(1) .container {\n\theight: 100%;\n\tmin-height: 100%;\n\tdisplay: table;\n}\n\n.nl-field-toggle, .nl-form input, .nl-form select {\n\tcolor: #E3CDA4;\n  border-bottom-color: #E3CDA4;\n}\n\n.nl-form .nl-submit {\n\tbackground: #C77966;\n}\n\n.nl-submit:before {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover,\n.no-touch .nl-form .nl-submit:active {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover:before {\n\tbackground: #C77966;\n}\n", ""]);
+	exports.push([module.id, "body {\n\tfont-family: \"Raleway\", \"HelveticaNeue\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.block-text {\n\tdisplay: block;\n\ttext-align: center; \n}\n\n.nl-form {\n\tmargin-top: 0;\n\tdisplay: table-cell;\n  text-align: center;\n  vertical-align: middle;\n}\n\n.nl-field {\n\tdisplay: block;\n\ttext-align: center\n}\n\n.nl-field ul {\n\tbackground: #C77966;\n\tleft: 50%;\n\t-webkit-transform: translate(-50%,-40%) scale(0.8);\n\t-moz-transform: translate(-50%,-40%) scale(0.8);\n\ttransform: translate(-50%,-40%) scale(0.8);\n\tmax-height: 300px;\n  overflow: scroll\n}\n\n.nl-field.nl-field-open ul {\n\n\t-webkit-transform: translate(-50%,-50%) scale(1);\n\t-moz-transform: translate(-50%,-50%) scale(1);\n\ttransform: translate(-50%,-50%) scale(1);\n}\n\n.nl-dd ul li.nl-dd-checked {\n    color: #703030;\n}\n\n.nl-submit-wrap {\n\ttext-align: center;\n}\n\n.content:nth-child(1) {\n\tbackground-color: #7E827A;\n  color: #2F343B;\n}\n\n.content:nth-child(1) .container {\n\theight: 100%;\n\tmin-height: 100%;\n\tdisplay: table;\n}\n\n.nl-field-toggle, .nl-form input, .nl-form select {\n\tcolor: #E3CDA4;\n  border-bottom-color: #E3CDA4;\n}\n\n.nl-form .nl-submit {\n\tbackground: #C77966;\n}\n\n.nl-submit:before {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover,\n.no-touch .nl-form .nl-submit:active {\n\tbackground: #703030;\n}\n\n.no-touch .nl-form .nl-submit:hover:before {\n\tbackground: #C77966;\n}\n", ""]);
 
 	// exports
 
@@ -27006,7 +27033,7 @@
 							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543377.9-7381.1L543377.9-7381.1l1.9,3.7l10.4,20.5l1.8,2.9l4.8,6.5l5,4.7l-7.4,9.3l12.4,11.5l-3.4,2.7    l-3.8,1.9l8.8,13.1l4.6,5.2l2.2,1.4l2,0.9l5.6,0.3l13.1-0.3l6.9-0.8l0.4,5.6l-8.4,0.5l-2.8,11.3l4.6,8.3l8.9,1l-1.8,14.3l-9.6-1.2    l-9.1-0.7l-4.1,0.2l-6,2.2l-2.9,2.2l-2.2,3.5l-3.4,8.8l22.2,7.6l8.2,2.8l8.1,1.4l2.2-5.5l2.7-4.2l6.8-8.9l1.4-6.1l4.1,0.6    l10.1,0.7l4.1-0.1l4-1l-5.9-12l-1.6-5.4l-1.1-7.9l-1.4-14.6l18.3,2.2l0.8-40.4l-8.5-8.5l2.6-35.7l-4.7,0l-4.2,1.1l-7.3,2.6l-6.6,4    l-14.4,10.3l-3.1-5.7l-6.9-15.2l-6.6-15.2L543377.9-7381.1"}), 
 							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543445.1-7229.8L543445.1-7229.8l12.2,0.8l5.6,1.1l6,2l3.8,1.5l3.3,1.7l12.2,9.1l6.1,4.8l3.5,3.4l3.9,5.8    l4,7.9l2.3,2.9l2.1,1.8l2.1,1.2l5.6,2.1l1-6.6l1.7-6l4.7-13.5l9.2-25.8l3.4-9.7l1.5-4.9l0.1-2.6l-0.4-3.8l-4.9,0.9l-5.2,0.5    l-4.9,0.5l-6.2-0.2v5.9l-0.9,5.1l-2,5.5l-1.8,4.9l-13.2-4.4l-7.8,3.4l-11.5-19.9l-4,1l-4.6,0.1l-13.7-1.3l-1.4,6.1l-6.8,8.9    l-2.7,4.2L543445.1-7229.8"}), 
 							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543506.2-7289.9L543506.2-7289.9l0.2,2.7l0.5,2.6l1.5,2.9l1.5,2.1l4.6,6.6l1.4,2.6l0.7,2.4l0.9,5.5l0.3,7.7    l6.2,0.2l4.9-0.5l10.1-1.4l17.6-5.6l5.4-2.4l4.5-3.1l2.9-1.2l3.1-0.7l7.6,0.3l6.9,1.1l8.1,2.2l13.9,3.5l11.2,3.7l2-13l1.1-13.5    l-0.2-9.3l-1.6-11.8l44.9-2l5.1-1l2.6-1.2l2.1-2.5l16.7-20.8l3.2-5.2l2.2-7.4l-5.6-1.5l-5.6-2.6l-36.2-22.4l-3.6-1.5l0.2,4.4    l0.1,4.4l-0.8,4l-4,6.2l-0.4,1.2l-8.3-1.9l-5.8-0.3l-0.3,1.8l-1.1-0.5l-1.1-0.3l-2.5-0.3l-5.4,2.3l-2.4-6.2l-0.4-5.4l0.1-2.3    l1.9-11.6l-0.2-11.7l-14.8-0.5l-2.1,10.2l-5.8,8.8l-13.5,14.3l-0.7,2.4l20.6,4.4l13.6,9.2l5.1,4.9l1.7,2.5l1,2.5l0.6,3.3l0.1,2.8    l-0.7,6.8l-9.4-2l-26.2-4.8l-2.7,13.5l-1.3,7.6l-17.8,0.8l-4.5,0.5l-4.3,1.1l-29.4,8.1l-9.9,2.9l-2.4,0.7l-2.5,0.4    L543506.2-7289.9"}), 
-							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543647.4-7374.3L543647.4-7374.3l3.6,1.5l36.2,22.4l5.6,2.6l5.6,1.5l24.2-70.3l-7.4-1.2l-6.5-0.8l-16.1-2.3    l-14.4-1.9l-14.8-1.1l-45.8,0.2l-0.2,6.6l-0.2,8.6l-0.2,2.2l-0.8,6.1l-0.3,2.5l0.4,2.3l0.9,4.7l0.2,3.4v8.3l-2,13.9l0.4,5.4    l2.4,6.2l5.4-2.3l2.5,0.3l1.1,0.3l1.1,0.5l0.3-1.8l5.8,0.3l8.3,1.9l0.4-1.2l4-6.2l0.8-4L543647.4-7374.3"}), 
+							React.createElement("path", {className: "st0 sengkang-west-smc", d: "M543647.4-7374.3L543647.4-7374.3l3.6,1.5l36.2,22.4l5.6,2.6l5.6,1.5l24.2-70.3l-7.4-1.2l-6.5-0.8l-16.1-2.3    l-14.4-1.9l-14.8-1.1l-45.8,0.2l-0.2,6.6l-0.2,8.6l-0.2,2.2l-0.8,6.1l-0.3,2.5l0.4,2.3l0.9,4.7l0.2,3.4v8.3l-2,13.9l0.4,5.4    l2.4,6.2l5.4-2.3l2.5,0.3l1.1,0.3l1.1,0.5l0.3-1.8l5.8,0.3l8.3,1.9l0.4-1.2l4-6.2l0.8-4L543647.4-7374.3"}), 
 							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543446.5-7358.6L543446.5-7358.6l20.9-14.4l11.5-3.7l4.7,0l-2.6,35.7l8.5,8.5l-0.8,40.4l-18.3-2.2l2.5,22.5    l1.6,5.4l17.4,31.9l7.8-3.4l13.2,4.4l1.8-4.9l2.8-9.2l0.1-7.4l-0.3-7.7l-1.6-7.9l-8.9-14.2l-0.7-5.2l5.4,0l4.9-1.1l43.7-12.1    l22.3-1.4l4-21.1l35.6,6.8l0.1-12.9l-2.7-5l-5.1-4.9l-13.6-9.2l-20.6-4.4l0.7-2.4l14.6-15.2l4.9-8.6l1.8-9.4l14.8,0.5l-1.2-7    l1.8-26.1l57,0.7l0.2-6.5l2.4-5.6l7.3-7.2l10.6-5l13.8-13.8l7.3-7.9l6.1-8.8l6.4-16.1l7.6-15.3l2.4-6.2l-6.2-4.4l-15.2-11    l-73.2-46.1l-9.4-5.5l-6.8-1.5l-9.4-0.7l-31.7-17.7l-49.2,62.8l-39.8,58.3l-7.2,7l-25.6,23.7l-6.5,2.6l-19.8,9.9l-13.2,3.4    l-3.9,2.9l-5.6,5.3l-0.2,8l4.2,7.9l5.8,6.2l4.1,9.3l13.5,29.5L543446.5-7358.6"}), 
 							React.createElement("path", {className: "st0 ang-mo-kio-grc", d: "M543621.6-7306.3L543621.6-7306.3l1.6,11.8l0.2,9.3l-1.1,13.5l-2,13l5.1,0.5l13.6,2.2l28.9,6.1l6.6,1.5    l0.8-2.7l1.2-2.2l2.4-2.2l4-3.2l1.1-1.9l1.4-2.5l-2.1-2l-1.8-1.4l-1.8-0.3l-4.8-1.3l-2.7-1l-2.6-1.8l-4.3-3.7l0.8-4.5l0.4-3.8    l-2.8-4.3l-0.5-4.4l-0.4-3.4l0.1-2.8l-0.2-4.7l0.2-5.8L543621.6-7306.3"}), 
 							React.createElement("path", {className: "st0 pasir-ris-punggol-grc", d: "M543706.2-7312.1L543706.2-7312.1l11.4,0.6l3.4,0.9l3.8,1.7l2.6,0.1l15-2.1l26.2-3.9l-0.6-3.7l0.1-3.9    l-13.1,2.3l-5.9,0.9l-3.4-0.5l-4.5-2.7l-6.3-5.3l-11.3-11.9l-3.8-3.6l-2.8-1.5l-3.4-1.5l-3.2-1.1l-1.5,0.1l-1.6,0.1l-9,1.2    l-2.2,7.4l-2.6,4.1l-9.8,12.3l7.8,6l4.4,3.1l2.4,0.6L543706.2-7312.1"}), 

@@ -147,6 +147,7 @@
 			this.form.fldOpen = this.pos;
 			var self = this;
 			this.fld.className += ' nl-field-open';
+			document.body.style.overflow = 'hidden';
 		},
 		close : function( opt, idx ) {
 			if( !this.open ) {
@@ -155,7 +156,7 @@
 			this.open = false;
 			this.form.fldOpen = -1;
 			this.fld.className = this.fld.className.replace(/\b nl-field-open\b/,'');
-
+			document.body.style.overflow = 'scroll';
 			if( this.type === 'dropdown' ) {
 				if( opt ) {
 					// remove class nl-dd-checked from previous option
