@@ -65,7 +65,7 @@ var Ang_Mo_Kio_GRC = Division({
 			name: 'Gan Thiam Poh',
 			desc: ''
 		},{
-			image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/IntanAzuraBinteMokhtar.jpg',
+			image: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/IntanAzura.jpg',
 			name: 'Intan Azura Mokhtar',
 			desc: ''
 		},{

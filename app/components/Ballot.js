@@ -16,7 +16,7 @@ var Ballot = React.createClass({
       <div className="container">
 			 <BallotPaper name={this._getDivisionName()} />
 
-       <a className="facebook-btn" />
+       <a href="#"className="facebook-btn">Login with facebook</a>
       </div>
 		);
 	}

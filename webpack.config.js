@@ -1,12 +1,13 @@
 var path = require('path');
 
 module.exports = {
-    entry: "./app/App.js",
+    entry: {
+        main: "./app/App.js"
+    },
     output: {
         path: path.resolve(__dirname, './public/javascripts'),
-        filename: "bundle.js"
+        filename: "[name].bundle.js",
     },
-    devtool: "source-map",
     module: {
         loaders: [
             { test: /\.css$/, loader: "style!css" },

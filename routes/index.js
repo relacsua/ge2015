@@ -1,10 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var Division = require('../model/divisions.js');
 
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
   res.render('welcome');
+});
+
+router.get('/vote/:name', function(req, res){
+  var divisionName = decodeURI(req.params.name);
+    Division.findOne({divisionName: divisionName}, function(err, data) {
+    if(err)
+      res.status(500).render('500', {message: 'Internal Server Error'});
+    else
+      if(data) {
+        data['voters'] = null;
+        for(var i=0;i<data['parties'].length;i++) {
+          data['parties'][i].vote = null; // remove voting data
+        }
+        res.render('vote', {data: data});
+      }
+      else
+        res.status(404).render('404', {error: 'Constituency not found'});
+  });
 });
 
 router.get('/', function(req, res, next) {

@@ -75,7 +75,7 @@ var ConstituencyInfo = React.createClass({
 				</div>
 				<div className="row">
 					<div className="twelve columns vote-bar">
-						<a className="vote-btn" href={this.makeHref("ballot", {name: this._getDivisionName()})}>Vote for your party</a>
+						<a className="vote-btn" href={'/vote/' + this._getDivisionName()}>Vote for your party</a>
 					</div>
 				</div>
 			</div>

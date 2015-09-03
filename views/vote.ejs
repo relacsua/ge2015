@@ -1,0 +1,22 @@
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>#sg15 | Unofficial General Election 2015</title>
+	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/skeleton.css" />
+</head>
+<body>
+	<h1><%= data.divisionName %></h1>
+	<div>
+		<% for(var i=0; i<data.parties.length; i++) {%>
+		   <p><%= data.parties[i].name %>
+		   	<img src='<%= data.parties[i].image %>' />
+		   	<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
+		   		<p><%= data.parties[i].candidates[j].name %></p>
+		   		<img src='<%= data.parties[i].candidates[j].image %>' />
+		   	<% } %>
+		<% } %>
+	</div>
+</body>
+</html>

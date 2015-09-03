@@ -12,7 +12,7 @@ router.get('/division/:name', function(req,res) {
 			if(data) {
 				data['voters'] = null;
 				for(var i=0;i<data['parties'].length;i++) {
-					data['parties'][i].vote = null; // remove voting data
+					data['parties'][i].votes = null; // remove voting data
 				}
 				res.status(200).json(data);
 			}
