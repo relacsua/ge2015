@@ -97,27 +97,34 @@ html,body {
 }
 
 .cast-vote-container {
-  margin-top: 20px;
-  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+.cast-vote-container a {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 22px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .cast-vote-btn {
-
+  background: #fb8c00;
 }
 
 .facebook-btn {
     display: inline-block;
     background: #627aac url(facebook_small.png) left no-repeat;
-    padding: 5px 10px;
-    font-weight: bold;
-    font-size: 15px;
-    color: white;
-    text-decoration: none;
+
     font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-    line-height: 22px;
-    cursor: pointer;
-    border-radius: 2px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .facebook-btn:hover, .facebook-btn:focus{
