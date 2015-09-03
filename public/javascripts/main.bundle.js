@@ -23586,13 +23586,14 @@
 
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(158);
-	var $__0=     Router,DefaultRoute=$__0.DefaultRoute,Route=$__0.Route;
+	var $__0=      Router,DefaultRoute=$__0.DefaultRoute,Route=$__0.Route,Redirect=$__0.Redirect;
 
 	var routes = (
 		React.createElement(Route, {handler: __webpack_require__(198)}, 
 			React.createElement(Route, {name: "form", path: "/", handler: __webpack_require__(199)}, 
 				React.createElement(Route, {name: "info", path: "/division/:name", handler: __webpack_require__(220)})
-			)
+			), 
+			React.createElement(Redirect, {from: "/_=_", to: "/"})
 		)
 	);
 
@@ -27091,7 +27092,7 @@
 
 
 	// module
-	exports.push([module.id, ".vote-bar {\n  text-align: center;\n\tmargin: 20px 0;\n}\n\n.vote-btn {\n  display: inline-block;\n  text-decoration: none;\n  font-size: 30px;\n  font-weight: 900;\n  color: #ECF0F1;\n  background-color: #3498DB;\n  padding: 15px 100px;\n  -webkit-box-shadow: 0 5px 0 0 #2980B9;\n  box-shadow: 0 5px 0 0 #2980b9;\n  text-shadow: 0 1px 1px #4C4C4C;\n}\n\n.division-info {\n\ttext-align: center;\n}\n\n.constituency-name {\n\tfont-size: 6vw;\n\tmargin-bottom: 0;\n  margin-top: 10px;\n}\n\n.constituency-details {\n\tfont-size: 2vw;\n}\n\n.constituency-map {\n\twidth: 70%;\n  margin-top: -5%;\n}\n\n.constituency-map .st0 {\n\tfill:#cccccc;\n\tstroke:#ffffff;\n\topacity: 0.8;\n\tstroke-width:1.2191;\n}\n\n.constituency-map .st0.highlight-map {\n\tfill: tomato;\n\topacity: 1.0;\n}\n\n", ""]);
+	exports.push([module.id, ".vote-bar {\n  text-align: center;\n\tmargin: 20px 0;\n}\n\n.vote-btn:active {\n  webkit-box-shadow: 0 2px 0 0 #2980B9;\n  box-shadow: 0 2px 0 0 #2980b9;\n  -webkit-transform: translateY(3px);\n  -moz-transform: translateY(3px);\n  -o-transform: translateY(3px);\n  -ms-transform: translateY(3px);\n  transform: translateY(3px);\n}\n\n.vote-btn:hover {\n  opacity: 1.0;\n}\n\n.vote-btn {\n  display: inline-block;\n  text-decoration: none;\n  font-size: 30px;\n  font-weight: 900;\n  color: #ECF0F1;\n  background-color: #3498DB;\n  padding: 15px 100px;\n  -webkit-box-shadow: 0 5px 0 0 #2980B9;\n  box-shadow: 0 5px 0 0 #2980b9;\n  text-shadow: 0 1px 1px #4C4C4C;\n  opacity: 0.9;\n}\n\n.division-info {\n\ttext-align: center;\n}\n\n.constituency-name {\n\tfont-size: 6vw;\n\tmargin-bottom: 0;\n  margin-top: 10px;\n}\n\n.constituency-details {\n\tfont-size: 2vw;\n}\n\n.constituency-map {\n\twidth: 70%;\n  margin-top: -5%;\n}\n\n.constituency-map .st0 {\n\tfill:#cccccc;\n\tstroke:#ffffff;\n\topacity: 0.8;\n\tstroke-width:1.2191;\n}\n\n.constituency-map .st0.highlight-map {\n\tfill: tomato;\n\topacity: 1.0;\n}\n\n", ""]);
 
 	// exports
 

@@ -18,5 +18,10 @@
 		   	<% } %>
 		<% } %>
 	</div>
+	<% if(user) {%>
+		<a href="#">Cast your vote</a>
+	<%} else {%>
+		<a href="/welcome">Login with facebook to vote</a>
+	<%}%>
 </body>
 </html>

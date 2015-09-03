@@ -9,20 +9,21 @@ router.get('/welcome', function(req, res){
 });
 
 router.get('/vote/:name', function(req, res){
-  var divisionName = decodeURI(req.params.name);
-    Division.findOne({divisionName: divisionName}, function(err, data) {
-    if(err)
-      res.status(500).render('500', {message: 'Internal Server Error'});
-    else
-      if(data) {
-        data['voters'] = null;
-        for(var i=0;i<data['parties'].length;i++) {
-          data['parties'][i].vote = null; // remove voting data
-        }
-        res.render('vote', {data: data});
+  var divisionName = decodeURI(req.params.name);  
+  Division.findOne({divisionName: divisionName}, function(err, data) {
+  if(err)
+    res.status(500).render('500', {message: 'Internal Server Error'});
+  else
+    if(data) {
+      data['voters'] = null;
+      for(var i=0;i<data['parties'].length;i++) {
+        data['parties'][i].vote = null; // remove voting data
       }
-      else
-        res.status(404).render('404', {error: 'Constituency not found'});
+      req.session.lastPage = '/vote/' + divisionName;
+      res.render('vote', {data: data, user: req.user});
+    }
+    else
+      res.status(404).render('404', {error: 'Constituency not found'});
   });
 });
 
@@ -48,12 +49,18 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_fr
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-    res.redirect('/');
+    if(req.session.lastPage) {
+      var redirectTo = req.session.lastPage;
+      delete req.session.lastPage;
+      res.redirect(redirectTo);
+    } else  {
+      res.redirect('/');
+    }
 });
 
 router.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  res.redirect('/welcome');
 });
 
 // Simple route middleware to ensure user is authenticated.
