@@ -3,20 +3,54 @@
 	<meta charset='utf-8'>
 	<title>#sg15 | Unofficial General Election 2015</title>
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/skeleton.css" />
 </head>
 <body>
-	<h1><%= data.divisionName %></h1>
-	<div>
-		<% for(var i=0; i<data.parties.length; i++) {%>
-		   <p><%= data.parties[i].name %>
-		   	<img src='<%= data.parties[i].image %>' />
-		   	<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
-		   		<p><%= data.parties[i].candidates[j].name %></p>
-		   		<img src='<%= data.parties[i].candidates[j].image %>' />
-		   	<% } %>
-		<% } %>
+	<div class="container">
+		<div class="ballot-paper">
+      <h1 class="text-center text-bold">Unofficial General Elections</h1>
+      <h3 class="text-center text-italic text-bold"><%= data.divisionName %></h3>
+
+      <hr class="ballot-hr section-ballot-hr" />
+
+			<div>
+				<% for(var i=0; i<data.parties.length; i++) {%>
+					<div class="row candidate-container">
+		   			<div class="five columns">
+		   				<div class="row">
+			   				<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
+			   					<div class="three columns candidate-image-container">
+				   					<img class="candidate-image" src='<%= data.parties[i].candidates[j].image %>' />
+				   				</div>
+				   				<% if(j % 4 == 2) {%>
+				   					</div>
+				   					<div class="row">
+				   				<% } %>
+				   			<% } %>
+				   		</div>
+		   			</div>
+		   			<div class="three columns">
+		   				<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
+		   					<p class="text-center candidate-name"><%= data.parties[i].candidates[j].name %></p>
+		   				<% } %>
+		   			</div>
+		   			<div class="three columns candidate-party-container">
+	   					<img class="candidate-party-image" src='<%= data.parties[i].image %>' />
+	   					<h5 class="candidate-party-name text-center"><%= data.parties[i].name %></h5>
+		   			</div>
+		   			<div class="one column">
+		   			</div>
+			   	</div>
+		   		<% if(i != data.parties.length-1) {%>
+		   			<hr class="ballot-hr list-ballot-hr" />
+		   		<% } %>
+				<% } %>
+			</div>
+
+		</div>
 	</div>
 	<% if(user) {%>
 		<a href="#">Cast your vote</a>
