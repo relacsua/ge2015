@@ -25,6 +25,8 @@ body {
 	-webkit-transform: translate(-50%,-40%) scale(0.8);
 	-moz-transform: translate(-50%,-40%) scale(0.8);
 	transform: translate(-50%,-40%) scale(0.8);
+	max-height: 300px;
+  overflow: scroll
 }
 
 .nl-field.nl-field-open ul {
