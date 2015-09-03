@@ -1,0 +1,89 @@
+html,body {
+  height:100%;
+  margin:0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.ballot-paper {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 2px solid #E1E1E1;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fafafa;
+  color: #424242;
+}
+
+.ballot-hr {
+  opacity: 0.5;
+  height: 2px;
+}
+
+.section-ballot-hr {
+  margin-top: 10px;
+  margin-bottom: 70px;
+  width: 90%;
+  opacity: 1;
+  height: 2px;
+  background-color: #e1e1e1;
+  border-top: 0;
+}
+
+.list-ballot-hr {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 95%;
+}
+
+.candidate-container .columns{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.candidate-image-container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.candidate-image {
+  display: block;
+  margin: auto;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.candidate-image:hover, .candidate-image:focus {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.candidate-name {
+  text-shadow: 2px 2px #eee;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.candidate-party-container {
+  padding-top: 5%;
+}
+
+.candidate-party-image {
+  display: block;
+  margin: auto;
+  border: 3px solid #ddd;
+  border-radius: 5px;
+}
+
+.candidate-party-name {
+  margin-top: 10px;
+}
