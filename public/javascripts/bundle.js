@@ -23601,8 +23601,13 @@
 			React.createElement(Route, {name: "form", path: "/", handler: __webpack_require__(200)}, 
 				React.createElement(Route, {name: "info", path: "/division/:name", handler: __webpack_require__(221)})
 			), 
+<<<<<<< HEAD
 			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(232)}), 
 			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(236)})
+=======
+			React.createElement(Route, {name: "ballot", path: "/division/:name/vote", handler: __webpack_require__(229)}), 
+			React.createElement(Route, {name: "results", path: "/results", handler: __webpack_require__(230)})
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 		)
 	);
 	
@@ -24192,7 +24197,7 @@
 	 * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors
 	 * @license   Licensed under MIT license
 	 *            See https://raw.githubusercontent.com/tildeio/rsvp.js/master/LICENSE
-	 * @version   3.1.0
+	 * @version   3.0.21
 	 */
 	
 	(function() {
@@ -24423,7 +24428,7 @@
 	        @param {*} options optional value to be passed to any event handlers for
 	        the given `eventName`
 	      */
-	      'trigger': function(eventName, options, label) {
+	      'trigger': function(eventName, options) {
 	        var allCallbacks = lib$rsvp$events$$callbacksFor(this), callbacks, callback;
 	
 	        if (callbacks = allCallbacks[eventName]) {
@@ -24431,7 +24436,7 @@
 	          for (var i=0; i<callbacks.length; i++) {
 	            callback = callbacks[i];
 	
-	            callback(options, label);
+	            callback(options);
 	          }
 	        }
 	      }
@@ -24965,7 +24970,7 @@
 	        var promise = this;
 	        lib$rsvp$config$$config.after(function() {
 	          if (promise._onError) {
-	            lib$rsvp$config$$config['trigger']('error', reason, promise._label);
+	            lib$rsvp$config$$config['trigger']('error', reason);
 	          }
 	        });
 	      },
@@ -26327,6 +26332,7 @@
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 	var React = __webpack_require__(2);
 	var $__0=     __webpack_require__(159),State=$__0.State,Navigation=$__0.Navigation;
 	var ConstituencyStore = __webpack_require__(222);
@@ -26334,6 +26340,15 @@
 	var Party = __webpack_require__(225);
 	var SingaporeMap = __webpack_require__(229);
 	__webpack_require__(230);
+=======
+	var React = __webpack_require__(1);
+	var $__0=     __webpack_require__(158),State=$__0.State,Navigation=$__0.Navigation;
+	var ConstituencyStore = __webpack_require__(221);
+	var ConstituencyActionCreators = __webpack_require__(200);
+	var Party = __webpack_require__(224);
+	var SingaporeMap = __webpack_require__(226);
+	__webpack_require__(227);
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 	
 	function getFromConstituencyStore() {
 		return {
@@ -26404,7 +26419,7 @@
 					), 
 					React.createElement("div", {className: "row"}, 
 						React.createElement("div", {className: "twelve columns vote-bar"}, 
-							React.createElement("a", {className: "vote-btn", href: this.makeHref("ballot", {name: this._getDivisionName()})}, "Vote for your party")
+							React.createElement("a", {className: "vote-btn", href: "/vote#amk"}, "Vote for your party")
 						)
 					)
 				)
@@ -26420,6 +26435,8 @@
 			);
 		}
 	});
+	
+	// <a className="vote-btn" href={this.makeHref("ballot", {name: this._getDivisionName()})}>Vote for your party</a>
 	
 	module.exports = ConstituencyInfo;
 
@@ -26890,8 +26907,13 @@
 /* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 	var React = __webpack_require__(2);
 	__webpack_require__(227);
+=======
+	var React = __webpack_require__(1);
+	__webpack_require__(231);
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 	
 	var Candidate = React.createClass({displayName: "Candidate",
 		render: function() {
@@ -26910,6 +26932,7 @@
 /* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
@@ -26952,6 +26975,10 @@
 
 	var React = __webpack_require__(2);
 	__webpack_require__(230);
+=======
+	var React = __webpack_require__(1);
+	__webpack_require__(227);
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 	
 	var SingaporeMap = React.createClass({displayName: "SingaporeMap",
 	
@@ -27067,13 +27094,21 @@
 	module.exports = SingaporeMap;
 
 /***/ },
+<<<<<<< HEAD
 /* 230 */
+=======
+/* 227 */
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
+<<<<<<< HEAD
 	var content = __webpack_require__(231);
+=======
+	var content = __webpack_require__(228);
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(218)(content, {});
@@ -27093,7 +27128,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
 /* 231 */
+=======
+/* 228 */
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(217)();
@@ -27107,11 +27146,19 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
 	var $__0=    __webpack_require__(159),State=$__0.State;
+=======
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var $__0=    __webpack_require__(158),State=$__0.State;
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 	var BallotPaper = __webpack_require__(233);
 	__webpack_require__(234);
 	
@@ -27128,7 +27175,7 @@
 	      React.createElement("div", {className: "container"}, 
 				 React.createElement(BallotPaper, {name: this._getDivisionName()}), 
 	
-	       React.createElement("a", {className: "facebook-btn"})
+	       React.createElement("a", {href: "#", className: "facebook-btn"}, "Login with facebook")
 	      )
 			);
 		}
@@ -27137,10 +27184,73 @@
 	module.exports = Ballot;
 
 /***/ },
+<<<<<<< HEAD
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
+=======
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var ElectionResults = React.createClass({displayName: "ElectionResults",
+		render: function() {
+			return (
+				React.createElement("p", null, "election results")
+			);
+		}
+	});
+	
+	module.exports = ElectionResults;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(232);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(217)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./Party.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./Party.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(216)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".party-header {\n\twidth: 100%;\n\tborder-bottom: 1px dashed #aaa;\n  padding-bottom: 10px;\n}\n\n.party-header h3 {\n\tfloat: left;\n  margin: 0;\n  line-height: 50px;\n  padding: 0 10px\n}\n\n.party-header span {\n\tline-height: 51px;\n}\n\n.party-image {\n  width: 50px;\n  float: left;\n  display: inline-block;\n}\n\n.party-content {\n\twidth: 100%;\n\tmargin: 50px 0;\n}\n\n.candidate {\n\tfloat: left;\n  text-align: center;\n  padding: 0 20px;\n}\n\n.candidate-panel {\n\tmargin: auto;\n}\n\n.candidate img {\n\twidth: 60px;\n\theight: 60px;\n \tborder-radius: 50%;\n}\n\n.candidate span {\n  display: block;\n  font-size: 14px;\n  padding-top: 15px;\n  font-weight: 300;\n}", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 	__webpack_require__(234);
 	
 	var BallotPaper = React.createClass({displayName: "BallotPaper",
@@ -27201,6 +27311,7 @@
 	// exports
 
 
+<<<<<<< HEAD
 /***/ },
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
@@ -27470,6 +27581,8 @@
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
+=======
+>>>>>>> 39f6986f4f543a35cf3283af6d279e213c3e79f1
 /***/ }
 /******/ ]);
 //# sourceMappingURL=bundle.js.map

@@ -7,8 +7,6 @@ var routes = (
 		<Route name="form" path="/" handler={require('./components/ConstituencyForm.js')}>
 			<Route name="info" path="/division/:name" handler={require('./components/ConstituencyInfo.js')} />
 		</Route>
-		<Route name="ballot" path="/division/:name/vote" handler={require('./components/Ballot.js')} />
-		<Route name="results" path="/results" handler={require('./components/ElectionResults.js')} />
 	</Route>
 );
 
