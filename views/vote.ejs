@@ -5,6 +5,7 @@
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/checkbox-animate/checkbox-animate.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/skeleton.css" />
 </head>
@@ -16,7 +17,7 @@
 
       <hr class="ballot-hr section-ballot-hr" />
 
-			<div>
+			<form class="ac-custom ac-checkbox ac-cross">
 				<% for(var i=0; i<data.parties.length; i++) {%>
 					<div class="row candidate-container">
 		   			<div class="five columns">
@@ -41,21 +42,32 @@
 	   					<img class="candidate-party-image" src='<%= data.parties[i].image %>' />
 	   					<h5 class="candidate-party-name text-center"><%= data.parties[i].name %></h5>
 		   			</div>
-		   			<div class="one column">
+		   			<div class="one column candidate-checkbox-container">
+		   				<input type="checkbox" id='<%= data.parties[i].name %>' name='<%= data.parties[i].name %>'>
+		   					<label for='<%= data.parties[i].name %>' />
+		   				</input>
 		   			</div>
 			   	</div>
 		   		<% if(i != data.parties.length-1) {%>
 		   			<hr class="ballot-hr list-ballot-hr" />
 		   		<% } %>
 				<% } %>
-			</div>
+
+				<div class="row cast-vote-container">
+					<% if(user) {%>
+						<a href="#" class="cast-btn">Cast your vote</a>
+					<%} else {%>
+						<a href="/welcome" class="facebook-btn">Login with facebook to vote</a>
+					<%}%>
+				</div>
+
+			</form>
 
 		</div>
 	</div>
-	<% if(user) {%>
-		<a href="#">Cast your vote</a>
-	<%} else {%>
-		<a href="/welcome">Login with facebook to vote</a>
-	<%}%>
+
+	<script type="text/javascript" src="/javascripts/modernizr.custom.js"></script>
+	<script type="text/javascript" src="/javascripts/vendor/checkbox-animate/svgcheckbx.js"></script>
+	<script type="text/javascript" src="/javascripts/vote.bundle.js"></script>
 </body>
 </html>
