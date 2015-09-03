@@ -10,6 +10,8 @@ var BallotPaper = React.createClass({
 
         <hr className="ballot-hr" />
 
+        <BallotListItem/>
+
       </div>
     );
   }
