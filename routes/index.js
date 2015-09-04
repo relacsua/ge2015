@@ -4,19 +4,58 @@ var passport = require('passport');
 var facebook = require('../public/javascripts/vendor/facebook/facebook.js');
 var Division = require('../model/divisions.js');
 
+// Mongo DB models
+var User = require('../model/users.js');
+
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
   res.render('welcome');
 });
 
-router.get('/result/:name', function(req, res){
-  var divisionName = decodeURI(req.params.name);
-  console.log(req.user)
+router.get('/result', function(req, res) {
+  res.render('result');
+})
 
-  // facebook.getFbData('1474451976210615|4uxj4pFeBJTM5kVo4PQ2Y-Ko_4Y', '/me/friends', function(data){
-  //   console.log(data);
-  //   res.render('result', {series: data, name: divisionName});
-  // });
+router.get('/friendvote', ensureAuthenticated, function(req, res){
+
+  facebook.getFbData(req.user.accessToken, '/me/friends', function(data){
+    data = JSON.parse(data);
+
+    var friendList = data.data;
+    var facebookIds = [];
+
+    for(var i=0; i<friendList.length; i++) {
+      var facebookId = friendList[i].id;
+      facebookIds.push(facebookId);
+    }
+
+
+    User.find({
+      'facebookId': {$in: facebookIds}
+    }, function(err, data) {
+      var friendSeries = [];
+
+      for(var i=0; i<data.length; i++) {
+        var party = data[i].vote.party;
+
+        var found = false;
+        for(var i=0; i<friendSeries.length; i++) {
+          if(friendSeries[i]["name"] === party) {
+            friendSeries[i]["y"]++;
+            found = true;
+            break;
+          }
+        }
+        if(!found) {
+          var obj = {"name": party, "y": 1};
+          friendSeries.push(obj);
+        }
+      }
+
+      res.json(friendSeries);
+    });
+
+  });
 });
 
 router.get('/vote/:name', function(req, res){
