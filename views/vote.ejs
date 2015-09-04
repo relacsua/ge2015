@@ -17,6 +17,7 @@
 	      <hr class="section-ballot-hr" />
 	      <span class="ballot-title">form of front of ballot paper</span>
 					<input type="hidden" name="_method" value="PUT"/>
+					<input type="hidden" name="divisionName" value="<%= data.divisionName %>"/>
 					<table border="20">
 					<% for(var i=0; i<data.parties.length; i++) {%>
 						<tr>
@@ -49,6 +50,7 @@
 		</form>
 	</div>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
 	<script type="text/javascript">
 		$('input:radio').on('click', function (e) {
 			var parent = $(this).parent();
