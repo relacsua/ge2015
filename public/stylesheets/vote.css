@@ -40,6 +40,10 @@ span.ballot-title {
   margin: 20px auto;
 }
 
+.inactive {
+  pointer-events: none;
+}
+
 .ballot-paper {
   width: 100%;
   margin: 20px auto;
@@ -125,7 +129,6 @@ span.ballot-title {
   font-size: 15px;
   margin-bottom: 5px;
   text-align: center;
-}
 
 .btn {
   border: 2px solid;

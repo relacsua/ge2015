@@ -8,6 +8,12 @@ router.get('/welcome', function(req, res){
   res.render('welcome');
 });
 
+router.get('/result/:name', function(req, res){
+  var divisionName = decodeURI(req.params.name);
+  var dummyData;
+  res.render('result', {data: dummyData, name: divisionName});
+});
+
 router.get('/vote/:name', function(req, res){
   var divisionName = decodeURI(req.params.name);
   Division.findOne({divisionName: divisionName}, function(err, data) {
