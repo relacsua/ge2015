@@ -1,134 +1,156 @@
 html,body {
-  height:100%;
+  /*height:100%;*/
   margin:0;
+  font-family: monospace;
 }
 
-.text-center {
+span.section-title {
+  position: absolute;
+  right: -35px;
+  top: 5px;
+  font-size: 15px;
+}
+
+span.title {
+  display: block;
+  text-transform: uppercase;
+  font-size: 22px;
+  letter-spacing: -1px;
   text-align: center;
 }
 
-.text-italic {
-  font-style: italic;
+span.constituency-name {
+  display: block;
+  text-align: center;
 }
 
-.text-bold {
-  font-weight: 400;
+span.ballot-title {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.section-ballot-hr {
+  width: 16%;
+  height: 1px;
+  background-color: black;
+  border-top: 0;
+  opacity: 1;
+  margin: 20px auto;
 }
 
 .ballot-paper {
   width: 100%;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 20px auto;
   padding: 20px;
-  border: 2px solid #E1E1E1;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  background-color: #fafafa;
-  color: #424242;
+  box-shadow: 0 2px 5px 0 #191919, 0 2px 10px 0 #9A9A9A;
+  color: #000;
 }
 
-.ballot-hr {
-  opacity: 0.5;
-  height: 2px;
-}
-
-.section-ballot-hr {
-  margin-top: 10px;
-  margin-bottom: 70px;
-  width: 90%;
-  opacity: 1;
-  height: 2px;
-  background-color: #e1e1e1;
-  border-top: 0;
-}
-
-.list-ballot-hr {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  width: 95%;
-}
-
-.candidate-container .columns{
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.candidate-image-container {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.candidate-image {
-  display: block;
-  margin: auto;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
+.ballot-paper table {
   width: 100%;
+  border-color: #000;
 }
 
-.candidate-image:hover, .candidate-image:focus {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+.ballot-paper table tr,
+.ballot-paper table td {
+  border-bottom: 5px solid #000;
 }
 
-.candidate-name {
-  text-shadow: 2px 2px #eee;
-  font-size: 20px;
-  margin-bottom: 5px;
+.ballot-paper table tr {
+  height: 200px;
 }
 
-.candidate-party-container {
-  padding-top: 5%;
+.ballot-paper table td:nth-of-type(3) {
+  position: relative;
+}
+
+.ballot-paper table td:nth-of-type(1),
+.ballot-paper table td:nth-of-type(3) {
+  width: 40%;
+}
+
+.ballot-paper table td:nth-of-type(2) {
+  width: 20%;
+}
+
+.ballot-paper table td:nth-of-type(3) {
+  padding: 0;
+}
+
+.ballot-paper table td:nth-of-type(3) input {
+  opacity: 0;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+}
+
+.ballot-paper table td:nth-of-type(3) .cross {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ballot-paper table td:nth-of-type(3) .cross path:first-child {
+  stroke-dasharray: 113.137px, 113.137px;
+  stroke-dashoffset: 0px;
+/*  transition: stroke-dashoffset 0.2s ease-in-out 0s;*/
+  stroke: #0A0A0A;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ballot-paper table td:nth-of-type(3) .cross path:last-child {
+  stroke-dasharray: 113.137px, 113.137px;
+  stroke-dashoffset: 0px;
+  /*transition: stroke-dashoffset 0.2s ease-in-out 0.2s;*/
+  stroke: #080808;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .candidate-party-image {
-  display: block;
-  margin: auto;
-  border: 3px solid #ddd;
-  border-radius: 5px;
+  width: 100%;
 }
 
-.candidate-party-name {
-  margin-top: 10px;
-}
-
-.candidate-checkbox-container {
-  padding-top: 10%;
-  position: relative;
-}
-
-.cast-vote-container {
-  margin-top: 30px;
-  margin-bottom: 0px;
-}
-
-.cast-vote-container a {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px 10px;
-  font-weight: bold;
+.candidate-name {
   font-size: 15px;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 2px;
-  line-height: 22px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 5px;
+  text-align: center;
 }
 
-.cast-vote-btn {
-  background: #fb8c00;
+.btn {
+  border: 2px solid;
+  text-decoration: none;
+  padding: 20px 40px;
+  display: block;
+  width: 25%;
+  margin: auto;
+  font-family: 'raleway';
+  font-weight: 900;
+}
+
+.btn-panel {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .facebook-btn {
-    display: inline-block;
-    background: #627aac url(facebook_small.png) left no-repeat;
-
-    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  color: #ffffff;
+  border-color: #3b5998;
+  background-color: #3b5998;
 }
 
-.facebook-btn:hover, .facebook-btn:focus{
-  color: white;
-  opacity: 0.9;
+.facebook-btn:hover {
+  border-color: #3b5998;
+  color: #3b5998;
+  background-color: #ffffff;
 }

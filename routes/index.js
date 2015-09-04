@@ -9,7 +9,7 @@ router.get('/welcome', function(req, res){
 });
 
 router.get('/vote/:name', function(req, res){
-  var divisionName = decodeURI(req.params.name);  
+  var divisionName = decodeURI(req.params.name);
   Division.findOne({divisionName: divisionName}, function(err, data) {
   if(err)
     res.status(500).render('500', {message: 'Internal Server Error'});
@@ -25,6 +25,12 @@ router.get('/vote/:name', function(req, res){
     else
       res.status(404).render('404', {error: 'Constituency not found'});
   });
+});
+
+router.post('/vote/:id', function(res,req) {
+  var body = req.body
+  console.log('body: ', body);
+  res.redirect('/');
 });
 
 router.get('/', function(req, res, next) {

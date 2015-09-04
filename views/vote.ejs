@@ -2,73 +2,67 @@
 <head>
 	<meta charset='utf-8'>
 	<title>#sg15 | Unofficial General Election 2015</title>
-	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
-	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
-	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/checkbox-animate/checkbox-animate.css" />
+	<link href='//fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/skeleton.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
 </head>
 <body>
 	<div class="container">
-		<div class="ballot-paper">
-      <h1 class="text-center text-bold">Unofficial General Elections</h1>
-      <h3 class="text-center text-italic text-bold"><%= data.divisionName %></h3>
-
-      <hr class="ballot-hr section-ballot-hr" />
-
-			<form class="ac-custom ac-checkbox ac-cross">
-				<% for(var i=0; i<data.parties.length; i++) {%>
-					<div class="row candidate-container">
-		   			<div class="five columns">
-		   				<div class="row">
-			   				<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
-			   					<div class="three columns candidate-image-container">
-				   					<img class="candidate-image" src='<%= data.parties[i].candidates[j].image %>' />
-				   				</div>
-				   				<% if(j % 4 == 2) {%>
-				   					</div>
-				   					<div class="row">
-				   				<% } %>
-				   			<% } %>
-				   		</div>
-		   			</div>
-		   			<div class="three columns">
-		   				<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
-		   					<p class="text-center candidate-name"><%= data.parties[i].candidates[j].name %></p>
-		   				<% } %>
-		   			</div>
-		   			<div class="three columns candidate-party-container">
-	   					<img class="candidate-party-image" src='<%= data.parties[i].image %>' />
-	   					<h5 class="candidate-party-name text-center"><%= data.parties[i].name %></h5>
-		   			</div>
-		   			<div class="one column candidate-checkbox-container">
-		   				<input type="checkbox" id='<%= data.parties[i].name %>' name='<%= data.parties[i].name %>'>
-		   					<label for='<%= data.parties[i].name %>' />
-		   				</input>
-		   			</div>
-			   	</div>
-		   		<% if(i != data.parties.length-1) {%>
-		   			<hr class="ballot-hr list-ballot-hr" />
-		   		<% } %>
-				<% } %>
-
-				<div class="row cast-vote-container">
-					<% if(user) {%>
-						<a href="#" class="cast-btn">Cast your vote</a>
-					<%} else {%>
-						<a href="/welcome" class="facebook-btn">Login with facebook to vote</a>
-					<%}%>
-				</div>
-
-			</form>
-
-		</div>
+		<form method="POST" action="<%= user ? '/vote/' + user._id : '' %>">
+			<div class="ballot-paper">
+				<span class="section-title">Section XX(X)</span>
+	      <span class="title">Unofficial General Elections</span>
+	      <span class="constituency-name"><%= data.divisionName %></span>
+	      <hr class="section-ballot-hr" />
+	      <span class="ballot-title">form of front of ballot paper</span>
+					<input type="hidden" name="_method" value="PUT"/>
+					<table border="20">
+					<% for(var i=0; i<data.parties.length; i++) {%>
+						<tr>
+							<td>
+								<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
+				   				<p class="candidate-name"><%= data.parties[i].candidates[j].name %></p>
+								<% } %>
+							</td>
+							<td>
+								<% if(data.parties[i].image) {%>
+									<img class="candidate-party-image" src='<%= data.parties[i].image %>' />
+								<%} else {%>
+									<img class="candidate-party-image" src='<%= data.parties[i].candidates[0].image %>' />
+								<% } %>
+							</td>
+							<td>
+								<input type="radio" value='<%= data.parties[i].name %>' name="party" />
+							</td>
+						</tr>
+					<% } %>
+					</table>
+			</div>
+			<div class="btn-panel row">
+				<% if(user) {%>
+					<input type="submit" class="btn vote-btn" value="Cast your vote">
+				<%} else {%>
+					<a href="/welcome" class="btn facebook-btn">Login with facebook to vote</a>
+				<%}%>
+			</div>
+		</form>
 	</div>
-
-	<script type="text/javascript" src="/javascripts/vote.js"/><script>
-	<script type="text/javascript" src="/javascripts/modernizr.custom.js"></script>
-	<script type="text/javascript" src="/javascripts/vendor/checkbox-animate/svgcheckbx.js"></script>
-	<script type="text/javascript" src="/javascripts/vote.bundle.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('input:radio').on('click', function (e) {
+			var parent = $(this).parent();
+			if($(this).is(':checked')) {
+				$('.cross').remove();
+				var svg = $('\
+					<svg class="cross" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">\
+						<path d="M 10 10 L 90 90"></path>\
+						<path d="M 90 10 L 10 90"></path>\
+					</svg>\
+				');
+				parent.append(svg);
+			}
+		});
+	</script>
 </body>
 </html>
