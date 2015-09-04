@@ -38,15 +38,15 @@ router.get('/vote/:name', function(req, res){
   });
 });
 
-router.post('/vote/:id', function(res,req) {
+router.post('/vote/:id', function(req,res) {
   var body = req.body
-  console.log('body: ', body);
-  res.redirect('/');
+  var divisionName = body.divisionName;
+  var party = body.party;
+  res.send(divisionName + ' ' + party);
+  // res.redirect('/');
 });
 
 router.get('/', function(req, res, next) {
-    // res.cookie('first-time', '1', {maxAge: 3000, minAge: 3000});
-    // console.log('cookies', req.cookies);
     res.render('main');
 });
 
