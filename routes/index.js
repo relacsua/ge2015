@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var facebook = require('../public/javascripts/vendor/facebook/facebook.js');
 var Division = require('../model/divisions.js');
 
 /* GET welcome page. */
@@ -10,8 +11,12 @@ router.get('/welcome', function(req, res){
 
 router.get('/result/:name', function(req, res){
   var divisionName = decodeURI(req.params.name);
-  var dummyData;
-  res.render('result', {data: dummyData, name: divisionName});
+  console.log(req.user)
+
+  // facebook.getFbData('1474451976210615|4uxj4pFeBJTM5kVo4PQ2Y-Ko_4Y', '/me/friends', function(data){
+  //   console.log(data);
+  //   res.render('result', {series: data, name: divisionName});
+  // });
 });
 
 router.get('/vote/:name', function(req, res){

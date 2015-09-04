@@ -24210,7 +24210,7 @@
 	 * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors
 	 * @license   Licensed under MIT license
 	 *            See https://raw.githubusercontent.com/tildeio/rsvp.js/master/LICENSE
-	 * @version   3.0.21
+	 * @version   3.1.0
 	 */
 
 	(function() {
@@ -24441,7 +24441,7 @@
 	        @param {*} options optional value to be passed to any event handlers for
 	        the given `eventName`
 	      */
-	      'trigger': function(eventName, options) {
+	      'trigger': function(eventName, options, label) {
 	        var allCallbacks = lib$rsvp$events$$callbacksFor(this), callbacks, callback;
 
 	        if (callbacks = allCallbacks[eventName]) {
@@ -24449,7 +24449,7 @@
 	          for (var i=0; i<callbacks.length; i++) {
 	            callback = callbacks[i];
 
-	            callback(options);
+	            callback(options, label);
 	          }
 	        }
 	      }
@@ -24983,7 +24983,7 @@
 	        var promise = this;
 	        lib$rsvp$config$$config.after(function() {
 	          if (promise._onError) {
-	            lib$rsvp$config$$config['trigger']('error', reason);
+	            lib$rsvp$config$$config['trigger']('error', reason, promise._label);
 	          }
 	        });
 	      },

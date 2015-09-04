@@ -45,6 +45,7 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'photos', 'age_range']
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log(accessToken);
     // asynchronous verification, for effect...
     process.nextTick(function () {
       console.log('profile: ', profile);
@@ -54,6 +55,7 @@ passport.use(new FacebookStrategy({
         if(!user) {
           var newUser = User({
             name: profile.displayName,
+            accessToken: accessToken,
             facebookId: profile.id,
             minAge: profile._json['age_range'].min,
             image: profile.photos[0].value,
