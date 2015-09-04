@@ -10,7 +10,24 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/skeleton.css" />
 </head>
 <body>
-  <div class='container' >
+
+  <% if(user) { %>
+    <nav class='navbar'>
+      <ul class='navbar-list'>
+        <li class='navbar-item navbar-facebook-logout'>
+          <a class='facebook-logout' href='/logout'>Log out </a>
+        </li>
+        <li class='navbar-item navbar-profile'>
+          <img class='user-profile' src='<%= user.image %>' />
+        </li>
+        <li class='navbar-item navbar-username'>
+          <h4 class='user-name'><%= user.name %></h4>
+        </li>
+      </ul>
+    </nav>
+  <% } %>
+
+  <div class='container main-content' >
     <div id='pieChartContainer' />
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

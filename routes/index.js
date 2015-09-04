@@ -9,11 +9,11 @@ var User = require('../model/users.js');
 
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
-  res.render('welcome');
+  res.render('welcome', {user: req.user});
 });
 
 router.get('/result', function(req, res) {
-  res.render('result');
+  res.render('result', {user: req.user});
 })
 
 router.get('/friendvote', ensureAuthenticated, function(req, res){
@@ -86,7 +86,7 @@ router.post('/vote/:id', function(req,res) {
 });
 
 router.get('/', function(req, res, next) {
-    res.render('main');
+    res.render('main', {user: req.user});
 });
 
 // GET /auth/facebook
