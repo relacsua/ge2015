@@ -6,6 +6,25 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
 </head>
 <body>
+
+  <% if(user) { %>
+    <nav class='navbar'>
+      <ul class='navbar-list'>
+        <li class='navbar-item navbar-facebook-logout'>
+          <a class='facebook-logout' href='/logout'>Log out </a>
+        </li>
+        <li class='navbar-item navbar-profile'>
+          <img class='user-profile' src='<%= user.image %>' />
+        </li>
+        <li class='navbar-item navbar-username'>
+          <h4 class='user-name' style='margin-top: 0px;font-size: 25px;font-weight: 500;'>
+            <%= user.name %>
+          </h4>
+        </li>
+      </ul>
+    </nav>
+  <% } %>
+
 	<div id="app"></div>
 	<script type="text/javascript" src="/javascripts/modernizr.custom.js"></script>
 	<script type="text/javascript" src="/javascripts/nlform.js"></script>
