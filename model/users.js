@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	facebookId: { type: String, required: true},
+  accessToken: {type: String, required: true},
 	minAge: Number,
 	image: String,
 	vote: {
