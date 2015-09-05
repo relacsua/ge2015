@@ -1,0 +1,58 @@
+html, body {
+  width: 100%;
+  margin:0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
+.error-container {
+  margin-top: 50px !important;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.error-panel {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.error-404 {
+  color: tomato;
+  font-size: 20vw;
+  display: inline;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+.error-tag {
+  font-size: 2vw;
+  margin-left: 20px;
+  color: #222222;
+  display: inline;
+  vertical-align: bottom;
+  text-shadow: 2px 2px #eee;
+}
+
+.error-description-panel {
+  margin-top: 35px;
+}
+
+.error-description {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.error-link {
+  color: tomato;
+  text-decoration: none;
+}
+
+.error-link:hover {
+  color: #ff9800;
+}

@@ -35,7 +35,7 @@ $(function () {
           link: 'http://sgelection2015.com/welcome',
           display: 'iframe',
           picture: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/icon.png',
-          description: 'GE2015 is the unofficial version of General Singapore Election. Take part in the largest online poll on singapore general election.'
+          description: 'GE2015 is the unofficial version of General Singapore Election.'
         },
         // callback
         function(response) {

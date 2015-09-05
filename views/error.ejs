@@ -1,3 +1,31 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>#sg15 | Unofficial General Election 2015</title>
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/error.css" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/skeleton.css" />
+</head>
+
+<body>
+  <div class='error-container'>
+    <div class='row'>
+      <div class='four columns'>
+        <img src='/images/confused.png' style='height: 500px; display: block;' />
+      </div>
+      <div class='eight columns'>
+        <div class='row error-panel'>
+          <h1 class='error-404 text-center'>404</h1>
+          <p class='error-tag text-center text-bold'>ERROR</p>
+        </div>
+        <div class='row error-description-panel'>
+          <p class='error-description'>Page does not exist or some other errors occured. Go back to <a class='error-link' href='/welcome'>home page </a> or go to <a class='error-link' href='/'>voting page</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
