@@ -37,15 +37,25 @@
   <% } %>
 
   <div class='container main-content' >
-    <div id='pieChartContainer'></div>
-    <div class='no-result' id='no-result' style='display: none;'>
-      <img src='/images/dizzy.png' class='no-result-image' />
-      <h3 class='text-center no-result-desc'>It seems that your friends have not voted for a party yet</h3>
-      <h4 class='text-center text-bold no-result-share'>Share this with your friends</h4>
-    </div>
-    <div class="btn-panel row" id='share-facebook-btn' style='display: none;'>
-      <button class='share-facebook-btn'>Share this on facebook</button>
-    </div>
+    <% if(user.vote && user.vote.division) { %>
+      <div id='pieChartContainer'></div>
+      <div class='no-result' id='no-result' style='display: none;'>
+        <img src='/images/dizzy.png' class='error-image' />
+        <h3 class='text-center error-desc'>It seems that your friends have not voted for a party yet</h3>
+        <h4 class='text-center text-bold error-details'>Share this with your friends</h4>
+      </div>
+      <div class="btn-panel row" id='share-facebook-btn' style='display: none;'>
+        <button class='btn share-facebook-btn'>Share this on facebook</button>
+      </div>
+    <% } else { %>
+      <div class='no-vote' id='no-vote'>
+        <img src='/images/stop.png' class='error-image' />
+        <h3 class='text-center error-desc'>It seems that you have not voted yet. Voting results will only be displayed after you vote.</h3>
+      </div>
+      <div class="btn-panel row">
+        <a class='btn voting-btn' href='/'>Go to Voting Page</a>
+      </div>
+    <% } %>
   </div>
   <script type="text/javascript">
     window.fbAsyncInit = function() {

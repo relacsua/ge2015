@@ -44,7 +44,7 @@ router.get('/friendvote', ensureAuthenticated, function(req, res){
 
       for(var i=0; i<data.length; i++) {
 
-        if(data[i].vote) {
+        if(data[i].vote && data[i].vote.division) {
           var party = data[i].vote.party;
 
           var found = false;
