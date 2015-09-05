@@ -21,24 +21,6 @@ router.get('/division/:name', function(req,res) {
 	});
 });
 
-// router.put('/user/:userID', function(req,res) {
-// 	var divisionName = decodeURI(req.params.name);
-// 	Division.findOne({divisionName: divisionName}, function(err, data) {
-// 		if(err)
-// 			res.status(500).json({message: 'Internal Server Error'});
-// 		else
-// 			if(data) {
-// 				data['voters'] = null;
-// 				for(var i=0;i<data['parties'].length;i++) {
-// 					data['parties'][i].votes = null; // remove voting data
-// 				}
-// 				res.status(200).json(data);
-// 			}
-// 			else
-// 				res.status(404).json({message: "Division not found"});
-// 	});
-// });
-
 // callback hell!!!
 router.get('/code/:code', function (req, res) {
 	var postalCode = parseInt(req.params.code);

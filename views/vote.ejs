@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="container">
+		<p><%= error %></p>
 		<form method="POST" action="<%= user ? '/vote/' + user._id : '' %>">
 			<div class="ballot-paper">
 				<span class="section-title">Section XX(X)</span>

@@ -48,7 +48,6 @@ passport.use(new FacebookStrategy({
     console.log(accessToken);
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      console.log('profile: ', profile);
       User.findOne({facebookId: profile.id}, function(err, user) {
         if(err)
           done(err);
