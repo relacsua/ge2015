@@ -155,3 +155,10 @@ body {
   margin-top: 0px;
   font-weight: 500;
 }
+
+
+@media (max-width: 550px) {
+  button.btn.share-facebook-btn {
+    font-size: 80%;
+  }
+}
