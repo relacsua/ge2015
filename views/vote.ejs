@@ -12,7 +12,7 @@
 		<nav class='navbar'>
 			<ul class='navbar-list'>
 				<li class="navbar-item icon">
-					<img src="/images/icon.svg">
+					<img width="40" src="/images/icon.svg">
   			</li>
 				<li class='navbar-item navbar-facebook-logout'>
 					<a class='facebook-logout' href='/logout'>Log out </a>
@@ -27,7 +27,7 @@
 		</nav>
 	<% } %>
 	<div class="container">
-		<% if(user.vote.division) {%>
+		<% if(user && user.vote && user.vote.division) {%>
 			<div class="tagline">
 				<h1>Seems that you have voted,</h1>
 				<h1>Why not check the results ?</h1>
