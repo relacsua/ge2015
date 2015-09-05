@@ -208,6 +208,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
   if(req.session.lastPage) {
     var redirectTo = req.session.lastPage;
     delete req.session.lastPage;
+    redirectTo = redirectTo === '/welcome' ? '/' : redirectTo;
     res.redirect(redirectTo);
   } else  {
     res.redirect('/');

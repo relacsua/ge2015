@@ -22,7 +22,7 @@ var ConstituencyStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getErrorMessage() {
+  getErrorMessage: function() {
     return _error;
   }
 

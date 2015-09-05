@@ -204,4 +204,7 @@
   .hashtag {
     font-size: 5rem;
   }
+  .navbar-item {
+    font-size: 10px;
+  }
 }

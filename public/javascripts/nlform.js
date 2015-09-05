@@ -38,7 +38,7 @@
 				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
 			} );
 			this.overlay.addEventListener( 'click', function(ev) { self._closeFlds(); } );
-			this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
+			// this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
 		},
 		_closeFlds : function() {
 			if( this.fldOpen !== -1 ) {
@@ -119,13 +119,13 @@
 		_initEvents : function() {
 			var self = this;
 			this.toggle.addEventListener( 'click', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
-			this.toggle.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
+			// this.toggle.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
 
 			if( this.type === 'dropdown' ) {
 				var opts = Array.prototype.slice.call( this.optionsList.querySelectorAll( 'li' ) );
 				opts.forEach( function( el, i ) {
 					el.addEventListener( 'click', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
-					el.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
+					// el.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
 				} );
 			}
 			else if( this.type === 'input' ) {
@@ -135,7 +135,7 @@
 					}
 				} );
 				this.inputsubmit.addEventListener( 'click', function( ev ) { ev.preventDefault(); self.close(); } );
-				this.inputsubmit.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close(); } );
+				// this.inputsubmit.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close(); } );
 			}
 
 		},
