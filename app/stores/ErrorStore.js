@@ -6,8 +6,7 @@ var assign = require('object-assign');
 var ActionTypes = ConstituencyConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-// var _constituent = [];
-var _currentData = null;
+var _error = null;
 
 var ConstituencyStore = assign({}, EventEmitter.prototype, {
 
@@ -23,35 +22,24 @@ var ConstituencyStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getCurrentDivisionData: function () {
-    return _currentData;
-  },
-
-  // containsDivisionData: function (divisionName) {
-  //   var data = null;
-
-  //   for(var i=0; i<_constituent.length;i++) {
-  //     if(_constituent[i].divisionName === divisionName) {
-  //       _currentData = data = _constituent[i];
-  //       break;
-  //     }
-  //   }
-  //   return data;
-  // }
+  getErrorMessage() {
+    return _error;
+  }
 
 });
 
 ConstituencyStore.dispatchToken = AppDispatcher.register(function(action) {
 
   switch(action.type) {
-    case ActionTypes.GET_CONSTITUENCY:
-    	_currentData = null;
+    case ActionTypes.GET_CONSTITUENCY_FAILURE:
+    case ActionTypes.SHOW_ERROR_MESSAGE:
+    case ActionTypes.GET_CONSTITUENCY_NAME_FAILURE:
+      _error = action.errorMessage;
       ConstituencyStore.emitChange();
-      break;
-    case ActionTypes.GET_CONSTITUENCY_SUCCESS:
-      _currentData = action.data;
+      break
+    case ActionTypes.DELETE_ERROR_MESSAGE:
+      _error = null;
       ConstituencyStore.emitChange();
-      break;
     default:
       // do nothing
   }
