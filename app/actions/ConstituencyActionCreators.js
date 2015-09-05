@@ -6,7 +6,7 @@ var ActionTypes = ConstituencyConstants.ActionTypes;
 
 module.exports = {
 	getDivisionData: function(divisionName, postalCode) {
-		console.log('fetchDivisionData in ConstituencyActionCreators called');
+		console.log('getDivisionData in ConstituencyActionCreators called');
 		AppDispatcher.dispatch({
 			type: ActionTypes.GET_CONSTITUENCY
 		});

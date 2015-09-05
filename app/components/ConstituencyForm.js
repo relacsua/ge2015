@@ -1,6 +1,7 @@
 var React = require('react');
 var { RouteHandler, Navigation } = require('react-router');
 var ConstituencyActionCreators = require('../actions/ConstituencyActionCreators.js');
+var ErrorActionCreators = require('../actions/ErrorActionCreators.js');
 require('../../public/stylesheets/main.css');
 require('../stylesheets/ConstituencyForm.css');
 
@@ -21,21 +22,24 @@ var ConstituencyForm = React.createClass({
 		
 		if(constituencyInput === 'constituency' && postalCodeinput === 'postal code') {
 			// none of the inputs were selected
-			console.log('Please select either of the inputs');
+			ErrorActionCreators.showErrorMessage('Please select either of the inputs');
+			return;
 		} else if (constituencyInput !== 'constituency' && postalCodeinput !== 'postal code') {
 			// both inputs were selected
-			console.log('Only choose 1 of the option');
+			ErrorActionCreators.showErrorMessage('Only choose 1 of the option');
+			return;
 		} else {
 			if(constituencyInput !== 'constituency') {
 				// Constituency was selected
 				this.transitionTo('info', {name: constituencyInput});
 			} else {
 				// Postal code was selected
-				if(postalCodeinput.toString().length === 6) {
+				if(postalCodeinput.length === 6) {
 					// valid
 					ConstituencyActionCreators.getDivisionData(null, postalCodeinput);
 				} else {
-					console.log('Invalid postal code');
+					ErrorActionCreators.showErrorMessage('Invalid postal code');
+					return;
 				}
 				
 			}

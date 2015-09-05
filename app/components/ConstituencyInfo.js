@@ -5,6 +5,7 @@ var ConstituencyActionCreators = require('../actions/ConstituencyActionCreators.
 var Party = require('./Party.js');
 var SingaporeMap = require('./SingaporeMap.js');
 require('../stylesheets/ConstituencyInfo.css');
+var $ = require('jquery/dist/jquery.min.js');
 
 function getFromConstituencyStore() {
 	return {
@@ -25,8 +26,12 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	_init: function () {
+		var currentDivisionName = null;
+		if(ConstituencyStore.getCurrentDivisionData())
+			currentDivisionName = ConstituencyStore.getCurrentDivisionData().divisionName;
 		var divisionName = this._getDivisionName();
-		ConstituencyActionCreators.getDivisionData(divisionName);
+		if(currentDivisionName === null || currentDivisionName !== divisionName)
+			ConstituencyActionCreators.getDivisionData(divisionName);
 	},
 
 	componentWillMount: function() {
@@ -34,7 +39,8 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		this._init();
+		if(nextProps.params.name !== this.props.params.name)
+			this._init();
 	},
 
 	componentDidMount: function() {
@@ -47,6 +53,11 @@ var ConstituencyInfo = React.createClass({
 
 	_onChange: function() {
 		this.setState(getFromConstituencyStore());
+		if(this.state.currentDivisionData !== null) {
+      $('html, body').animate({
+          scrollTop: $('.content').outerHeight()
+      }, 1000);
+		}
 	},
 
 	_underscore: function(title) {
@@ -83,10 +94,9 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	render: function() {
-		var Loading = <p>Loading...</p>
 		return (
 			<div>
-   			{this.state.currentDivisionData === null ? {Loading} : this.renderDivisionData()}
+   			{this.state.currentDivisionData === null ? null: this.renderDivisionData()}
    		</div>
 		);
 	}
