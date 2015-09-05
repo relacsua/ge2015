@@ -11,7 +11,12 @@
 
 </head>
 <body>
-
+  <% if(error) {%>
+    <span class="alert">
+      <%= error %>
+      <img class="close" src='/images/close.png' width="20" />
+    </span>
+  <% } %>
   <% if(user) { %>
     <nav class='navbar'>
       <ul class='navbar-list'>
@@ -55,6 +60,13 @@
   <script type="text/javascript" src="/javascripts/modernizr.custom.js"></script>
   <script type="text/javascript" src="/javascripts/vendor/highcharts/highcharts.js"></script>
   <script type="text/javascript" src="/javascripts/result.js"></script>
-
+  <% if(error) {%>
+    <script>
+      $('.close').on('click', function () {
+        $('.alert').fadeOut('2000');
+        $('.alert').remove();
+      });
+    </script>
+  <% } %>
 </body>
 </html>

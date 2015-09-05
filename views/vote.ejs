@@ -8,6 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
 </head>
 <body>
+	<% if(error) {%>
+		<span class="alert">
+			<%= error %>
+			<img class="close" src='/images/close.png' width="20" />
+		</span>
+	<% } %>
 	<% if(user) { %>
 		<nav class='navbar'>
 			<ul class='navbar-list'>
@@ -96,5 +102,13 @@
 			}
 		});
 	</script>
+	<% if(error) {%>
+		<script>
+			$('.close').on('click', function () {
+				$('.alert').fadeOut('2000');
+				$('.alert').remove();
+			});
+		</script>
+	<% } %>
 </body>
 </html>

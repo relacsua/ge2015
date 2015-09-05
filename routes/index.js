@@ -11,13 +11,17 @@ var User = require('../model/users.js');
 
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
+  req.session.lastPage = '/welcome';
   var error = req.session.error;
   delete req.session.error;
   res.render('welcome', {user: req.user, error: error});
 });
 
 router.get('/result', function(req, res) {
-  res.render('result', {user: req.user});
+  req.session.lastPage = '/result';
+  var error = req.session.error;
+  delete req.session.error;
+  res.render('result', {user: req.user, error: error});
 })
 
 router.get('/friendvote', ensureAuthenticated, function(req, res){
