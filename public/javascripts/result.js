@@ -92,7 +92,7 @@ $(function () {
   }
 
   function showFBShareButton() {
-    $('#share-facebook-btn').css('display', 'block');
+    $('.footer-panel').css('display', 'block');
   }
 
   function showNoVoteMessage() {

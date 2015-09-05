@@ -133,6 +133,10 @@ html,body {
   float: right;
 }
 
+.footer-panel {
+  display: none;
+}
+
 .voting-btn {
   border: 1px solid tomato;
   background-color: tomato;
@@ -144,4 +148,10 @@ html,body {
   border-color: tomato;
   color: tomato;
   background-color: #ffffff;
+}
+
+.stay-tune {
+  text-align: center;
+  margin-top: 0px;
+  font-weight: 500;
 }
