@@ -95,6 +95,9 @@ html,body {
   color: #ffffff;
   height: 50px;
   font-size: 20px;
+  border-radius: 0px;
+  border-width: 2px;
+  text-transform: initial;
 }
 
 .share-facebook-btn {
