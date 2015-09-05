@@ -1,3 +1,16 @@
+html,body {
+  height:100%;
+  margin:0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
 /* Navigation bar */
 
 .navbar {
@@ -53,4 +66,23 @@
 
 .container.main-content {
   margin-top: 60px;
+}
+
+.no-result {
+  width: 100%;
+  margin-top: 20px;
+  display: none;
+}
+
+.no-result .no-result-image {
+  display: block;
+  margin: auto;
+}
+
+.no-result .no-result-desc {
+  margin-bottom: 10px;
+}
+
+.no-result .no-result-share {
+
 }
