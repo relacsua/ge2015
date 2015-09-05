@@ -48,9 +48,9 @@ router.get('/friendvote', ensureAuthenticated, function(req, res){
           var party = data[i].vote.party;
 
           var found = false;
-          for(var i=0; i<friendSeries.length; i++) {
-            if(friendSeries[i]["name"] === party) {
-              friendSeries[i]["y"]++;
+          for(var j=0; j<friendSeries.length; j++) {
+            if(friendSeries[j]["name"] === party) {
+              friendSeries[j]["y"]++;
               found = true;
               break;
             }
