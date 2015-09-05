@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var facebook = require('../public/javascripts/vendor/facebook/facebook.js');
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
 var Division = require('../model/divisions.js');
 var User = require('../model/users.js');
 
@@ -39,19 +39,22 @@ router.get('/friendvote', ensureAuthenticated, function(req, res){
       var friendSeries = [];
 
       for(var i=0; i<data.length; i++) {
-        var party = data[i].vote.party;
 
-        var found = false;
-        for(var i=0; i<friendSeries.length; i++) {
-          if(friendSeries[i]["name"] === party) {
-            friendSeries[i]["y"]++;
-            found = true;
-            break;
+        if(data[i].vote) {
+          var party = data[i].vote.party;
+
+          var found = false;
+          for(var i=0; i<friendSeries.length; i++) {
+            if(friendSeries[i]["name"] === party) {
+              friendSeries[i]["y"]++;
+              found = true;
+              break;
+            }
           }
-        }
-        if(!found) {
-          var obj = {"name": party, "y": 1};
-          friendSeries.push(obj);
+          if(!found) {
+            var obj = {"name": party, "y": 1};
+            friendSeries.push(obj);
+          }
         }
       }
 
@@ -130,7 +133,7 @@ router.post('/vote/:id', function(req, res, next) {
                     division.save(function (err) {
                       if(err) {
                         req.session.error = 'Internal Server Error';
-                        res.redirect(redirectTo); 
+                        res.redirect(redirectTo);
                       } else {
                         next();
                       }
@@ -146,7 +149,7 @@ router.post('/vote/:id', function(req, res, next) {
         }
         if(!partyFound) {
           req.session.error = 'Party not found';
-          res.redirect(redirectTo); 
+          res.redirect(redirectTo);
         }
       }
     }
@@ -214,7 +217,7 @@ router.get('/logout', function(req, res) {
 });
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { 
+  if (req.isAuthenticated()) {
     return next(); }
   res.redirect('/welcome')
 }

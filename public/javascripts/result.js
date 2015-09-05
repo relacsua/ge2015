@@ -3,7 +3,12 @@ $(function () {
     url: '/friendvote',
     success: function(series) {
       console.log(series);
-      makePieChart(series);
+
+      if(series.length > 0) {
+        makePieChart(series);
+      } else {
+        showNoVoteMessage();
+      }
     },
     error: function(err) {
       console.log(err);
@@ -19,10 +24,15 @@ $(function () {
         type: 'pie'
       },
       title: {
+        style: {
+          "fontSize": "25px",
+          "color": "#222222"
+        },
         text: 'Unofficial General Voting Results'
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        headerFormat: '<span style="font-size: 17px;"><b>{point.key}</b></span><br/>',
+        pointFormat: 'Voting: <b>{point.percentage:.1f}%</b><br/>Number of votes: <b>{point.y: .1f}</b>'
       },
       plotOptions: {
         pie: {
@@ -38,11 +48,18 @@ $(function () {
         }
       },
       series: [{
-        name: "Brands",
+        name: "Voting",
         colorByPoint: true,
         data: series
-      }]
+      }],
+      credits: {
+        enabled: false
+      }
     });
+  }
+
+  function showNoVoteMessage() {
+    $('#no-result').css('display', 'block');
   }
 
 });
