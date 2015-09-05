@@ -208,7 +208,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
 });
 
 router.get('/logout', function(req, res) {
-  delete req.session.lastPage;
+  req.session.destroy();
   req.logout();
   res.redirect('/welcome');
 });

@@ -27,6 +27,10 @@
 		</nav>
 	<% } %>
 	<div class="container main-content">
+		<div class="tagline">
+			<h1>You only vote once</h1>
+			<span>*So vote wisely</span>
+		</div>
 		<form method="POST" action="<%= user ? '/vote/' + user._id : '' %>">
 			<div class="ballot-paper">
 				<span class="section-title">Section XX(X)</span>

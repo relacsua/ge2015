@@ -3,6 +3,11 @@ html,body {
   font-family: monospace;
 }
 
+body {
+  padding-top: 65px;
+  background-color: #644D52;
+}
+
 /* Navigation bar */
 
 .navbar {
@@ -13,7 +18,7 @@ html,body {
   height: 45px;
   background-color: rgba(255,255,255,0.5);
   z-index: 1000;
-  padding: 5px 20px;
+  padding: 10px 5px;
 }
 
 .navbar-list {
@@ -56,13 +61,29 @@ html,body {
   opacity: 1.0;
 }
 
-.container.main-content {
-  margin-top: 60px;
+.tagline h1 {
+  font-family: 'raleway';
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.tagline span {
+  font-family: 'raleway';
+  color: #fff;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.tagline {
+  margin-bottom: 20px;
 }
 
 span.section-title {
   position: absolute;
-  right: -35px;
+  right: 5px;
   top: 5px;
   font-size: 15px;
 }
@@ -101,11 +122,12 @@ span.ballot-title {
 }
 
 .ballot-paper {
-  width: 100%;
   margin: 20px auto;
   padding: 20px;
-  box-shadow: 0 2px 5px 0 #191919, 0 2px 10px 0 #9A9A9A;
+  box-shadow: 0 2px 5px 0 #000, 0 2px 10px 0 #000;
   color: #000;
+  background-color: #ffffff;
+  position: relative;
 }
 
 .ballot-paper table {
