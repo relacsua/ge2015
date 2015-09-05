@@ -6,10 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
 </head>
 <body>
-
-  <% if(user) { %>
+    <% if(user) { %>
     <nav class='navbar'>
       <ul class='navbar-list'>
+        <li class="navbar-item icon">
+          <img src="/images/icon.svg">
+        </li>
         <li class='navbar-item navbar-facebook-logout'>
           <a class='facebook-logout' href='/logout'>Log out </a>
         </li>
@@ -17,9 +19,7 @@
           <img class='user-profile' src='<%= user.image %>' />
         </li>
         <li class='navbar-item navbar-username'>
-          <h4 class='user-name' style='margin-top: 0px;font-size: 25px;font-weight: 500;'>
-            <%= user.name %>
-          </h4>
+          <span class='user-name'><%= user.name %></span>
         </li>
       </ul>
     </nav>
