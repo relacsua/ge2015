@@ -188,12 +188,8 @@ router.post('/vote/:id', function(req, res) {
 });
 
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
-    req.session.lastPage = '/';
-    res.render('main');
-=======
-    res.render('main', {user: req.user});
->>>>>>> a84d21b765b5699943f4cefccf80377db300d872
+  req.session.lastPage = '/';
+  res.render('main', {user: req.user});
 });
 
 router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_friends', 'public_profile']}), function(req, res){
@@ -202,13 +198,13 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_fr
 });
 
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-    if(req.session.lastPage) {
-      var redirectTo = req.session.lastPage;
-      delete req.session.lastPage;
-      res.redirect(redirectTo);
-    } else  {
-      res.redirect('/');
-    }
+  if(req.session.lastPage) {
+    var redirectTo = req.session.lastPage;
+    delete req.session.lastPage;
+    res.redirect(redirectTo);
+  } else  {
+    res.redirect('/');
+  }
 });
 
 router.get('/logout', function(req, res) {
