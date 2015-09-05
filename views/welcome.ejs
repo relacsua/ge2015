@@ -2,6 +2,8 @@
 <html>
 <head>
 	<meta charset='utf-8'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>#sg15 | Unofficial General Election 2015</title>
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
 	<link type="text/css" rel="stylesheet" href="stylesheets/vendor/normalize.css" />
@@ -78,7 +80,7 @@
 		$('.arrow-down').on('click', function (e) {
 			e.preventDefault();
 			var top = $(window).scrollTop();
-			var featureHeight = $('.features-panel').innerHeight();
+			var featureHeight = $('.main-panel').innerHeight();
 			if(top < featureHeight) {
 				$('html, body').animate({scrollTop: featureHeight+'px'}, 1000);
 			}

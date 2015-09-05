@@ -241,7 +241,8 @@ span.ballot-title {
 input.vote-btn {
   background-color: tomato;
   color: white;
-  border-color: tomato;
+  border: 2px solid tomato;
+  border-radius: 0;
 }
 
 input.vote-btn:hover {
