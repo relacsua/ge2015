@@ -37,7 +37,7 @@
   <% } %>
 
   <div class='container main-content' >
-    <% if(user.vote && user.vote.division) { %>
+    <% if(user && user.vote && user.vote.division) { %>
       <div id='pieChartContainer'></div>
       <div class='no-result' id='no-result' style='display: none;'>
         <img src='/images/dizzy.png' class='error-image' />
