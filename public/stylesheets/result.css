@@ -71,7 +71,6 @@ html,body {
 .no-result {
   width: 100%;
   margin-top: 20px;
-  display: none;
 }
 
 .no-result .no-result-image {

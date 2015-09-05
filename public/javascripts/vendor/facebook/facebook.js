@@ -1,10 +1,10 @@
 var https = require('https');
 
-exports.getFbData = function(accessToken, apiPath, callback) {
+exports.getFbData = function(accessToken, apiPath, parameter, callback) {
     var options = {
         host: 'graph.facebook.com',
         port: 443,
-        path: apiPath + '?access_token=' + accessToken, //apiPath example: '/me/friends'
+        path: apiPath + '?access_token=' + accessToken + '&' + parameter, //apiPath example: '/me/friends'
         method: 'GET'
     };
 
