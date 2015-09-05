@@ -26,50 +26,58 @@
 			</ul>
 		</nav>
 	<% } %>
-	<div class="container main-content">
-		<div class="tagline">
-			<h1>You only vote once</h1>
-			<span>*So vote wisely</span>
-		</div>
-		<form method="POST" action="<%= user ? '/vote/' + user._id : '' %>">
-			<div class="ballot-paper">
-				<span class="section-title">Section XX(X)</span>
-	      <span class="title">Unofficial General Elections</span>
-	      <span class="constituency-name"><%= data.divisionName %></span>
-	      <hr class="section-ballot-hr" />
-	      <span class="ballot-title">form of front of ballot paper</span>
-					<input type="hidden" name="_method" value="PUT"/>
-					<input type="hidden" name="divisionName" value="<%= data.divisionName %>"/>
-					<table border="20">
-					<% for(var i=0; i<data.parties.length; i++) {%>
-						<tr>
-							<td>
-								<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
-				   				<p class="candidate-name"><%= data.parties[i].candidates[j].name %></p>
-								<% } %>
-							</td>
-							<td>
-								<% if(data.parties[i].image) {%>
-									<img class="candidate-party-image" src='<%= data.parties[i].image %>' />
-								<%} else {%>
-									<img class="candidate-party-image" src='<%= data.parties[i].candidates[0].image %>' />
-								<% } %>
-							</td>
-							<td>
-								<input type="radio" value='<%= data.parties[i].name %>' name="party" />
-							</td>
-						</tr>
-					<% } %>
-					</table>
+	<div class="container">
+		<% if(user.vote.division) {%>
+			<div class="tagline">
+				<h1>Seems that you have voted,</h1>
+				<h1>Why not check the results ?</h1>
+				<a class="result-btn" href="/result">Results</a>
 			</div>
-			<div class="btn-panel row">
-				<% if(user) {%>
-					<input type="submit" class="btn vote-btn" value="Cast your vote">
-				<%} else {%>
-					<a href="/auth/facebook" class="btn facebook-btn">Login with facebook to vote</a>
-				<%}%>
+		<% } else { %>
+			<div class="tagline">
+				<h1>You only vote once</h1>
+				<span>*So vote wisely</span>
 			</div>
-		</form>
+			<form method="POST" action="<%= user ? '/vote/' + user._id : '' %>">
+				<div class="ballot-paper">
+					<span class="section-title">Section XX(X)</span>
+		      <span class="title">Unofficial General Elections</span>
+		      <span class="constituency-name"><%= data.divisionName %></span>
+		      <hr class="section-ballot-hr" />
+		      <span class="ballot-title">form of front of ballot paper</span>
+						<input type="hidden" name="_method" value="PUT"/>
+						<input type="hidden" name="divisionName" value="<%= data.divisionName %>"/>
+						<table border="20">
+						<% for(var i=0; i<data.parties.length; i++) {%>
+							<tr>
+								<td>
+									<% for(var j=0; j<data.parties[i].candidates.length; j++) {%>
+					   				<p class="candidate-name"><%= data.parties[i].candidates[j].name %></p>
+									<% } %>
+								</td>
+								<td>
+									<% if(data.parties[i].image) {%>
+										<img class="candidate-party-image" src='<%= data.parties[i].image %>' />
+									<%} else {%>
+										<img class="candidate-party-image" src='<%= data.parties[i].candidates[0].image %>' />
+									<% } %>
+								</td>
+								<td>
+									<input type="radio" value='<%= data.parties[i].name %>' name="party" />
+								</td>
+							</tr>
+						<% } %>
+						</table>
+				</div>
+				<div class="btn-panel row">
+					<% if(user) {%>
+						<input type="submit" class="btn vote-btn" value="Cast your vote">
+					<%} else {%>
+						<a href="/auth/facebook" class="btn facebook-btn">Login with facebook to vote</a>
+					<%}%>
+				</div>
+			</form>
+		<% } %>
 	</div>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>

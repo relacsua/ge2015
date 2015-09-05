@@ -62,29 +62,31 @@
 
 .enter-btn {
 	color: #ffffff;
-	border-color: #f43d58;
+	border: 2px solid #f43d58;
   background-color: #f43d58;
 }
 
 .enter-btn:hover {
-  border-color: #f43d58;
+  border: 2px solid #f43d58;
   color: #f43d58;
   background-color: #ffffff;
 }
 
 .vote-btn {
   color: #ffffff;
-  border-color: #3b5998;
+  border: 2px solid #3b5998;
   background-color: #3b5998;
 }
 
 .vote-btn:hover {
-  border-color: #3b5998;
+  border: 2px solid #3b5998;
   color: #3b5998;
   background-color: #ffffff;
 }
 
 .vote-btn, .enter-btn {
+  border-radius: none;
+  font-weight: bold;
   display: block;
 }
 

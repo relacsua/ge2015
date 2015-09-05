@@ -79,6 +79,7 @@ body {
 
 .tagline {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 span.section-title {
@@ -247,4 +248,21 @@ input.vote-btn:hover {
   background-color: white;
   color: tomato;
   border-color: tomato;
+}
+
+.result-btn {
+  font-family: 'raleway';
+  color: white;
+  background-color: #FF974F;
+  padding: 20px 60px;
+  display: inline-block;
+  margin-top: 40px;
+  font-weight: bold;
+  border: 2px solid #ff974f;
+  text-decoration: none;
+}
+
+.result-btn:hover {
+  background-color: #fff;
+  color: #ff974f;
 }
