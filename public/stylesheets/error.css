@@ -25,13 +25,13 @@ html, body {
 
 .error-404 {
   color: tomato;
-  font-size: 20vw;
+  font-size: 220px;
   display: inline;
   text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 .error-tag {
-  font-size: 2vw;
+  font-size: 25px;
   margin-left: 20px;
   color: #222222;
   display: inline;
@@ -55,4 +55,15 @@ html, body {
 
 .error-link:hover {
   color: #ff9800;
+}
+
+.error-image {
+  height: 500px;
+  display: none;
+}
+
+@media (min-width: 950px) {
+  .error-image {
+    display: block;
+  }
 }
