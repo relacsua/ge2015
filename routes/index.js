@@ -17,7 +17,7 @@ router.get('/welcome', function(req, res){
   res.render('welcome', {user: req.user, error: error});
 });
 
-router.get('/result', function(req, res) {
+router.get('/result', ensureAuthenticated, function(req, res) {
   req.session.lastPage = '/result';
   var error = req.session.error;
   delete req.session.error;
@@ -224,6 +224,7 @@ router.get('/logout', function(req, res) {
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next(); }
+  req.session.error = "Please login to view the page";
   res.redirect('/welcome')
 }
 
