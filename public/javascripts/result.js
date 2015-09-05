@@ -12,7 +12,7 @@ $(function () {
     $.ajax({
       url: '/friendvote',
       success: function(series) {
-        console.log(series);
+        // console.log(series);
 
         showFBShareButton();
         if(series.length > 0) {
@@ -22,7 +22,7 @@ $(function () {
         }
       },
       error: function(err) {
-        console.log(err);
+        // console.log(err);
       }
     });
   }
