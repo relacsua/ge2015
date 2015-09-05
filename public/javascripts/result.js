@@ -53,7 +53,7 @@ $(function () {
       },
       tooltip: {
         headerFormat: '<span style="font-size: 17px;"><b>{point.key}</b></span><br/>',
-        pointFormat: 'Voting: <b>{point.percentage:.1f}%</b><br/>Number of votes: <b>{point.y: .1f}</b>'
+        pointFormat: 'Voting: <b>{point.percentage: .1f}%</b><br/>Number of votes: <b>{point.y}</b>'
       },
       plotOptions: {
         pie: {

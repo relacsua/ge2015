@@ -22,7 +22,7 @@ router.get('/result', function(req, res) {
 
 router.get('/friendvote', ensureAuthenticated, function(req, res){
 
-  facebook.getFbData(req.user.accessToken, '/me/friends', function(data){
+  facebook.getFbData(req.user.accessToken, '/me/friends', 'limit=500', function(data){
     data = JSON.parse(data);
 
     var friendList = data.data;
