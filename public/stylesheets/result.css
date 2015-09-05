@@ -3,6 +3,10 @@ html,body {
   margin:0;
 }
 
+body {
+  padding-top: 65px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -62,10 +66,6 @@ html,body {
 
 .facebook-logout:hover {
   opacity: 1.0;
-}
-
-.container.main-content {
-  margin-top: 60px;
 }
 
 .no-result {
