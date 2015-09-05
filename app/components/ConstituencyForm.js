@@ -23,9 +23,11 @@ var ConstituencyForm = React.createClass({
 		if(constituencyInput === 'constituency' && postalCodeinput === 'postal code') {
 			// none of the inputs were selected
 			ErrorActionCreators.showErrorMessage('Please select either of the inputs');
+			return;
 		} else if (constituencyInput !== 'constituency' && postalCodeinput !== 'postal code') {
 			// both inputs were selected
 			ErrorActionCreators.showErrorMessage('Only choose 1 of the option');
+			return;
 		} else {
 			if(constituencyInput !== 'constituency') {
 				// Constituency was selected
@@ -37,6 +39,7 @@ var ConstituencyForm = React.createClass({
 					ConstituencyActionCreators.getDivisionData(null, postalCodeinput);
 				} else {
 					ErrorActionCreators.showErrorMessage('Invalid postal code');
+					return;
 				}
 				
 			}

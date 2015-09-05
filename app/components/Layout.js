@@ -21,7 +21,7 @@ var Layout = React.createClass({
 	},
 
 	_onChange: function () {
-		this.setState({errorMessage: ErrorStore.getErrorMessage()})
+		this.setState({errorMessage: ErrorStore.getErrorMessage()});
 	},
 
 	onErrorClose: function() {

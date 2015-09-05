@@ -26,8 +26,12 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	_init: function () {
+		var currentDivisionName = null;
+		if(ConstituencyStore.getCurrentDivisionData())
+			currentDivisionName = ConstituencyStore.getCurrentDivisionData().divisionName;
 		var divisionName = this._getDivisionName();
-		ConstituencyActionCreators.getDivisionData(divisionName);
+		if(currentDivisionName === null || currentDivisionName !== divisionName)
+			ConstituencyActionCreators.getDivisionData(divisionName);
 	},
 
 	componentWillMount: function() {
@@ -35,7 +39,8 @@ var ConstituencyInfo = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		this._init();
+		if(nextProps.params.name !== this.props.params.name)
+			this._init();
 	},
 
 	componentDidMount: function() {
