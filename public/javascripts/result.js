@@ -4,6 +4,7 @@ $(function () {
     success: function(series) {
       console.log(series);
 
+      showFBShareButton();
       if(series.length > 0) {
         makePieChart(series);
       } else {
@@ -76,6 +77,10 @@ $(function () {
         enabled: false
       }
     });
+  }
+
+  function showFBShareButton() {
+    $('#share-facebook-btn').css('display', 'block');
   }
 
   function showNoVoteMessage() {
