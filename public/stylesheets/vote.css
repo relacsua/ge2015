@@ -82,6 +82,10 @@ body {
   text-align: center;
 }
 
+.tagline.tagline-voted {
+  margin-top: 30px;
+}
+
 span.section-title {
   position: absolute;
   right: 5px;

@@ -6,6 +6,8 @@ $(function () {
     if($('#pieChartContainer').size() > 0) {
       displayFriendVotingPieChart();
     }
+
+    handleFacebookShareClick();
   }
 
   function displayFriendVotingPieChart() {
@@ -33,16 +35,16 @@ $(function () {
         {
           method: 'feed',
           link: 'http://sgelection2015.com/welcome',
-          display: 'iframe',
+          display: 'popup',
           picture: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/icon.png',
           description: 'GE2015 is the unofficial General Election application. Join the unofficial poll by voting.'
         },
         // callback
         function(response) {
           if (response && !response.error_message) {
-            alert('Sharing successful.');
+
           } else {
-            alert('Error while posting.');
+
           }
         }
       );
@@ -90,7 +92,7 @@ $(function () {
   }
 
   function showFBShareButton() {
-    $('#share-facebook-btn').css('display', 'block');
+    $('.footer-panel').css('display', 'block');
   }
 
   function showNoVoteMessage() {
