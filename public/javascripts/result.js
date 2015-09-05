@@ -35,7 +35,7 @@ $(function () {
           link: 'http://sgelection2015.com/welcome',
           display: 'iframe',
           picture: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/icon.png',
-          description: 'GE2015 is the unofficial version of General Singapore Election.'
+          description: 'GE2015 is the unofficial General Election application.'
         },
         // callback
         function(response) {
@@ -62,7 +62,7 @@ $(function () {
           "fontSize": "25px",
           "color": "#222222"
         },
-        text: 'Unofficial General Voting Results'
+        text: 'Unofficial General Election Voting Results'
       },
       tooltip: {
         headerFormat: '<span style="font-size: 17px;"><b>{point.key}</b></span><br/>',
