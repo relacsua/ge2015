@@ -1,40 +1,53 @@
 $(function () {
-  $.ajax({
-    url: '/friendvote',
-    success: function(series) {
-      console.log(series);
 
-      showFBShareButton();
-      if(series.length > 0) {
-        makePieChart(series);
-      } else {
-        showNoVoteMessage();
-      }
-    },
-    error: function(err) {
-      console.log(err);
+  init();
+
+  function init() {
+    if($('#pieChartContainer').size() > 0) {
+      displayFriendVotingPieChart();
     }
-  })
+  }
 
-  $('.share-facebook-btn').on('click', function() {
-    FB.ui(
-      {
-        method: 'feed',
-        link: 'http://sgelection2015.com/welcome',
-        display: 'iframe',
-        picture: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/icon.png',
-        description: 'GE2015 is the unofficial version of General Singapore Election. Take part in the largest online poll on singapore general election.'
-      },
-      // callback
-      function(response) {
-        if (response && !response.error_message) {
-          alert('Sharing successful.');
+  function displayFriendVotingPieChart() {
+    $.ajax({
+      url: '/friendvote',
+      success: function(series) {
+        console.log(series);
+
+        showFBShareButton();
+        if(series.length > 0) {
+          makePieChart(series);
         } else {
-          alert('Error while posting.');
+          showNoVoteMessage();
         }
+      },
+      error: function(err) {
+        console.log(err);
       }
-    );
-  });
+    });
+  }
+
+  function handleFacebookShareClick() {
+    $('.share-facebook-btn').on('click', function() {
+      FB.ui(
+        {
+          method: 'feed',
+          link: 'http://sgelection2015.com/welcome',
+          display: 'iframe',
+          picture: 'https://s3-ap-southeast-1.amazonaws.com/ge2015/Images/icon.png',
+          description: 'GE2015 is the unofficial version of General Singapore Election. Take part in the largest online poll on singapore general election.'
+        },
+        // callback
+        function(response) {
+          if (response && !response.error_message) {
+            alert('Sharing successful.');
+          } else {
+            alert('Error while posting.');
+          }
+        }
+      );
+    });
+  }
 
   function makePieChart(series) {
     $('#pieChartContainer').highcharts({

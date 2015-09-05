@@ -73,16 +73,16 @@ html,body {
   margin-top: 20px;
 }
 
-.no-result .no-result-image {
+.error-image {
   display: block;
   margin: auto;
 }
 
-.no-result .no-result-desc {
+.error-desc {
   margin-bottom: 10px;
 }
 
-.no-result .no-result-share {
+.error-details {
 
 }
 
@@ -91,16 +91,32 @@ html,body {
   margin-top: 40px;
 }
 
-.share-facebook-btn {
+.btn {
   color: #ffffff;
-  border-color: #3b5998;
-  background-color: #3b5998;
   height: 50px;
   font-size: 20px;
+}
+
+.share-facebook-btn {
+  border-color: #3b5998;
+  background-color: #3b5998;
 }
 
 .share-facebook-btn:hover {
   border-color: #3b5998;
   color: #3b5998;
+  background-color: #ffffff;
+}
+
+.voting-btn {
+  border: 1px solid tomato;
+  background-color: tomato;
+  padding: 10px 30px;
+  text-decoration: none;
+}
+
+.voting-btn:hover{
+  border-color: tomato;
+  color: tomato;
   background-color: #ffffff;
 }
