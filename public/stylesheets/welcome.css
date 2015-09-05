@@ -85,7 +85,7 @@
 }
 
 .vote-btn, .enter-btn {
-  border-radius: none;
+  border-radius: 0;
   font-weight: bold;
   display: block;
 }
@@ -103,6 +103,18 @@
 .features-panel {
 	min-height: 250px;
 	padding-top: 50px;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature h3 {
+  height: 100px;
+}
+
+.feature p {
+  font-size: 18px;
 }
 
 

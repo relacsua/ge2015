@@ -30,6 +30,9 @@
 	float: left;
   text-align: center;
   padding: 0 20px;
+  width: 180px;
+  margin-bottom: 20px;
+  height: 100px;
 }
 
 .candidate-panel {
@@ -42,9 +45,13 @@
  	border-radius: 50%;
 }
 
-.candidate span {
+.candidate .name {
   display: block;
   font-size: 14px;
   padding-top: 15px;
   font-weight: 300;
+}
+
+.candidate .desc {
+  font-size: 11px;
 }

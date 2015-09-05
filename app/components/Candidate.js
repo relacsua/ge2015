@@ -6,7 +6,8 @@ var Candidate = React.createClass({
 		return (
 			<div className="candidate">
 				<img src={this.props.image} />
-				<span>{this.props.name}</span>
+				<span className="name">{this.props.name}</span>
+				<span className="desc">{this.props.desc}</span>
 			</div>
 		);
 	}
