@@ -85,7 +85,7 @@
 }
 
 .vote-btn, .enter-btn {
-  border-radius: none;
+  border-radius: 0;
   font-weight: bold;
   display: block;
 }
