@@ -8,8 +8,22 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
 </head>
 <body>
-	<div class="container">
-		<p><%= error %></p>
+	<% if(user) { %>
+		<nav class='navbar'>
+			<ul class='navbar-list'>
+				<li class='navbar-item navbar-facebook-logout'>
+					<a class='facebook-logout' href='/logout'>Log out </a>
+				</li>
+				<li class='navbar-item navbar-profile'>
+					<img class='user-profile' src='<%= user.image %>' />
+				</li>
+				<li class='navbar-item navbar-username'>
+					<h4 class='user-name'><%= user.name %></h4>
+				</li>
+			</ul>
+		</nav>
+	<% } %>
+	<div class="container main-content">
 		<form method="POST" action="<%= user ? '/vote/' + user._id : '' %>">
 			<div class="ballot-paper">
 				<span class="section-title">Section XX(X)</span>
@@ -45,7 +59,7 @@
 				<% if(user) {%>
 					<input type="submit" class="btn vote-btn" value="Cast your vote">
 				<%} else {%>
-					<a href="/welcome" class="btn facebook-btn">Login with facebook to vote</a>
+					<a href="/auth/facebook" class="btn facebook-btn">Login with facebook to vote</a>
 				<%}%>
 			</div>
 		</form>

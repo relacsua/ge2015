@@ -45,7 +45,6 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'photos', 'age_range']
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(accessToken);
     // asynchronous verification, for effect...
     process.nextTick(function () {
       User.findOne({facebookId: profile.id}, function(err, user) {

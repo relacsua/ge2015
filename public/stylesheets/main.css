@@ -13,6 +13,56 @@ html>body>#app .content {
   overflow: hidden;
 }
 
+/* Navigation bar */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+  opacity: 0.9;
+  z-index: 1000
+}
+
+.navbar-list {
+  margin-bottom: 0;
+  margin-top: 0;
+  width: 96%;
+  list-style: none;
+}
+
+.navbar-item {
+  float: right;
+  font-family: 'Raleway';
+  color: #222222;
+  padding-top: 5px;
+}
+
+.navbar-item.navbar-facebook-logout {
+  padding-top: 18px;
+}
+
+.navbar-item.navbar-username {
+  padding-top: 15px;
+}
+
+.navbar-item.navbar-profile {
+  margin-left: 20px;
+  margin-right: 15px;
+}
+
+.navbar-item.navbar-profile img {
+  border-radius: 50%;
+}
+
+.facebook-logout {
+  text-decoration: none;
+  font-size: 20px;
+}
+
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {

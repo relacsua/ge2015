@@ -4,6 +4,57 @@ html,body {
   font-family: monospace;
 }
 
+/* Navigation bar */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  z-index: 1000
+}
+
+.navbar-list {
+  margin-bottom: 0;
+  width: 98%;
+  list-style: none;
+}
+
+.navbar-item {
+  float: right;
+  font-family: 'Raleway';
+  color: #222222;
+  padding-top: 5px;
+}
+
+.navbar-item.navbar-facebook-logout {
+  padding-top: 18px;
+}
+
+.navbar-item.navbar-username {
+  padding-top: 15px;
+}
+
+.navbar-item.navbar-profile {
+  margin-left: 20px;
+  margin-right: 15px;
+}
+
+.navbar-item.navbar-profile img {
+  border-radius: 50%;
+}
+
+.facebook-logout {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.container.main-content {
+  margin-top: 90px;
+}
+
 span.section-title {
   position: absolute;
   right: -35px;
@@ -168,5 +219,5 @@ input.vote-btn {
 input.vote-btn:hover {
   background-color: white;
   color: tomato;
-  border-color: tomato;  
+  border-color: tomato;
 }
