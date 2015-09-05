@@ -15,7 +15,7 @@ function getDivisionDataSuccess(divisionData) {
 function getDivisionDataFailure(errorCode) {
 	console.log('getDivisionDataFailure called in ConstituencyServerActionCreators');
 	
-	var errorMessage = (errorCode === 404) ? "The division you're looking for doesn't exist." : "Something went wrong. Try again."
+	var errorMessage = (errorCode === 404) ? "The constituency you're looking for doesn't exist." : "Something went wrong. Try again."
 
 	AppDispatcher.dispatch({
 		type: ActionTypes.GET_CONSTITUENCY_FAILURE,

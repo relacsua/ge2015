@@ -170,3 +170,41 @@
 .facebook-logout:hover {
   opacity: 1.0;
 }
+
+/* alert */
+
+.alert {
+  height: 20px;
+  padding: 20px;
+  background-color: #D04747;
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+.alert img {
+  width: 20px;
+  cursor: pointer;
+  float: right;
+}
+
+@media (max-width: 400px) {
+  .vote-btn, .enter-btn {
+    box-sizing: content-box;
+    width: 250px;
+  }
+}
+
+@media (max-width: 550px) {
+  .hashtag {
+    font-size: 5rem;
+  }
+  .navbar-item {
+    font-size: 10px;
+  }
+}

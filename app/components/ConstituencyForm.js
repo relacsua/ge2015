@@ -2,6 +2,8 @@ var React = require('react');
 var { RouteHandler, Navigation } = require('react-router');
 var ConstituencyActionCreators = require('../actions/ConstituencyActionCreators.js');
 var ErrorActionCreators = require('../actions/ErrorActionCreators.js');
+var ConstituencyStore = require('../stores/ConstituencyStore.js');
+var ErrorStore = require('../stores/ErrorStore.js');
 require('../../public/stylesheets/main.css');
 require('../stylesheets/ConstituencyForm.css');
 
@@ -9,33 +11,57 @@ var ConstituencyForm = React.createClass({
 
 	mixins: [Navigation],
 
+	getInitialState: function() {
+		return {
+			loading: false 
+		};
+	},
+
+	componentWillUnmount: function() {
+		ConstituencyStore.removeChangeListener(this._onChange);
+		ErrorStore.removeChangeListener(this._onChange);
+	},
+
+	_onChange: function () {
+		var data = ConstituencyStore.getCurrentDivisionData();
+		var error = ErrorStore.getErrorMessage();
+		if(data)
+			this.setState({loading: false});
+		if(this.state.loading && error)
+			this.setState({loading: false});
+	},
+
 	componentDidMount: function() {
+		ConstituencyStore.addChangeListener(this._onChange);
+		ErrorStore.addChangeListener(this._onChange);
 		var nlform = new NLForm(document.getElementById('nl-form'));
 	},
 
 	handleSubmit: function (e) {
 		e.preventDefault();
-		
+		if(this.state.loading) return;
 		var inputs = document.getElementsByClassName('nl-field-toggle');
 		var constituencyInput = inputs[0].innerText;
 		var postalCodeinput = inputs[1].innerText;
 		
 		if(constituencyInput === 'constituency' && postalCodeinput === 'postal code') {
 			// none of the inputs were selected
-			ErrorActionCreators.showErrorMessage('Please select either of the inputs');
+			ErrorActionCreators.showErrorMessage('Please select either one of the inputs');
 			return;
 		} else if (constituencyInput !== 'constituency' && postalCodeinput !== 'postal code') {
 			// both inputs were selected
-			ErrorActionCreators.showErrorMessage('Only choose 1 of the option');
+			ErrorActionCreators.showErrorMessage('Only choose 1 of the options');
 			return;
 		} else {
 			if(constituencyInput !== 'constituency') {
 				// Constituency was selected
+				this.setState({loading: true});
 				this.transitionTo('info', {name: constituencyInput});
 			} else {
 				// Postal code was selected
 				if(postalCodeinput.length === 6) {
 					// valid
+					this.setState({loading: true});
 					ConstituencyActionCreators.getDivisionData(null, postalCodeinput);
 				} else {
 					ErrorActionCreators.showErrorMessage('Invalid postal code');
@@ -86,9 +112,9 @@ var ConstituencyForm = React.createClass({
 							<option value="Yuhua SMC">Yuhua SMC</option>
 						</select>
 						<span className="block-text">or</span>
-						<input type="text" value="" placeholder="postal code" data-subline="For example: <em>Singapore 271030</em> or <em>131 Jalan Bukit Merah</em>"/>
+						<input type="text" value="" placeholder="postal code" data-subline="For example: <em>271030</em> or <em>160131</em>"/>
 						<div className="nl-submit-wrap">
-							<button className="nl-submit" type="submit">Find my constituency</button>
+							<button className="nl-submit" type="submit">{this.state.loading ? 'Loading ...'  : 'Find my constituency'}</button>
 						</div>
 						<div className="nl-overlay"></div>
 					</form>

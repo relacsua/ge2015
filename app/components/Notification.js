@@ -20,14 +20,13 @@ var Notification = React.createClass({
     	right: 0,
     	textAlign: 'center',
     	color: '#fff',
-    	fontSize: '20px',
-    	cursor: 'pointer'
+    	fontSize: '20px'
 		};
 
 		return (
 			<span style={styles}>
 				{this.props.message}
-				<img style={{float: 'right'}} ref="close" src='/images/close.png' width="20" onClick={this.onClick} />
+				<img style={{float: 'right', cursor: 'pointer'}} ref="close" src='/images/close.png' width="20" onClick={this.onClick} />
 			</span>
 		);
 	}

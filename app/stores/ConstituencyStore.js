@@ -27,18 +27,6 @@ var ConstituencyStore = assign({}, EventEmitter.prototype, {
     return _currentData;
   },
 
-  // containsDivisionData: function (divisionName) {
-  //   var data = null;
-
-  //   for(var i=0; i<_constituent.length;i++) {
-  //     if(_constituent[i].divisionName === divisionName) {
-  //       _currentData = data = _constituent[i];
-  //       break;
-  //     }
-  //   }
-  //   return data;
-  // }
-
 });
 
 ConstituencyStore.dispatchToken = AppDispatcher.register(function(action) {

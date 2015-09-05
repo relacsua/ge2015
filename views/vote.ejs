@@ -1,6 +1,7 @@
 <html>
 <head>
 	<meta charset='utf-8'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>#sg15 | Unofficial General Election 2015</title>
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vendor/normalize.css" />
@@ -8,6 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vote.css" />
 </head>
 <body>
+	<% if(error) {%>
+		<span class="alert">
+			<%= error %>
+			<img class="close" src='/images/close.png' width="20" />
+		</span>
+	<% } %>
 	<% if(user) { %>
 		<nav class='navbar'>
 			<ul class='navbar-list'>
@@ -96,5 +103,13 @@
 			}
 		});
 	</script>
+	<% if(error) {%>
+		<script>
+			$('.close').on('click', function () {
+				$('.alert').fadeOut('2000');
+				$('.alert').remove();
+			});
+		</script>
+	<% } %>
 </body>
 </html>

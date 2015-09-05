@@ -2,6 +2,8 @@
 <html>
 <head>
 	<meta charset='utf-8'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>#sg15 | Unofficial General Election 2015</title>
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
 	<link type="text/css" rel="stylesheet" href="stylesheets/vendor/normalize.css" />
@@ -9,7 +11,12 @@
 	<link type="text/css" rel="stylesheet" href="stylesheets/welcome.css" />
 </head>
 <body>
-
+	<% if(error) {%>
+		<span class="alert">
+			<%= error %>
+			<img class="close" src='/images/close.png' width="20" />
+		</span>
+	<% } %>
 	<% if(user) { %>
 		<nav class='navbar'>
 			<ul class='navbar-list'>
@@ -47,19 +54,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="one-third column feature">
-					<h3>Election information</h3>
+					<h3>Election Information</h3>
 					<img src="/images/know.svg" width="150" />
-					<p>Know parties and candidates contesting in your constituency.</p>
+					<p>Get to know the candidates contesting in your constituency</p>
 				</div>
 				<div class="one-third column feature">
 					<h3>Largest online poll</h3>
 					<img src="/images/poll.svg" width="150" />
-					<p>Take part in the largest online poll on singapore general election and get the election results immediately.</p>
+					<p>Take part in the largest online poll of GE2015 and view the results of the poll</p>
 				</div>
 				<div class="one-third column feature">
-					<h3>Know your friends' political affliation</h3>
+					<h3>Social Integration</h3>
 					<img src="/images/friends.svg" width="150" />
-					<p>Get to know your the composition of your friends' political affliation.</p>
+					<p>Find out which party the majority of your friends are leaning towards</p>
 				</div>
 			</div>
 		</div>
@@ -73,10 +80,19 @@
 		$('.arrow-down').on('click', function (e) {
 			e.preventDefault();
 			var top = $(window).scrollTop();
-			if(top < 300) {
-				$('html, body').animate({scrollTop: '300px'}, 1000);
+			var featureHeight = $('.main-panel').innerHeight();
+			if(top < featureHeight) {
+				$('html, body').animate({scrollTop: featureHeight+'px'}, 1000);
 			}
 		});
 	</script>
+	<% if(error) {%>
+		<script>
+			$('.close').on('click', function () {
+				$('.alert').fadeOut('2000');
+				$('.alert').remove();
+			});
+		</script>
+	<% } %>
 </body>
 </html>

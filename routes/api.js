@@ -23,8 +23,8 @@ router.get('/division/:name', function(req,res) {
 
 // callback hell!!!
 router.get('/code/:code', function (req, res) {
-	var postalCode = parseInt(req.params.code);
-	if(postalCode.toString().length !== 6)
+	var postalCode = req.params.code;
+	if(postalCode.length !== 6)
 		res.status(400).json({message: 'Invalid postal code'});
 	else {
 		var googleURL = "https://maps.googleapis.com/maps/api/geocode/json?&components=country:SG&sensor=false&key=AIzaSyAgd5JPNfDA7GvJaSJb2LOIf9q8o6ZAbvc&address=" + postalCode;

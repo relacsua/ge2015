@@ -245,7 +245,8 @@ span.ballot-title {
 input.vote-btn {
   background-color: tomato;
   color: white;
-  border-color: tomato;
+  border: 2px solid tomato;
+  border-radius: 0;
 }
 
 input.vote-btn:hover {
@@ -269,4 +270,27 @@ input.vote-btn:hover {
 .result-btn:hover {
   background-color: #fff;
   color: #ff974f;
+}
+
+/* alert */
+
+.alert {
+  height: 20px;
+  padding: 20px;
+  background-color: #D04747;
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  font-family: 'raleway';
+}
+
+.alert img {
+  width: 20px;
+  cursor: pointer;
+  float: right;
 }

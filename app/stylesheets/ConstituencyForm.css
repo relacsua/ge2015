@@ -76,3 +76,30 @@ body {
 .no-touch .nl-form .nl-submit:hover:before {
 	background: #C77966;
 }
+
+@media (max-width: 550px) {
+  .nl-dd ul li {
+    font-size: 80% !important;
+    padding: 0 1em 0 0.5em !important;
+  }
+  .nl-form .nl-submit {
+  	font-size: 30% !important;
+    padding: 0 1em !important;
+  }
+  .nl-submit:before {
+  	display: none !important;
+  }
+  .candidate {
+  	width: 100% !important;
+  }
+  .constituency-name {
+  	font-size: 10vw !important;
+  }
+  .constituency-details {
+    font-size: 5vw !important;
+	}
+	.vote-btn {
+		font-size: 16px !important;
+    padding: 15px 20px !important;
+	}
+}

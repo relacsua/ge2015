@@ -11,13 +11,17 @@ var User = require('../model/users.js');
 
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
+  req.session.lastPage = '/welcome';
   var error = req.session.error;
   delete req.session.error;
   res.render('welcome', {user: req.user, error: error});
 });
 
-router.get('/result', function(req, res) {
-  res.render('result', {user: req.user});
+router.get('/result', ensureAuthenticated, function(req, res) {
+  req.session.lastPage = '/result';
+  var error = req.session.error;
+  delete req.session.error;
+  res.render('result', {user: req.user, error: error});
 })
 
 router.get('/friendvote', ensureAuthenticated, function(req, res){
@@ -204,6 +208,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
   if(req.session.lastPage) {
     var redirectTo = req.session.lastPage;
     delete req.session.lastPage;
+    redirectTo = redirectTo === '/welcome' ? '/' : redirectTo;
     res.redirect(redirectTo);
   } else  {
     res.redirect('/');
@@ -219,6 +224,7 @@ router.get('/logout', function(req, res) {
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next(); }
+  req.session.error = "Please login to view the page";
   res.redirect('/welcome')
 }
 
