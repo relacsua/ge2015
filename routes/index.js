@@ -12,7 +12,7 @@ var User = require('../model/users.js');
 /* GET welcome page. */
 router.get('/welcome', function(req, res){
   // req.session.lastPage = '/welcome';
-  var error = req.session.error;
+  var error = "In view of the ban on election surveys, the voting feature has been removed. All data collected so far has been deleted. Thank you for your support.";
   // delete req.session.error;
   res.render('welcome', {user: req.user, error: error});
 });

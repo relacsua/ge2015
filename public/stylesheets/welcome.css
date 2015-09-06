@@ -174,9 +174,8 @@
 /* alert */
 
 .alert {
-  height: 20px;
-  padding: 20px;
-  background-color: #D04747;
+  padding: 20px 40px;
+  background-color: #D26237;
   z-index: 2000;
   position: fixed;
   top: 0;
@@ -184,7 +183,7 @@
   right: 0;
   text-align: center;
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .alert img {
