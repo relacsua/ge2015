@@ -17,56 +17,57 @@ router.get('/welcome', function(req, res){
   res.render('welcome', {user: req.user, error: error});
 });
 
-router.get('/result', ensureAuthenticated, function(req, res) {
+router.get('/result', function(req, res) {
   req.session.lastPage = '/result';
-  var error = req.session.error;
-  delete req.session.error;
-  res.render('result', {user: req.user, error: error});
-})
-
-router.get('/friendvote', ensureAuthenticated, function(req, res){
-
-  facebook.getFbData(req.user.accessToken, '/me/friends', 'limit=500', function(data){
-    data = JSON.parse(data);
-
-    var friendList = data.data;
-    var facebookIds = [];
-
-    for(var i=0; i<friendList.length; i++) {
-      var facebookId = friendList[i].id;
-      facebookIds.push(facebookId);
-    }
-
-    User.find({
-      'facebookId': {$in: facebookIds}
-    }, function(err, data) {
-      var friendSeries = [];
-
-      for(var i=0; i<data.length; i++) {
-
-        if(data[i].vote && data[i].vote.division) {
-          var party = data[i].vote.party;
-
-          var found = false;
-          for(var j=0; j<friendSeries.length; j++) {
-            if(friendSeries[j]["name"] === party) {
-              friendSeries[j]["y"]++;
-              found = true;
-              break;
-            }
-          }
-          if(!found) {
-            var obj = {"name": party, "y": 1};
-            friendSeries.push(obj);
-          }
-        }
-      }
-
-      res.json(friendSeries);
-    });
-
-  });
+  // var error = req.session.error;
+  // delete req.session.error;
+  res.render('temp', {user: req.user});
+  // res.render('result', {user: req.user, error: error});
 });
+
+// router.get('/friendvote', ensureAuthenticated, function(req, res){
+
+//   facebook.getFbData(req.user.accessToken, '/me/friends', 'limit=500', function(data){
+//     data = JSON.parse(data);
+
+//     var friendList = data.data;
+//     var facebookIds = [];
+
+//     for(var i=0; i<friendList.length; i++) {
+//       var facebookId = friendList[i].id;
+//       facebookIds.push(facebookId);
+//     }
+
+//     User.find({
+//       'facebookId': {$in: facebookIds}
+//     }, function(err, data) {
+//       var friendSeries = [];
+
+//       for(var i=0; i<data.length; i++) {
+
+//         if(data[i].vote && data[i].vote.division) {
+//           var party = data[i].vote.party;
+
+//           var found = false;
+//           for(var j=0; j<friendSeries.length; j++) {
+//             if(friendSeries[j]["name"] === party) {
+//               friendSeries[j]["y"]++;
+//               found = true;
+//               break;
+//             }
+//           }
+//           if(!found) {
+//             var obj = {"name": party, "y": 1};
+//             friendSeries.push(obj);
+//           }
+//         }
+//       }
+
+//       res.json(friendSeries);
+//     });
+
+//   });
+// });
 
 router.get('/vote/:name', function(req, res, next) {
   var divisionName = decodeURI(req.params.name);

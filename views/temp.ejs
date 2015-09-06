@@ -1,0 +1,114 @@
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>#sg15 | Unofficial General Election 2015</title>
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,100,300,600,700' rel='stylesheet' type='text/css' />
+
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      margin:0;
+      font-family: 'Raleway';
+      background-color: #046380;
+    }
+
+    .content {
+      text-align: center;
+      padding: 0 50px;
+      margin-top: 20%;
+    }
+
+    .content h1 {
+      font-size: 60px;
+      font-weight: 900;
+      color: #F6E497;
+      margin-bottom: 0;
+    }
+
+    .content p {
+      font-size: 16px;
+      color: #EFECCA;
+    }
+    /* Navigation bar */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45px;
+      background-color: rgba(255,255,255,0.5);
+      z-index: 1000;
+      padding: 10px 5px;
+    }
+
+    .navbar-list {
+      margin: 0;
+      list-style: none;
+    }
+
+    .navbar-item {
+      float: right;
+      font-family: 'Raleway';
+      color: #222222;
+      line-height: 40px;
+      padding-top: 5px;
+      margin: 0;
+      padding: 0 10px;
+      font-weight: 600;
+      padding: 0 10px;
+    }
+
+    .navbar-item.icon {
+      float:left;
+    }
+
+    .navbar-item.icon img {
+      width: 40px;
+    }
+
+    .navbar-item.navbar-profile img {
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    .facebook-logout {
+      text-decoration: none;
+      color: #222;
+      opacity: 0.8;
+    }
+
+    .facebook-logout:hover {
+      opacity: 1.0;
+    }
+  </style>
+</head>
+
+<body>
+  <% if(user) { %>
+    <nav class='navbar'>
+      <ul class='navbar-list'>
+        <li class="navbar-item icon">
+          <img width="40" src="/images/icon.svg">
+        </li>
+        <li class='navbar-item navbar-facebook-logout'>
+          <a class='facebook-logout' href='/logout'>Log out </a>
+        </li>
+        <li class='navbar-item navbar-profile'>
+          <img class='user-profile' src='<%= user.image %>' />
+        </li>
+        <li class='navbar-item navbar-username'>
+          <span class='user-name'><%= user.name.split(' ')[0] %></span>
+        </li>
+      </ul>
+    </nav>
+  <% } %>
+  <div class="content">
+    <h1>Thanks for voting.</h1>
+    <p>All results will be published here after the election day.</p>
+  </div>
+</body>
+
+</html>
