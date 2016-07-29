@@ -33,3 +33,4 @@ node_modules
 
 # Configuration files
 config/facebook_config.js
+config/mongo_config.js
