@@ -30,3 +30,6 @@ node_modules
 .DS_STORE
 
 *.bundle.js
+
+# Configuration files
+config/facebook_config.js
