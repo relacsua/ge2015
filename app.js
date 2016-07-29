@@ -51,6 +51,7 @@ passport.use(new FacebookStrategy({
         if(err)
           done(err);
         if(!user) {
+          console.log(profile)
           var newUser = User({
             name: profile.displayName,
             accessToken: accessToken,
